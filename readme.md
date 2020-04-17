@@ -1,4 +1,8 @@
+
 <p align="center"><img src="https://avatars0.githubusercontent.com/u/45993282?s=200&v=4" width="400"></p>
+
+![Command Management App](https://github.com/M3HEENK-TECH/command-management-app/workflows/Laravel/badge.svg) 
+
 
 # command-management-app
 
