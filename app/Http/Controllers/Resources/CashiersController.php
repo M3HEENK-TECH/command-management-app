@@ -17,7 +17,8 @@ class CashiersController extends Controller
      */
     public function index()
     {
-        //
+        $cashier =  User::all()->where('role', 'cashier');
+        return view('resources\cashiers\index', compact('cashier'));
     }
 
     /**
@@ -34,22 +35,28 @@ class CashiersController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        $data = User::create($request);
+        $this->storeimage($data);
+        return view('resources.cashiers.index');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(User $user)
     {
-        //
+            return view('resources.cashiers.index',
+            [
+                'user' => $user
+            ]
+        );
     }
 
     /**
@@ -72,7 +79,9 @@ class CashiersController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $user->updated($request);
+        $this->storeimage($user);
+        return redirect()->route('cashiers.index');
     }
 
     /**
@@ -83,6 +92,17 @@ class CashiersController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('cashiers.index');
+    }
+
+    private  function  storeimage(User $user)
+    {
+        if (request('image')) {
+            $user->update([
+                'image' => request('image')->store('avatars', 'public')
+            ]);
+        }
     }
 }
