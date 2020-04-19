@@ -91,13 +91,15 @@ class CashiersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\User $user
+     * @param int $userId
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(int $userId)
     {
-        $user->delete();
+        User::findOrFail($userId)->delete();
 
-        return redirect()->route('cashiers.index');
+        return redirect()
+        ->route('cashiers.index')
+        ->withSuccess("Suppression realiser avec success");
     }
 }

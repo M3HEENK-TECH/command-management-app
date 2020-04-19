@@ -40,10 +40,13 @@
                                 </td>
                                 <td>
                                     <form action="{{route("cashiers.destroy",$item)}}" method="post">
+                                        @method('DELETE')
+                                        @csrf
                                         <a href="{{route("cashiers.edit",$item)}}" class="btn btn-dark">
                                             Modifier
                                         </a>
-                                        <button class="btn btn-danger" type="submit">Supprimer</button>
+                                        <button onclick="return confirm('Supprimer {{$item->name}} ? ')" class="btn btn-danger" type="submit">Supprimer
+                                        </button>
                                     </form>
                                 </td>
                             </tr>

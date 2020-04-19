@@ -52,12 +52,12 @@ class User extends Authenticatable
         parent::boot();
         // Delete avatars wHen deleted users
         self::deleted(function (self $user){
-            return Storage::disk("public")->delete($this->attributes['profile_image']);
+            return Storage::disk("public")->delete($user->profile_image);
         });
     }
 
     public function UpdatedImage(UploadedFile $uploadedFile){
-        $this->profile_image = $uploadedFile->storePublicly("avatars",["disk"=>"puvspvioHGS"]);
+        $this->profile_image = $uploadedFile->store("avatars",["disk"=>"public"]);
         $this->save();
     }
 
