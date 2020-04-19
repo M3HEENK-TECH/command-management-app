@@ -11,7 +11,7 @@
             </div>
 
             <div class="col-lg-12 ">
-                {!! Form::open([ "url"=> route("cashiers.store") ,"files"=> true, "method" => "post" ]) !!}
+                {!! Form::model($cashier,[  "url"=> route("cashiers.update",$cashier) ,"files"=> true, "method" => "put" ]) !!}
 
                 <div class="form-group">
                     {{ Form::label("name","Nom")  }}
@@ -38,7 +38,7 @@
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-dark">
-                        Ajouter
+                        mettre a jour
                     </button>
                 </div>
 

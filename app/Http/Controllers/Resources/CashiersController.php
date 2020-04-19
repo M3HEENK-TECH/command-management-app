@@ -43,7 +43,7 @@ class CashiersController extends Controller
             "role" => "cashier"
         ]);
         $user =  User::create($request->all());
-        $user->UpdatedImage($request->file("profile_image"));
+        $user->UploadImage($request->file("profile_image"));
         return back()->withSuccess("Creation reussie");
     }
 
@@ -66,37 +66,46 @@ class CashiersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\User $user
+     * @param \App\Models\User $cashier
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $cashier)
     {
-        //
+        return  view("resources.cashiers.edit")->with("cashier",$cashier);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
+     * @param \App\Models\User $cashier
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $cashier)
     {
-        $user->updated($request);
-        $this->storeimage($user);
-        return redirect()->route('cashiers.index');
+
+        $cashier->update([
+              'name' => $request->name ?? $cashier->name,
+              'email' => $request->email ?? $cashier->email,
+              'password' => !empty($request->password) ? bcrypt($request->password) : $cashier->password,
+        ]);
+        if ( is_object($request->file("profile_image")) ) {
+             $cashier->UploadImage($request->file("profile_image"));
+        }
+        return redirect()
+        ->route('cashiers.index')
+        ->withSuccess("Mise a jour realiser avec success");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $userId
+     * @param \App\Models\User $cashier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $userId)
+    public function destroy( User $cashier)
     {
-        User::findOrFail($userId)->delete();
+       $cashier->delete();
 
         return redirect()
         ->route('cashiers.index')

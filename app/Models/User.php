@@ -56,7 +56,7 @@ class User extends Authenticatable
         });
     }
 
-    public function UpdatedImage(UploadedFile $uploadedFile){
+    public function UploadImage(UploadedFile $uploadedFile){
         $this->profile_image = $uploadedFile->store("avatars",["disk"=>"public"]);
         $this->save();
     }
