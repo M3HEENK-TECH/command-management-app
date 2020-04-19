@@ -56,9 +56,14 @@ class CashierTest extends TestCase
         );
 
         $cashier['name'] = "daniel";
-        $response =  $this->put('cashiers/'.$cashier['id'], $cashier); // your route to update article
+
+        $data = factory(\App\Models\User::class)->create([
+            'role' => 'cashier',
+        ])->toArray();
+
+        $response =  $this->put('cashiers/'.$cashier['id'], $data); // your route to update article
         //The article should be updated in the database.
-        $response->assertStatus(200);
+        $response->assertStatus(302);
 
 
     }
