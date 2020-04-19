@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -12,6 +13,11 @@ use Faker\Generator as Faker;
 
 class CashierTest extends TestCase
 {
+
+    public function setUp() : void {
+        parent::setUp();
+        Artisan::call("migrate"); // Migration de la base de donnees
+    }
 
     /**
      * A basic feature test example.
@@ -24,6 +30,8 @@ class CashierTest extends TestCase
         $response = $this->actingAs($user)->get('cashiers');
         $response->assertStatus(200);
     }
+
+
     public function test_a_user_can_create_a_cashier()
     {
         $this->withoutMiddleware();
@@ -48,8 +56,7 @@ class CashierTest extends TestCase
         );
 
         $cashier['name'] = "daniel";
-
-      $response =  $this->put('cashiers/'.$cashier['id'], $cashier); // your route to update article
+        $response =  $this->put('cashiers/'.$cashier['id'], $cashier); // your route to update article
         //The article should be updated in the database.
         $response->assertStatus(200);
 

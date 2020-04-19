@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -16,7 +18,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',"profile_image","role"
+        'name',
+        'email',
+        'password',
+        "profile_image",
+        "role"
     ];
 
     /**
@@ -40,4 +46,27 @@ class User extends Authenticatable
     public  function IsRole() {
         return $this->role;
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+        // Delete avatars wHen deleted users
+        self::deleted(function (self $user){
+            return Storage::disk("public")->delete($this->attributes['profile_image']);
+        });
+    }
+
+    public function UpdatedImage(UploadedFile $uploadedFile){
+        $this->profile_image = $uploadedFile->storePublicly("avatars",["disk"=>"puvspvioHGS"]);
+        $this->save();
+    }
+
+
+    public function getUrlAttribute(){
+        return Storage::disk("public")->url($this->attributes['profile_image']);
+    }
+
+
+
+
 }

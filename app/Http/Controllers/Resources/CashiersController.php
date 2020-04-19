@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Resources;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class CashiersController extends Controller
 {
@@ -17,8 +16,9 @@ class CashiersController extends Controller
      */
     public function index()
     {
-        $cashier =  User::all()->where('role', 'cashier');
-        return view('resources\cashiers\index', compact('cashier'));
+        $cashier = User::where('role', 'cashier')->get();
+        return view('resources.cashiers.index')
+            ->with("cashiers",$cashier);
     }
 
     /**
@@ -28,31 +28,35 @@ class CashiersController extends Controller
      */
     public function create()
     {
-
+        return  view("resources.cashiers.create");
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function store(StoreUserRequest $request)
     {
-        $data = User::create($request);
-        $this->storeimage($data);
-        return view('resources.cashiers.index');
+        $request->merge([
+            "role" => "cashier"
+        ]);
+        $user =  User::create($request->all());
+        $user->UpdatedImage($request->file("profile_image"));
+        return back()->withSuccess("Creation reussie");
     }
+
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param \App\Models\User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(User $user)
     {
-            return view('resources.cashiers.index',
+        return view('resources.cashiers.index',
             [
                 'user' => $user
             ]
@@ -62,7 +66,7 @@ class CashiersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -73,8 +77,8 @@ class CashiersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateUserRequest $request, User $user)
@@ -87,7 +91,7 @@ class CashiersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
@@ -95,14 +99,5 @@ class CashiersController extends Controller
         $user->delete();
 
         return redirect()->route('cashiers.index');
-    }
-
-    private  function  storeimage(User $user)
-    {
-        if (request('image')) {
-            $user->update([
-                'image' => request('image')->store('avatars', 'public')
-            ]);
-        }
     }
 }
