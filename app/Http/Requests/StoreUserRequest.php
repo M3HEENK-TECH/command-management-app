@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreUserRequest extends FormRequest
 {
@@ -29,7 +30,6 @@ class StoreUserRequest extends FormRequest
             'login' => 'required|string',
             'password' => 'required|string',
             'profile_image' => 'required|image',
-            'role' => 'required',
         ];
     }
 }

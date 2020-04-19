@@ -22,7 +22,8 @@ $factory->define(User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => bcrypt("password"),
+        'profile_image' => 'D:\Medias\Mes Logos\2.jpg',
         'remember_token' => Str::random(10),
-        "role" => "cashier"
+        "role" => "admin"
     ];
 });

@@ -16,7 +16,8 @@ class UserTableSeeder extends Seeder
             'email'=>"admin@gmail.com",
             'password' => bcrypt("password"),
             "profile_image" => null,
-            "role" => "admin"
+            "role" => "admin",
+            "created_at" => now()
         ]);
 
         \Illuminate\Support\Facades\DB::table("users")->insert([
@@ -24,7 +25,8 @@ class UserTableSeeder extends Seeder
             'email'=> "stevy@gmail.com",
             'password' => bcrypt("password"),
             "profile_image" => null,
-            "role" => "cashier"
+            "role" => "cashier",
+            "created_at" => now()
         ]);
     }
 }

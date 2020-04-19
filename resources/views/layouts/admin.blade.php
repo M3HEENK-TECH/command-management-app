@@ -72,6 +72,8 @@
         </div>
     </nav>
 
+    @include("partials.alerts")
+
     <main class="py-4 container ">
         <div class="row">
 
