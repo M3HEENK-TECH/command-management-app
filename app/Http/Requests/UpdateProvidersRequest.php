@@ -1,11 +1,14 @@
 <?php
 
+
 namespace App\Http\Requests;
+
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SupliesRequest extends FormRequest
+class UpdateProvidersRequest extends FormRequest 
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,13 +26,9 @@ class SupliesRequest extends FormRequest
      */
     public function rules()
     {
-        return [ 
-            'quantity' => 'required|integer',
-            'price' => 'required|integer',
-            'confirmed_at' => 'required|date',
-            'product_id' => 'required|integer',
-            'provider_id' => 'required|integer',
-
+        return [
+            'name' => 'required|string',
         ];
     }
+
 }

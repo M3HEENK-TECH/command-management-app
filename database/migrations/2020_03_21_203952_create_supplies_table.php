@@ -11,7 +11,7 @@ class CreateSuppliesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up() 
     {
         Schema::create('supplies', function (Blueprint $table) {
             $table->bigIncrements('id');

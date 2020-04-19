@@ -1,11 +1,14 @@
 <?php
 
+
 namespace App\Http\Requests;
+
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SupliesRequest extends FormRequest
+class UpdateSuppliesRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -21,9 +24,10 @@ class SupliesRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules() 
     {
-        return [ 
+        
+        return [
             'quantity' => 'required|integer',
             'price' => 'required|integer',
             'confirmed_at' => 'required|date',
@@ -32,4 +36,6 @@ class SupliesRequest extends FormRequest
 
         ];
     }
+
+
 }
