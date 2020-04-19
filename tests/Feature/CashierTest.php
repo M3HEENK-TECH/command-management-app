@@ -70,20 +70,14 @@ class CashierTest extends TestCase
 
     public function test_a_user_can_delete_a_cashier()
     {
-        $this->withoutMiddleware();
-        $cashier = array(
-            'id' => 11,
-            'name' => 'daniel',
-            'email' =>'daniel@gmail.com',
-            'email_verified_at' => now(),
-            'password' => bcrypt("password"),
-            'remember_token' => Str::random(10),
-            'profile_image' => 'D:\Medias\Mes Logos\2.jpg',
+         $this->withoutMiddleware();
+
+        $data = factory(\App\Models\User::class)->create([
             'role' => 'cashier',
-        );
+        ])->toArray();
 
-        $this->delete('delete-article/'.$cashier['id']); // your route to delete article
-        //The article should be deleted from the database.
-
+        $response =  $this->delete('cashiers/'.$data['id'], $data); // your route to update article
+        //The article should be updated in the database.
+        $response->assertStatus(302);
     }
 }
