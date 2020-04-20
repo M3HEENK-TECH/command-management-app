@@ -2,94 +2,123 @@
 
 namespace App\Http\Controllers\Resources;
 
+
 use App\Http\Requests\StoreSuppliesRequest;
 use App\Http\Requests\UpdateSuppliesRequest;
 use App\Models\Supply;
-use Illuminate\Http\Request;
+use Exception as ExceptionAlias;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
+use App\Repository\Supply\SuppliesRepository;
+use Illuminate\Http\Response;
 
 class SuppliesController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @var SuppliesRepository
      */
+    protected $suppliesRepository;
+
+    /**
+     * @var integer
+     */
+    protected $nbreParPage = 5;
+
+    public function __construct(SuppliesRepository $suppliesRepository)
+    {
+        $this->suppliesRepository = $suppliesRepository;
+    }
+
     public function index()
     {
-        //
+        $supplies = $this->suppliesRepository->paginate($this->nbreParPage);
+
+        return Response()->view('resources.supplies.index',compact('supplies','links'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
-        //
+        return Response()->view('resources.supplies.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreSuppliesRequest $request
+     * @return RedirectResponse
      */
     public function store(StoreSuppliesRequest $request)
     {
-        //
+        $supply = $this->suppliesRepository->create($request->all());
+
+        return Response()->redirectToRoute('supply')->with("success","L'Approvisionnement à bien été enregistrer");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Supply  $supply
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return Response
      */
-    public function show(Supply $supply)
+    public function show($id)
     {
-        //
+        $supply = $this->suppliesRepository->find($id);
+        return Response()->view('show',compact('supply'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Supply  $supply
-     * @return \Illuminate\Http\Response
+     * @param  Supply  $supply
+     * @return Response
      */
-    public function edit(Supply $supply)
+    public function edit($id)
     {
-        //
+        $supply = $this->suppliesRepository->find($id);
+
+        return Response()->view('resources.supplies.edit',compact('supply'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Supply  $supply
-     * @return \Illuminate\Http\Response
+     * @param UpdateSuppliesRequest $request
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function update(UpdateSuppliesRequest $request, Supply $supply)
+
+    public function update(UpdateSuppliesRequest $request, int $id)
     {
-        //
+        $this->suppliesRepository
+            ->find($id)
+            ->update($request->all());
+
+        return Response()->redirectToRoute('supply')->with("success","L'approvisionnement a été mis à jour ");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Supply  $supply
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return RedirectResponse
+     * @throws ExceptionAlias
      */
-    public function destroy(Supply $supply)
+    public function destroy(int $id)
     {
-        //
+        $this->suppliesRepository->delete($id);
+
+        return Response()->redirectToRoute("supplies.index")->with("success","Element supprimer avec succes");
     }
 
     /**
      * List avec les Approvisonement supprimer
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function listWithSoftDeleted()
     {
@@ -100,7 +129,7 @@ class SuppliesController extends Controller
      * Confirmer un Approvisonement
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function confirm(int $id)
     {
