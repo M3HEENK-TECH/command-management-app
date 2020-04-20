@@ -5,6 +5,11 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+/**
+ * Form Validation for customise User Registration
+ * Class StoreUserRequest
+ * @package App\Http\Requests
+ */
 class StoreUserRequest extends FormRequest
 {
     /**

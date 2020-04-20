@@ -4,6 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Form Validator to Validate and Optimize Login Request
+ * Class LoginRequest
+ * @package App\Http\Requests
+ */
 class LoginRequest extends FormRequest
 {
     public function expectsJson()
