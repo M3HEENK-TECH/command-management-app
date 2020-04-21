@@ -100,8 +100,10 @@ class SuppliesController extends Controller
             ->find($id)
             ->update($request->all());
 
-        return Response()->redirectToRoute('supply')->with("success","L'approvisionnement a été mis à jour ");
-    }
+            return redirect()
+            ->route('supplies.index')
+            ->withSuccess("Mise a jour realiser avec success");
+        }
 
     /**
      * Remove the specified resource from storage.
