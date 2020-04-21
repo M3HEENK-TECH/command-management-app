@@ -23,6 +23,7 @@ class CreateSuppliesTable extends Migration
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('provider_id')->references("id")->on("providers");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

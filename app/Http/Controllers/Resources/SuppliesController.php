@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Resources;
 
 use App\Http\Requests\StoreSuppliesRequest;
 use App\Http\Requests\UpdateSuppliesRequest;
-use App\Models\Supply;
 use Exception as ExceptionAlias;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Repository\Supply\SuppliesRepository;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Input;
 
 class SuppliesController extends Controller
 {
@@ -32,7 +32,9 @@ class SuppliesController extends Controller
     public function index()
     {
         $supplies = $this->suppliesRepository->paginate($this->nbreParPage);
-
+        if ( Input::get("filter") == "deleted" ){
+            $supplies = $this->suppliesRepository->makeModel()->onlyTrashed()->paginate($this->nbreParPage);
+        }
         return Response()->view('resources.supplies.index',compact('supplies','links'));
     }
 
@@ -74,7 +76,7 @@ class SuppliesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Supply  $supply
+     * @param $id
      * @return Response
      */
     public function edit($id)
@@ -115,25 +117,22 @@ class SuppliesController extends Controller
         return Response()->redirectToRoute("supplies.index")->with("success","Element supprimer avec succes");
     }
 
-    /**
-     * List avec les Approvisonement supprimer
-     *
-     * @return Response
-     */
-    public function listWithSoftDeleted()
-    {
-        //
-    }
 
     /**
      * Confirmer un Approvisonement
      *
      * @param  int  $id
-     * @return Response
+     * @return RedirectResponse
      */
     public function confirm(int $id)
     {
-        //
+        $supply = $this->suppliesRepository->find($id);
+        $supply->update([
+            "confirmed_at" => now()
+        ]);
+        return Response()
+            ->redirectToRoute("supplies.index")
+            ->with("success","Approvisionement marquer comme supprimer avec succes");
     }
 
 

@@ -55,10 +55,9 @@ Route::middleware("auth")->group(function (){
             ->name("update","supplies.update")
             ->name("destroy","supplies.destroy");
 
-        /* Route pour afficher les approvisionements supprimer */
-        Route::get("/supplies/soft-deletes","Resources\SuppliesController@listWithSoftDeleted")->name("supplies.SoftDeleted");
         /* Route pour confirmer un approvisionement */
-        Route::post("/supplies/{id}/confirm","Resources\SuppliesController@confirm")->name("supplies.confirm");
+        Route::get("/supplies/{id}/confirm","Resources\SuppliesController@confirm")
+            ->name("supplies.confirmed");
 
         /* Controller des approvisionements */
         Route::resource('/products', 'Resources\ProductsController')

@@ -10,6 +10,7 @@ class SuppliesRepository extends BaseRepository
 
     /**
      * Configure the Model
+     *
      **/
     public function model()
     {
