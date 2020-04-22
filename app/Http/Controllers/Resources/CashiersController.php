@@ -34,16 +34,20 @@ class CashiersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request 
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function store(StoreUserRequest $request)
     {
         $request->merge([
-            "role" => "cashier"
-        ]);
+            "role" => "cashier",
+            'password' => bcrypt($request->password)
+                    ]);
+
         $user =  User::create($request->all());
+        
         $user->UploadImage($request->file("profile_image"));
+
         return back()->withSuccess("Creation reussie");
     }
 
@@ -89,6 +93,7 @@ class CashiersController extends Controller
               'email' => $request->email ?? $cashier->email,
               'password' => !empty($request->password) ? bcrypt($request->password) : $cashier->password,
         ]);
+
         if ( is_object($request->file("profile_image")) ) {
              $cashier->UploadImage($request->file("profile_image"));
         }
