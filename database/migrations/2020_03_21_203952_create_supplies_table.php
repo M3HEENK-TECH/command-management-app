@@ -11,7 +11,7 @@ class CreateSuppliesTable extends Migration
      *
      * @return void
      */
-    public function up() 
+    public function up()
     {
         Schema::create('supplies', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -23,6 +23,7 @@ class CreateSuppliesTable extends Migration
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('provider_id')->references("id")->on("providers");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
