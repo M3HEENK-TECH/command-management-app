@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->integer('unity_price');
             $table->mediumText('description');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
