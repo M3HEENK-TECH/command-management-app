@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Resources;
 
 use App\Http\Requests\StoreSuppliesRequest;
 use App\Http\Requests\UpdateSuppliesRequest;
+use App\Models\product;
+use App\Models\Provider;
 use Exception as ExceptionAlias;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
@@ -82,8 +84,11 @@ class SuppliesController extends Controller
     public function edit($id)
     {
         $supply = $this->suppliesRepository->find($id);
+        $providers  = Provider::all();
+        $products  = product::all();
 
-        return Response()->view('resources.supplies.edit',compact('supply'));
+        return Response()->view('resources.supplies.edit',
+            compact('supply',"providers","products"));
     }
 
     /**
@@ -100,7 +105,7 @@ class SuppliesController extends Controller
             ->find($id)
             ->update($request->all());
 
-        return Response()->redirectToRoute('supply')->with("success","L'approvisionnement a été mis à jour ");
+        return Response()->redirectToRoute('supplies.index')->with("success","L'approvisionnement a été mis à jour ");
     }
 
     /**

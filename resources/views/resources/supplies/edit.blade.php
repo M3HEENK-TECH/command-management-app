@@ -10,7 +10,7 @@
         </div>
 
         <div class="col-lg-12 ">
-            {!! Form::model($supply,[ "url"=> route("supplies.update",$supply) ,"files"=> true, "method" => "post" ]) !!}
+            {!! Form::model($supply,[ "url"=> route("supplies.update",$supply) ,"files"=> true, "method" => "PUT" ]) !!}
 
             <div class="form-group">
                 {{ Form::label("quantity","Quantité")  }}
@@ -28,17 +28,17 @@
 
             <div class="form-group">
                 {{ Form::label("provider_id","Fournisseur")  }}
-                {{ Form::select("provider_id",[],[],["class" => "form-control"])  }}
+                {{ Form::select("provider_id",$providers->pluck("name","id"),null,["class" => "form-control"])  }}
             </div>
 
             <div class="form-group">
                 {{ Form::label("product_id","Product")  }}
-                {{ Form::select("product_id",[],[],["class" => "form-control"])  }}
+                {{ Form::select("product_id",$products->pluck("name","id"),null,["class" => "form-control"])  }}
             </div>
 
             <div class="form-group">
                 <button type="submit" class="btn btn-dark">
-                    Ajouter
+                    Mettre a jour
                 </button>
             </div>
 

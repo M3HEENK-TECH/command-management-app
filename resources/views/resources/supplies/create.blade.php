@@ -28,12 +28,12 @@
 
                 <div class="form-group">
                     {{ Form::label("provider_id","Fournisseur")  }}
-                    {{ Form::select("provider_id",[],[],["class" => "form-control"])  }}
+                    {{ Form::select("provider_id",$providers->pluck("name","id"),null,["class" => "form-control"])  }}
                 </div>
 
                 <div class="form-group">
                     {{ Form::label("product_id","Product")  }}
-                    {{ Form::select("product_id",[],[],["class" => "form-control"])  }}
+                    {{ Form::select("product_id",$products->pluck("name","id"),null,["class" => "form-control"])  }}
                 </div>
 
                 <div class="form-group">
