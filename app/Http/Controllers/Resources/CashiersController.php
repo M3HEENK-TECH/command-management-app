@@ -18,7 +18,7 @@ class CashiersController extends Controller
     {
         $cashier = User::where('role', 'cashier')->get();
         return view('resources.cashiers.index')
-            ->with("cashiers",$cashier);
+            ->with("cashiers", $cashier);
     }
 
     /**
@@ -28,7 +28,7 @@ class CashiersController extends Controller
      */
     public function create()
     {
-        return  view("resources.cashiers.create");
+        return view("resources.cashiers.create");
     }
 
     /**
@@ -43,8 +43,11 @@ class CashiersController extends Controller
             "role" => "cashier",
             'password' => bcrypt($request->password)
         ]);
-        $user =  User::create($request->all());
+
+        $user = User::create($request->all());
+
         $user->UploadImage($request->file("profile_image"));
+
         return back()->withSuccess("Creation reussie");
     }
 
@@ -72,7 +75,7 @@ class CashiersController extends Controller
      */
     public function edit(User $cashier)
     {
-        return  view("resources.cashiers.edit")->with("cashier",$cashier);
+        return view("resources.cashiers.edit")->with("cashier", $cashier);
     }
 
     /**
@@ -86,16 +89,17 @@ class CashiersController extends Controller
     {
 
         $cashier->update([
-              'name' => $request->name ?? $cashier->name,
-              'email' => $request->email ?? $cashier->email,
-              'password' => !empty($request->password) ? bcrypt($request->password) : $cashier->password,
+            'name' => $request->name ?? $cashier->name,
+            'email' => $request->email ?? $cashier->email,
+            'password' => !empty($request->password) ? bcrypt($request->password) : $cashier->password,
         ]);
-        if ( is_object($request->file("profile_image")) ) {
-             $cashier->UploadImage($request->file("profile_image"));
+
+        if (is_object($request->file("profile_image"))) {
+            $cashier->UploadImage($request->file("profile_image"));
         }
         return redirect()
-        ->route('cashiers.index')
-        ->withSuccess("Mise a jour realiser avec success");
+            ->route('cashiers.index')
+            ->withSuccess("Mise a jour realiser avec success");
     }
 
     /**
@@ -104,12 +108,13 @@ class CashiersController extends Controller
      * @param \App\Models\User $cashier
      * @return \Illuminate\Http\Response
      */
-    public function destroy( User $cashier)
+    public function destroy(User $cashier)
     {
-       $cashier->delete();
+        $cashier->delete();
 
         return redirect()
-        ->route('cashiers.index')
-        ->withSuccess("Suppression realiser avec success");
+            ->route('cashiers.index')
+            ->withSuccess("Suppression realiser avec success");
     }
+
 }

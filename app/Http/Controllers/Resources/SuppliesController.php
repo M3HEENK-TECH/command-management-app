@@ -108,6 +108,7 @@ class SuppliesController extends Controller
         return Response()->redirectToRoute('supplies.index')->with("success","L'approvisionnement a été mis à jour ");
     }
 
+
     /**
      * Remove the specified resource from storage.
      *

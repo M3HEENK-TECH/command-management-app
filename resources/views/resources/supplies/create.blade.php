@@ -6,7 +6,7 @@
         <div class="row ">
 
             <div class="col-lg-12">
-                <h2>Gestion des caissiers</h2>
+                <h2>Gestion des Approvisionnement</h2>
             </div>
 
             <div class="col-lg-12 ">
@@ -16,11 +16,6 @@
                     {{ Form::label("quantity","Quantité")  }}
                     {{ Form::text("quantity",null,["class" => "form-control"])  }}
                 </div>
-                <div class="form-group">
-                    {{ Form::label("price","Prix")  }}
-                    {{ Form::text("price",null,["class" => "form-control"])  }}
-                </div>
-
                 <div class="form-group">
                     {{ Form::label("price","Prix")  }}
                     {{ Form::text("price",null,["class" => "form-control"])  }}
