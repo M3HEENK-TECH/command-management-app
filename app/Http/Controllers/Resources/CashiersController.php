@@ -40,7 +40,8 @@ class CashiersController extends Controller
     public function store(StoreUserRequest $request)
     {
         $request->merge([
-            "role" => "cashier"
+            "role" => "cashier",
+            'password' => bcrypt($request->password)
         ]);
         $user =  User::create($request->all());
         $user->UploadImage($request->file("profile_image"));

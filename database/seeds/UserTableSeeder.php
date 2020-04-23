@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use \Illuminate\Support\Facades\DB;
 
 class UserTableSeeder extends Seeder
 {
@@ -11,7 +12,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        \Illuminate\Support\Facades\DB::table("users")->insert([
+        DB::table("users")->insert([
             'name'=>"admin",
             'email'=>"admin@gmail.com",
             'password' => bcrypt("password"),
@@ -20,7 +21,7 @@ class UserTableSeeder extends Seeder
             "created_at" => now()
         ]);
 
-        \Illuminate\Support\Facades\DB::table("users")->insert([
+        DB::table("users")->insert([
             'name'=> "stevy",
             'email'=> "stevy@gmail.com",
             'password' => bcrypt("password"),
