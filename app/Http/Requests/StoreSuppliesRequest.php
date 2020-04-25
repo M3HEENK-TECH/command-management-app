@@ -23,7 +23,7 @@ class StoreSuppliesRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        return [ 
             'quantity' => 'required|integer',
             'price' => 'required|integer',
             'confirmed_at' => 'required|date',
