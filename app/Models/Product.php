@@ -22,6 +22,8 @@ class product extends Model
             "unity",
             "unity_price",
             "description",
+            "created_at",
+            "updated_at"
     ];
 
     public function sales(){

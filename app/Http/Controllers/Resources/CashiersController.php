@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use Illuminate\Http\Response;
 
 class CashiersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -24,7 +25,7 @@ class CashiersController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -40,6 +41,7 @@ class CashiersController extends Controller
     public function store(StoreUserRequest $request)
     {
         $request->merge([
+
             "role" => "cashier",
             'password' => bcrypt($request->password)
         ]);
@@ -47,7 +49,6 @@ class CashiersController extends Controller
         $user = User::create($request->all());
 
         $user->UploadImage($request->file("profile_image"));
-
         return back()->withSuccess("Creation reussie");
     }
 
@@ -71,7 +72,7 @@ class CashiersController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \App\Models\User $cashier
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(User $cashier)
     {
@@ -83,7 +84,7 @@ class CashiersController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\User $cashier
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(UpdateUserRequest $request, User $cashier)
     {
@@ -93,9 +94,9 @@ class CashiersController extends Controller
             'email' => $request->email ?? $cashier->email,
             'password' => !empty($request->password) ? bcrypt($request->password) : $cashier->password,
         ]);
-
         if (is_object($request->file("profile_image"))) {
             $cashier->UploadImage($request->file("profile_image"));
+
         }
         return redirect()
             ->route('cashiers.index')
@@ -106,7 +107,7 @@ class CashiersController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Models\User $cashier
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(User $cashier)
     {
