@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Resources;
 
 use App\Http\Requests\StoreSuppliesRequest;
 use App\Http\Requests\UpdateSuppliesRequest;
-use App\Models\Supply;
 use Exception as ExceptionAlias;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
