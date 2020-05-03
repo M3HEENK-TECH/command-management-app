@@ -92,7 +92,4 @@ php artisan migrate
 * Creation des layout pour l'espace utilisateur
 * Creation des vues pour l'espace utilisateur
     * /home/admin et /home/cashier
-
-
-
-* ... 
+* ... ... ...
