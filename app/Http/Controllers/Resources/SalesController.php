@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Resources;
 
 use App\Http\Requests\StoreSalesRequest;
 use App\Http\Requests\UpdateSalesRequest;
+use App\Models\product;
 use App\Models\Sale;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,9 +20,9 @@ class SalesController extends Controller
     public function index()
     {
         $data = [
-          ""
+          "sales" => session("card_sales") ?? []
         ];
-        return  Response::view("resources.sales.index");
+        return  Response::view("resources.sales.index",$data);
     }
 
     /**
@@ -31,18 +32,29 @@ class SalesController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            "products" => product::all(["name","id"])
+        ];
+        return  Response::view("resources.sales.create",$data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreSalesRequest $request)
     {
-        //
+        $product = product::query()->where(
+            "id" , $request->get("product_id")
+        )->first();
+        $data = $request->merge(["product"=> $product])
+            ->only(["product","product_id","quantity"]);
+        session()->push("card_sales",$data);
+
+        return  Response::redirectToRoute("sales.index")
+            ->with("success","Vente enregistrer en session");
     }
 
     /**

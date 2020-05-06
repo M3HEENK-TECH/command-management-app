@@ -19,35 +19,24 @@
                         <td>#</td>
                         <td>Quantité</td>
                         <td>Produit</td>
-                        <td>Date</td>
-                        <td >Action </td>
+                        <td>Action</td>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach([] as $item)
+                    @foreach($sales as $item)
                         <tr>
-                            <td>{{$item->id}}</td>
-                            <td>{{$item->name}}</td>
-                            <td> {{$item->quantity}} </td>
-                            <td> {{$item->price}} </td>
-                            <td> {{$item->unity}} </td>
-                            <td> {{$item->unity_price}} </td>
+                            <td></td>
+                            <td> {{$item['quantity']}} </td>
+                            <td> {{$item["product"]->name}} </td>
                             <td>
-                                    <span class="badge badge-primary">
-                                       Creation : {{$item->created_at}}
-                                    </span>
-                                <span class="badge badge-primary">
-                                       Mise a jour :  {{$item->updated_at}}
-                                    </span>
-                            </td>
-                            <td>
-                                <form action="{{route("sales.destroy",$item)}}" method="post">
+                                <form action="{{route("sales.destroy",$item["product"])}}" method="post">
                                     @method('DELETE')
                                     @csrf
-                                    <a href="{{route("sales.edit",$item)}}" class="btn btn-dark">
+                                    <a href="{{route("sales.edit",$item["product"])}}" class="btn btn-dark">
                                         Modifier
                                     </a>
-                                    <button onclick="return confirm('Supprimer {{$item->name}} ? ')" class="btn btn-danger" type="submit">Supprimer
+                                    <button onclick="return confirm('Supprimer {{$item["product"]->name}} ? ')"
+                                            class="btn btn-danger" type="submit">Supprimer
                                     </button>
                                 </form>
                             </td>
