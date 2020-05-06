@@ -17,8 +17,10 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $product = product::all();
-        return view('resources.products.index',compact('products'))->with("products",$product);
+        $data = [
+            "products" => product::all()
+        ];
+        return view('resources.products.index')->with($data);
     }
 
     /**
@@ -39,14 +41,7 @@ class ProductsController extends Controller
      */
     public function store(storeProductRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'quantity' => 'required',
-            'price' => 'required',
-            'unity' => 'required',
-            'unity_price' => 'required',
-            'description' => 'required',
-        ]);
+
         $product = new product([
             'name' => $request->get('name'),
             'quantity' => $request->get('quantity'),
@@ -79,7 +74,7 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        
+
         return  view("resources.products.edit")->with("product",$product);
     }
 
@@ -100,7 +95,7 @@ class ProductsController extends Controller
             'unity_price' => $request->unity_price ?? $product->unity_price,
             'description' => $request->description ?? $product->description,
         ]);
-        
+
         return redirect()
         ->route('products.index')
         ->withSuccess("Mise a jour realiser avec success");
