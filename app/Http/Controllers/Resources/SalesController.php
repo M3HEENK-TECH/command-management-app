@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateSalesRequest;
 use App\Models\Sale;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
 
 class SalesController extends Controller
 {
@@ -17,7 +18,10 @@ class SalesController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+          ""
+        ];
+        return  Response::view("resources.sales.index");
     }
 
     /**

@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Resources;
 
 use App\Http\Requests\StoreSuppliesRequest;
 use App\Http\Requests\UpdateSuppliesRequest;
+use App\Models\product;
+use App\Models\provider;
 use App\Models\Supply;
 use Exception as ExceptionAlias;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Repository\Supply\SuppliesRepository;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Input;
 
 
@@ -31,24 +33,39 @@ class SuppliesController extends Controller
         $this->suppliesRepository = $suppliesRepository;
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     * @throws ExceptionAlias
+     */
     public function index()
     {
         $supplies = $this->suppliesRepository->paginate($this->nbreParPage);
-        if ( Input::get("filter") == "deleted" ){
+        if (Input::get("filter") == "deleted") {
             $supplies = $this->suppliesRepository->makeModel()->onlyTrashed()->paginate($this->nbreParPage);
         }
+        $links = $supplies->links();
+        $data = [
+            'links' => $links,
+            'supplies' => $supplies,
+        ];
 
-        return Response()->view('resources.supplies.index',compact('supplies','links'));
+        return Response::view('resources.supplies.index', $data);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return Response()->view('resources.supplies.create');
+        $providers = provider::all();
+        $products = product::all();
+        $data = [
+            "providers" => $providers,
+            "products" => $products
+        ];
+        return Response::view('resources.supplies.create', $data);
     }
 
     /**
@@ -61,72 +78,74 @@ class SuppliesController extends Controller
     {
         $supply = $this->suppliesRepository->create($request->all());
 
-        return Response()->redirectToRoute('supply')->with("success","L'Approvisionnement à bien été enregistrer");
+        return Response::redirectToRoute('supplies.index')
+            ->with("success", "L'Approvisionnement à bien été enregistrer");
     }
 
     /**
      * Display the specified resource.
      *
      * @param $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Supply $supply)
     {
-        $supply = $this->suppliesRepository->find($id);
-        return Response()->view('show',compact('supply'));
+        return Response::view('show', compact('supply'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param $id
-     * @return Response
+     * @param Supply $supply
+     * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Supply $supply)
     {
-        $supply = $this->suppliesRepository->find($id);
-
-        return Response()->view('resources.supplies.edit',compact('supply'));
+        $providers = provider::all();
+        $products = product::all();
+        $data = [
+            "providers" => $providers,
+            "products" => $products,
+            "supply" => $supply
+        ];
+        return Response::view('resources.supplies.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param UpdateSuppliesRequest $request
-     * @param int $id
+     * @param Supply $supply
      * @return RedirectResponse
      */
 
-    public function update(UpdateSuppliesRequest $request, int $id)
+    public function update(UpdateSuppliesRequest $request, Supply $supply)
     {
-        $this->suppliesRepository
-            ->find($id)
-            ->update($request->all());
-        return Response()->redirectToRoute('supplies.index')->with("success","L'approvisionnement a été mis à jour ");
+        $supply->update($request->all());
+        return Response()->redirectToRoute('supplies.index')
+            ->with("success", "L'approvisionnement a été mis à jour ");
     }
 
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param Supply $supply
      * @return RedirectResponse
      * @throws ExceptionAlias
      */
-    public function destroy(int $id)
+    public function destroy(Supply $supply)
     {
-        $this->suppliesRepository->delete($id);
+        $supply->delete();
 
-        return Response()->redirectToRoute("supplies.index")->with("success","Element supprimer avec succes");
+        return Response()->redirectToRoute("supplies.index")->with("success", "Element supprimer avec succes");
     }
-
-
 
 
     /**
      * Confirmer un Approvisonement
      *
-     * @param  int  $id
+     * @param int $id
      * @return RedirectResponse
      */
     public function confirm(int $id)
@@ -135,9 +154,8 @@ class SuppliesController extends Controller
         $supply->update([
             "confirmed_at" => now()
         ]);
-        return Response()
-            ->redirectToRoute("supplies.index")
-            ->with("success","Approvisionement marquer comme supprimer avec succes");
+        return Response::redirectToRoute("supplies.index")
+            ->with("success", "Approvisionement marquer comme supprimer avec succes");
     }
 
 

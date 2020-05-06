@@ -17,7 +17,7 @@ class CreateSuppliesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('quantity');
             $table->integer('price');
-            $table->dateTime('confirmed_at');
+            $table->dateTime('confirmed_at')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('provider_id');
             $table->foreign('product_id')->references('id')->on('products');

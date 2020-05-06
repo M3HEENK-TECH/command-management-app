@@ -18,8 +18,7 @@ class CashiersController extends Controller
     public function index()
     {
         $cashier = User::where('role', 'cashier')->get();
-        return view('resources.cashiers.index')
-            ->with("cashiers", $cashier);
+        return view('resources.cashiers.index')->with("cashiers", $cashier);
     }
 
     /**
@@ -117,5 +116,6 @@ class CashiersController extends Controller
             ->route('cashiers.index')
             ->withSuccess("Suppression realiser avec success");
     }
+
 
 }

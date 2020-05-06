@@ -63,6 +63,9 @@ class User extends Authenticatable
 
 
     public function getUrlAttribute(){
+        if ( empty($this->attributes['profile_image']) ){
+            return  url("images/default.png");
+        }
         return Storage::disk("public")->url($this->attributes['profile_image']);
     }
 

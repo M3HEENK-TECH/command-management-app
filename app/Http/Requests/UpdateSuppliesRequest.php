@@ -30,7 +30,6 @@ class UpdateSuppliesRequest extends FormRequest
         return [
             'quantity' => 'required|integer',
             'price' => 'required|integer',
-            'confirmed_at' => 'required|date',
             'product_id' => 'required|integer',
             'provider_id' => 'required|integer',
 

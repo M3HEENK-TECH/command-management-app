@@ -4,6 +4,7 @@
 | Web Routes
 |--------------------------------------------------------------------------
 */
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,6 @@ Auth::routes([
 
 /* Routes du middleware d'authentification */
 Route::middleware("auth")->group(function (){
-
 
     /* Routes du middleware de l'admin */
     Route::middleware('role:admin')->group(function (){
@@ -68,10 +68,7 @@ Route::middleware("auth")->group(function (){
             ->name("edit","products.edit")
             ->name("update","products.update")
             ->name("destroy","products.destroy");
-
     });
-
-
 
     /* Routes des roles casssier et admin */
     Route::middleware('role:admin,cashier')->group(function (){
@@ -80,15 +77,16 @@ Route::middleware("auth")->group(function (){
 
         /* Controller des ventes */
         Route::resource('/sales', 'Resources\SalesController')
-            ->only("show","index","store")
-            ->name("index","sales.index") // list of sales
-            ->name("show","sales.show") // list of products of a sales
-            ->name("store","sales.store") // store new sale
+            ->name("index","sales.index")
+            ->name("show","sales.show")
+            ->name("create","sales.create")
+            ->name("store","sales.store")
+            ->name("edit","sales.edit")
+            ->name("update","sales.update")
+            ->name("destroy","sales.destroy")
         ;
 
         Route::get("notification","NotificationController@list")->name("notification_list");
     });
-
-
 
 });

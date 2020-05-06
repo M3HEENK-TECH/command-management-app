@@ -16,7 +16,6 @@ class UserTableSeeder extends Seeder
             'name'=>"admin",
             'email'=>"admin@gmail.com",
             'password' => bcrypt("password"),
-            "profile_image" => null,
             "role" => "admin",
             "created_at" => now()
         ]);
@@ -25,7 +24,6 @@ class UserTableSeeder extends Seeder
             'name'=> "stevy",
             'email'=> "stevy@gmail.com",
             'password' => bcrypt("password"),
-            "profile_image" => null,
             "role" => "cashier",
             "created_at" => now()
         ]);
