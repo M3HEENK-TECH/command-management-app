@@ -8,7 +8,7 @@
             <div class="col-lg-8">
                 <h2>Vente</h2>
             </div>
-            
+
 
             <div class="col-lg-12">
                 <div class="col-lg-12 ">
