@@ -76,15 +76,16 @@ Route::middleware("auth")->group(function (){
         Route::get('/home/cashier', 'HomeController@cashierIndex')->name('home.cashier');
 
         /* Controller des ventes */
-        Route::resource('/sales', 'Resources\SalesController')
-            ->name("index","sales.index")
-            ->name("show","sales.show")
-            ->name("create","sales.create")
-            ->name("store","sales.store")
-            ->name("edit","sales.edit")
-            ->name("update","sales.update")
-            ->name("destroy","sales.destroy")
-        ;
+        Route::get('/card_sales', 'Resources\SalesController@index')
+            ->name("sales.index"); # sales list
+        Route::get('/card_sales/create', 'Resources\SalesController@create')->name("sales.create"); # Add new sales in  session card
+        Route::post('/card_sales', 'Resources\SalesController@store')->name("sales.store"); # Strore new sale in session card
+        Route::delete('/card_sales', 'Resources\SalesController@destroy')->name("sales.destroy"); # Remove sales in session card
+
+        Route::resource('/app_sales',"Resources\AppSalesController")
+            ->name("index","app_sales.index")
+            ->name("store","app_sales.store")
+            ->only("index","store");
 
         Route::get("notification","NotificationController@list")->name("notification_list");
     });
