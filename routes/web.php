@@ -80,7 +80,8 @@ Route::middleware("auth")->group(function (){
             ->name("sales.index"); # sales list
         Route::get('/card_sales/create', 'Resources\SalesController@create')->name("sales.create"); # Add new sales in  session card
         Route::post('/card_sales', 'Resources\SalesController@store')->name("sales.store"); # Strore new sale in session card
-        Route::delete('/card_sales', 'Resources\SalesController@destroy')->name("sales.destroy"); # Remove sales in session card
+        Route::delete('/card_sales/{sale_key}', 'Resources\SalesController@destroy')->name("sales.destroy"); # Remove sales in session card
+        Route::delete('/card_sales/delete/all', 'Resources\SalesController@destroyAll')->name("sales.destroy_all"); # Remove all sales in session card
 
         Route::resource('/app_sales',"Resources\AppSalesController")
             ->name("index","app_sales.index")

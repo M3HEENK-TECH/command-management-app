@@ -9,10 +9,16 @@ use App\Models\Sale;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Response;
 
 class SalesController extends Controller
 {
+    /**
+     * @var string CARD_SESSION_KEY
+     */
+    private const CARD_SESSION_KEY =  "card_sales";
+
     /**
      * Display a listing of the resource.
      *
@@ -21,8 +27,9 @@ class SalesController extends Controller
     public function index()
     {
         $data = [
-            "sales" => session("card_sales") ?? []
+            "sales" => session(self::CARD_SESSION_KEY) ?? []
         ];
+        //session()->remove(self::CARD_SESSION_KEY);
         return Response::view("resources.sales.index", $data);
     }
 
@@ -36,6 +43,7 @@ class SalesController extends Controller
         $data = [
             "products" => product::all(["name", "id"])
         ];
+
         return Response::view("resources.sales.create", $data);
     }
 
@@ -55,7 +63,8 @@ class SalesController extends Controller
             return back()->withErrors(["quantity" => "Quantité du produit : La quantité est supérieur a celle en stcok"]);
         }
         $product_quantity = $product->quantity;
-        foreach (session()->get("card_sales") as $sale) {
+        $card_sales = session()->get(self::CARD_SESSION_KEY) ?? [];
+        foreach ($card_sales as $sale) {
             if ($sale['product']->id === $product->id) {
                 $product_quantity += $sale['product']->quantity;
             }
@@ -66,7 +75,7 @@ class SalesController extends Controller
         }
         $request->merge(["product" => $product]);
         $data = $request->only(["product", "product_id", "quantity"]);
-        session()->push("card_sales", $data);
+        session()->push(self::CARD_SESSION_KEY, $data);
 
         return Response::redirectToRoute("sales.index")
             ->with("success", "Vente enregistrer en session");
@@ -109,11 +118,32 @@ class SalesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Sale $sale
-     * @return \Illuminate\Http\Response
+     * @param int $sale_key
+     * @return RedirectResponse
      */
-    public function destroy(Sale $sale)
+    public function destroy(int $sale_key)
     {
-        //
+        $data = session()->get(self::CARD_SESSION_KEY);
+        /**
+         * News card sales array without card sales with $sale_key
+         */
+        $newData = Arr::except($data,$sale_key);
+        session()->remove(self::CARD_SESSION_KEY);
+        session()->put(self::CARD_SESSION_KEY,$newData);
+        return back()->with("success","Produit supprimer du panier avec success");
+
     }
+
+    /**
+     * @return RedirectResponse
+     */
+    public function destroyAll()
+    {
+        session()->remove(self::CARD_SESSION_KEY);
+        return back()->with("success","Produit supprimer du panier avec success");
+
+    }
+
+
+
 }
