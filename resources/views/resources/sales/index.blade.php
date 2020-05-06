@@ -16,6 +16,7 @@
                 {!! Form::open(['url' => route("sales.destroy_all"), 'method' => 'delete',"style" => "display:inline-block"]) !!}
                     <button type="submit"  class="btn btn-danger" onclick="return confirm('Vider le panier')">Vider le panier</button>
                 {!! Form::close() !!}
+
             </div>
             <div class="col-lg-12">
                 <table class="table table-bordered">
