@@ -59,11 +59,10 @@ class SuppliesController extends Controller
      */
     public function create()
     {
-        $providers = provider::all();
-        $products = product::all();
+
         $data = [
-            "providers" => $providers,
-            "products" => $products
+            "providers" => provider::all(),
+            "products" => product::all()
         ];
         return Response::view('resources.supplies.create', $data);
     }
@@ -101,11 +100,9 @@ class SuppliesController extends Controller
      */
     public function edit(Supply $supply)
     {
-        $providers = provider::all();
-        $products = product::all();
         $data = [
-            "providers" => $providers,
-            "products" => $products,
+            "providers" => provider::all(),
+            "products" => product::all(),
             "supply" => $supply
         ];
         return Response::view('resources.supplies.edit', $data);
