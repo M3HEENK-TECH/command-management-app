@@ -16,9 +16,9 @@ class FactoriesSeeder extends Seeder
         $cashiers = factory(\App\Models\User::class,4)->create();
 
         //Seeding des produits
-        factory(\App\Models\product::class,4)
+        factory(\App\Models\Product::class,4)
             ->create()
-            ->each(function (\App\Models\product $product){
+            ->each(function (\App\Models\Product $product){
             //Seeding des Tables dependant des produits
             $product->supplies()
                 ->saveMany(
