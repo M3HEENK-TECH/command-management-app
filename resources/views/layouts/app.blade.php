@@ -12,9 +12,6 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -83,7 +80,7 @@
 
             <div class="col-md-3">
                 <div class="list-group">
-                    @if( auth()->user()->isAdmin() )
+                    @if( auth()->check() and auth()->user()->isAdmin() )
                         <a class="list-group-item" href="{{route("cashiers.index")}}">Caissiers</a>
                         <a class="list-group-item" href="{{route("products.index")}}">Produits</a>
                         <a class="list-group-item" href="{{route("providers.index")}}">Fournisseurs</a>
@@ -91,7 +88,7 @@
                         <a class="list-group-item" href="{{route("sales.index")}}">Panier</a>
                         <a class="list-group-item" href="{{route("app_sales.index")}}">Ventes</a>
                         <a class="list-group-item" href="{{route("notification_list")}}">Notification</a>
-                    @elseif( auth()->user()->isCashier() )
+                    @elseif(auth()->check() and  auth()->user()->isCashier() )
                         <a class="list-group-item" href="{{route("sales.index")}}">Panier</a>
                         <a class="list-group-item" href="{{route("app_sales.index")}}">Ventes</a>
                         <a class="list-group-item" href="{{route("notification_list")}}">Notification</a>
