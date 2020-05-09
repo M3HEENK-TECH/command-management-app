@@ -30,7 +30,11 @@ class FactoriesSeeder extends Seeder
             );
 
             $product->sales()->saveMany(
-                factory(\App\Models\Sale::class,4)->make()
+                factory(\App\Models\Sale::class,4)->make([
+                    'user_id' => factory(\App\Models\User::class)
+                    ->create()
+                    ->id
+                    ])
             );
         });
     }

@@ -17,9 +17,13 @@ class CreateSalesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('quantity');
             $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign("product_id")
                 ->references("id")
                 ->on("products");
+            $table->foreign("user_id")
+                ->references("id")
+                ->on("users");
             $table->timestamp("created_at");
         });
     }
