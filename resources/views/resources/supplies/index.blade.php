@@ -6,7 +6,7 @@
         <div class="row ">
 
             <div class="col-lg-6">
-                <h2>Gestion des caissiers</h2>
+                <h2>Gestion des Approvisionnements</h2>
             </div>
             <div class="col-lg-6 text-right">
                 <a href="{{route("supplies.create")}}" class="btn btn-dark">Ajouter</a> |
