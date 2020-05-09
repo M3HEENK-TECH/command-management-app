@@ -82,8 +82,7 @@
                     <a class="list-group-item" href="{{route("cashiers.index")}}">Caissiers</a>
                     <a class="list-group-item" href="{{route("products.index")}}">Produits</a>
                     <a class="list-group-item" href="{{route("providers.index")}}">Fournisseurs</a>
-                    <a class="list-group-item" href="{{route("supplies.index")}}">Approvisionements</a>
-                   
+                    <a class="list-group-item" href="{{route("supplies.index")}}">Approvisionements</a>  
                     <a class="list-group-item" href="{{route("app_sales.index")}}">Ventes Caissiers</a>
                     <a class="list-group-item" href="{{route("notification_list")}}">Notification</a>
                 </div>
