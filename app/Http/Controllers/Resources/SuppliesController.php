@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Resources;
 
 use App\Http\Requests\StoreSuppliesRequest;
 use App\Http\Requests\UpdateSuppliesRequest;
-use App\Models\product;
+use App\Models\Product;
 use App\Models\provider;
 use App\Models\Supply;
 use Exception as ExceptionAlias;
@@ -62,7 +62,7 @@ class SuppliesController extends Controller
 
         $data = [
             "providers" => provider::all(),
-            "products" => product::all()
+            "products" => Product::all()
         ];
         return Response::view('resources.supplies.create', $data);
     }
@@ -102,7 +102,7 @@ class SuppliesController extends Controller
     {
         $data = [
             "providers" => provider::all(),
-            "products" => product::all(),
+            "products" => Product::all(),
             "supply" => $supply
         ];
         return Response::view('resources.supplies.edit', $data);
