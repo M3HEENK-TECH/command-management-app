@@ -87,7 +87,7 @@ Route::middleware("auth")->group(function (){
             ->name("index","app_sales.index")
             ->name("store","app_sales.store")
             ->only("index","store");
-
+ 
         Route::get("notification","NotificationController@list")->name("notification_list");
     });
 

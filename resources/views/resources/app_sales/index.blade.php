@@ -13,14 +13,17 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <td>Champ1</td>
-                        <td>Champ2</td>
+                        <td>Nom Caissier</td>
+                        <td>Action</td>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach([] as $item)
+                    @foreach($caisses as $item)
                         <tr>
-                           <td></td>
+                            <td>{{$item->name}}</td>
+                           <td>
+                            <a href="{{route("app_sales.store",["id"=>$item->id])}}" class="btn btn-dark">Consulté Ventes</a>
+                           </td>
                         </tr>
                     @endforeach
                     </tbody>
