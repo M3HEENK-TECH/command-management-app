@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
-class Product extends Model
+class product extends Model
 {
     use SoftDeletes;
     use Notifiable;
-
 
     protected $primaryKey = "id";
 
