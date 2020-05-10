@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
 
@@ -11,7 +11,7 @@
             <div class="col-lg-6 text-right">
                 <a href="{{route("sales.create")}}" class="btn btn-dark">Ajouter un produit</a>
                 {!! Form::open(['url' => route("app_sales.store"), 'method' => 'post',"style" => "display:inline-block"]) !!}
-                    <button type="submit"  class="btn btn-dark" onclick="return confirm('Vendre les produits du panier')">Vendre</button>
+                    <button type="submit"  class="btn btn-success" onclick="return confirm('Vendre les produits du panier')">Vendre</button>
                 {!! Form::close() !!}
                 {!! Form::open(['url' => route("sales.destroy_all"), 'method' => 'delete',"style" => "display:inline-block"]) !!}
                     <button type="submit"  class="btn btn-danger" onclick="return confirm('Vider le panier')">Vider le panier</button>

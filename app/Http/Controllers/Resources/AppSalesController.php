@@ -7,8 +7,8 @@ namespace App\Http\Controllers\Resources;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
 use App\Models\User;
-use App\Models\Sale; 
-use App\Models\product;
+use App\Models\Sale;
+use App\Models\Product;
 
 class AppSalesController
 {
@@ -32,7 +32,7 @@ class AppSalesController
 
         $data = [
             'sales'=> sale::all(),
-            'products'=> product::all()
+            'products'=> Product::all()
         ];
 
             return Response::view('ressources.app_sales.listeVente',$data);
