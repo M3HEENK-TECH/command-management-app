@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -82,7 +83,7 @@
                     <a class="list-group-item" href="{{route("cashiers.index")}}">Caissiers</a>
                     <a class="list-group-item" href="{{route("products.index")}}">Produits</a>
                     <a class="list-group-item" href="{{route("providers.index")}}">Fournisseurs</a>
-                    <a class="list-group-item" href="{{route("supplies.index")}}">Approvisionements</a>  
+                    <a class="list-group-item" href="{{route("supplies.index")}}">Approvisionements</a>
                     <a class="list-group-item" href="{{route("app_sales.index")}}">Ventes Caissiers</a>
                     <a class="list-group-item" href="{{route("notification_list")}}">Notification</a>
                 </div>
