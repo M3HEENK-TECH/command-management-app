@@ -21,7 +21,7 @@ class CreateSuppliesTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('provider_id');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('provider_id')->references("id")->on("providers");
+            $table->foreign('provider_id')->references("id")->on("providers")->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
