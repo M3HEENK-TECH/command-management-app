@@ -25,7 +25,7 @@ class SalesController extends Controller
         $data = [
             "sales" => session(Sale::CARD_SESSION_KEY) ?? []
         ];
-        //session()->remove(self::CARD_SESSION_KEY);
+        //session()->remove(Sale::CARD_SESSION_KEY);
         return Response::view("resources.sales.index", $data);
     }
 
@@ -88,13 +88,13 @@ class SalesController extends Controller
      */
     public function destroy(int $sale_key)
     {
-        $data = session()->get(self::CARD_SESSION_KEY);
+        $data = session()->get(Sale::CARD_SESSION_KEY);
         /**
          * News card sales array without card sales with $sale_key
          */
         $newData = Arr::except($data,$sale_key);
-        session()->remove(self::CARD_SESSION_KEY);
-        session()->put(self::CARD_SESSION_KEY,$newData);
+        session()->remove(Sale::CARD_SESSION_KEY);
+        session()->put(Sale::CARD_SESSION_KEY,$newData);
         return back()->with("success","Produit supprimer du panier avec success");
 
     }
@@ -104,7 +104,7 @@ class SalesController extends Controller
      */
     public function destroyAll()
     {
-        session()->remove(self::CARD_SESSION_KEY);
+        session()->remove(Sale::CARD_SESSION_KEY);
         return back()->with("success","Produit supprimer du panier avec success");
 
     }

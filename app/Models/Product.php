@@ -11,7 +11,6 @@ class Product extends Model
     use SoftDeletes;
     use Notifiable;
 
-
     protected $primaryKey = "id";
 
     protected $table = "products";

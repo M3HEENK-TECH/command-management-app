@@ -22,7 +22,7 @@ class Sale extends Model
     protected $fillable = [
         "quantity",
         "product_id",
-        "cashier_id",
+        "user_id",
     ];
 
     public const UPDATED_AT = null;
@@ -55,6 +55,7 @@ class Sale extends Model
                 $sale =  self::query()->create([
                     "quantity" => $session_sale['quantity'] ,
                     "product_id" => $session_sale['product_id'],
+                    "user_id" => auth()->id()
                 ]);
                 $product->update([
                     "quantity" => $product->quantity - $session_sale['quantity']

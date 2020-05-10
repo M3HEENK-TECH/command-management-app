@@ -6,7 +6,7 @@
         <div class="row ">
 
             <div class="col-lg-12">
-                <h2>Gestion des Approvisionnement</h2>
+                <h2>Gestion des Approvisionnements</h2>
             </div>
 
             <div class="col-lg-12 ">
