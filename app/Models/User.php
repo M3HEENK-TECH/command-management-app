@@ -69,6 +69,14 @@ class User extends Authenticatable
         return Storage::disk("public")->url($this->attributes['profile_image']);
     }
 
+    public function isAdmin() : bool {
+        return $this->attributes['role'] === "admin";
+    }
+
+    public function isCashier() : bool {
+        return $this->attributes['role'] === "cashier";
+    }
+
 
 
 

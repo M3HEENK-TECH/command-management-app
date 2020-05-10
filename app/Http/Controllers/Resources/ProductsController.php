@@ -17,7 +17,7 @@ class ProductsController extends Controller
     public function index()
     {
         $data = [
-            "products" => product::all()
+            "products" => Product::all()
         ];
         return view('resources.products.index')->with($data);
     }
@@ -41,7 +41,7 @@ class ProductsController extends Controller
     public function store(storeProductRequest $request)
     {
 
-        $product = new product([
+        $product = new Product([
             'name' => $request->get('name'),
             'quantity' => $request->get('quantity'),
             'price' => $request->get('price'),
