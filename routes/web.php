@@ -88,6 +88,7 @@ Route::middleware("auth")->group(function (){
             ->name("index","app_sales.index") # Liste des ventes
             ->name("store","app_sales.store") # Enregistrer des ventes depuis les sessions
             ->only("index","store");
+        Route::get("/app_sales/print/{cashier}","Resources\AppSalesController@print")->name("app_sales.print");
 
         Route::get("notification","NotificationController@list")->name("notification_list");
     });
