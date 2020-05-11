@@ -75,7 +75,7 @@ Route::middleware("auth")->group(function (){
         /* Cashier Home page */
         Route::get('/home/cashier', 'HomeController@cashierIndex')->name('home.cashier');
 
-        /* Controller des ventes */
+        # Routes des ventes en sessions
         Route::get('/card_sales', 'Resources\SalesController@index')
             ->name("sales.index"); # sales list
         Route::get('/card_sales/create', 'Resources\SalesController@create')->name("sales.create"); # Add new sales in  session card
@@ -83,11 +83,13 @@ Route::middleware("auth")->group(function (){
         Route::delete('/card_sales/{sale_key}', 'Resources\SalesController@destroy')->name("sales.destroy"); # Remove sales in session card
         Route::delete('/card_sales/delete/all', 'Resources\SalesController@destroyAll')->name("sales.destroy_all"); # Remove all sales in session card
 
+        # Route des ventes en Base de données
         Route::resource('/app_sales',"Resources\AppSalesController")
-            ->name("index","app_sales.index")
-            ->name("store","app_sales.store")
+            ->name("index","app_sales.index") # Liste des ventes
+            ->name("store","app_sales.store") # Enregistrer des ventes depuis les sessions
             ->only("index","store");
- 
+        Route::get("/app_sales/print/{cashier}","Resources\AppSalesController@print")->name("app_sales.print");
+
         Route::get("notification","NotificationController@list")->name("notification_list");
     });
 

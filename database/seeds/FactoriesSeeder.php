@@ -1,5 +1,10 @@
 <?php
 
+use App\Models\Product;
+use App\Models\provider;
+use App\Models\Sale;
+use App\Models\Supply;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class FactoriesSeeder extends Seeder
@@ -13,29 +18,25 @@ class FactoriesSeeder extends Seeder
     {
 
         //Seeding des caissiers
-        $cashiers = factory(\App\Models\User::class,4)->create();
+        $cashiers = factory(User::class, 4)->create();
 
         //Seeding des produits
-        factory(\App\Models\Product::class,4)
-            ->create()
-            ->each(function (\App\Models\Product $product){
-            //Seeding des Tables dependant des produits
-            $product->supplies()
-                ->saveMany(
-                        factory(\App\Models\Supply::class,4)->make([
-                            "provider_id" => factory(\App\Models\provider::class)
-                                            ->create()
-                                            ->id
-                         ])
-            );
-
-            $product->sales()->saveMany(
-                factory(\App\Models\Sale::class,4)->make([
-                    'user_id' => factory(\App\Models\User::class)
-                    ->create()
-                    ->id
-                    ])
-            );
-        });
+        factory(Product::class, 4)
+            ->create([
+                "quantity" => 60
+            ])
+            ->each(function (Product $product) {
+                //Seeding des Tables dependant des produits
+                factory(Supply::class, 4)->create([
+                    "provider_id" => factory(provider::class)->create()->id,
+                    'product_id' => $product->id,
+                ]);
+                $product->update(['quantity' => $product->quantity + 10]);
+                factory(Sale::class, 40)->create([
+                    'user_id' => factory(User::class)->create(["role" => "cashier"])->id,
+                    'product_id' => $product->id,
+                    "quantity" => 10
+                ]);
+            });
     }
 }

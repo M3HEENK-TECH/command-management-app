@@ -77,6 +77,10 @@ class User extends Authenticatable
         return $this->attributes['role'] === "cashier";
     }
 
+    public function scopeCashier($query){
+        return $query->where("role","cashier");
+    }
+
 
 
 
