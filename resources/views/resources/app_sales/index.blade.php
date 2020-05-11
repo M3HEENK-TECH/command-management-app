@@ -5,25 +5,44 @@
     <div class="container">
         <div class="row ">
 
-            <div class="col-lg-8">
-                <h2>Ventes</h2>
+            <div class="col-lg-6">
+                <h2>Ventes de caissiers</h2>
+            </div>
+
+            <div class="col-lg-6 text-right">
+                <div class="nav-item dropdown ">
+                    <a id="cashier_print" class="btn btn-dark dropdown-toggle" href="#" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Imprimer les ventes de :</a>
+                    <div aria-labelledby="cashier_print" class="bg-dark dropdown-menu dropdown-menu-right">
+                            @foreach($cashiers as $cashier)
+                                <a class="dropdown-item bg-dark text-white" href="{{route("app_sales.index")}}">
+                                    {{ $cashier->name  }} </a>
+                            @endforeach
+                    </div>
+                </div>
             </div>
 
             <div class="col-lg-12">
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <td>Nom Caissier</td>
-                        <td>Action</td>
+                        <td>Casissier</td>
+                        <td>Date</td>
+                        <td>Produit</td>
+                        <td>Quantité</td>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($caisses as $item)
+                    @foreach($sales as $sale)
                         <tr>
-                            <td>{{$item->name}}</td>
-                           <td>
-                            <a href="{{route("app_sales.store",["id"=>$item->id])}}" class="btn btn-dark">Consulté Ventes</a>
-                           </td>
+                            <td> {{$sale->cashier->name}} </td>
+                            <td>{{$sale->created_at->diffForHumans()}} </td>
+                            <td>
+                                {{$sale->product->name}}
+                                <b>{{$sale->product->quantity}} {{$sale->product->unity}}</b> actuellement
+                            </td>
+                            <td>{{$sale->quantity}}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -33,5 +52,8 @@
         </div>
     </div>
 
+    <div class="col-lg-12">
+        {{ $sales->links()  }}
+    </div>
 
 @endsection

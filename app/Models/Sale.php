@@ -33,7 +33,7 @@ class Sale extends Model
     }
 
     public function cashier(){
-        return $this->belongsTo(Product::class,"cashier_id","id");
+        return $this->belongsTo(User::class,"user_id","id");
     }
 
     public static function insertSaleFromSession() : bool {

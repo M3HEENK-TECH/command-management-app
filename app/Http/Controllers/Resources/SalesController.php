@@ -58,11 +58,11 @@ class SalesController extends Controller
         if (empty($product)) {
             return back()->withErrors(["quantity" => "Quantité du produit : La quantité est supérieur a celle en stcok"]);
         }
-        $product_quantity = $product->quantity;
+        $product_quantity = 0;
         $card_sales = session()->get(Sale::CARD_SESSION_KEY) ?? [];
         foreach ($card_sales as $sale) {
             if ($sale['product']->id === $product->id) {
-                $product_quantity += $sale['product']->quantity;
+                $product_quantity += $sale['quantity'];
             }
         }
         if ($product_quantity > $product->quantity) {
@@ -72,7 +72,6 @@ class SalesController extends Controller
         $request->merge(["product" => $product]);
         $data = $request->only(Sale::CARD_SESSION_FIELDS);
         session()->push(Sale::CARD_SESSION_KEY, $data);
-
         return Response::redirectToRoute("sales.index")
             ->with("success", "Vente enregistrer en session");
     }
