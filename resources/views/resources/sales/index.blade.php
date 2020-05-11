@@ -43,6 +43,14 @@
                         </tr>
                     @endforeach
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td >Total</td>
+                            <td colspan="2">
+                                {{  $sales_total  }}
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
 

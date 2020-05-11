@@ -31,6 +31,7 @@ class AppSalesController
                 },
             ])
             ->where($url_params)
+            ->latest()
             ->paginate("30");
         //dd($data['sales'][0]->product->unity);
         $data['cashiers'] = User::query()->cashier()->get();
@@ -54,7 +55,7 @@ class AppSalesController
                 le probleme vous devez effacer tout les produits et recommencer"
             ]);
         }
-        return back()->withSuccess("Vente effectuer");
+        return redirect()->route("app_sales.index")->withSuccess("Vente effectuer");
     }
 
 

@@ -23,7 +23,7 @@ class FactoriesSeeder extends Seeder
         //Seeding des produits
         factory(Product::class, 4)
             ->create([
-                "quantity" => 10
+                "quantity" => 60
             ])
             ->each(function (Product $product) {
                 //Seeding des Tables dependant des produits
@@ -32,7 +32,7 @@ class FactoriesSeeder extends Seeder
                     'product_id' => $product->id,
                 ]);
                 $product->update(['quantity' => $product->quantity + 10]);
-                factory(Sale::class, 60)->create([
+                factory(Sale::class, 40)->create([
                     'user_id' => factory(User::class)->create(["role" => "cashier"])->id,
                     'product_id' => $product->id,
                     "quantity" => 10
