@@ -23,13 +23,20 @@ class SalesController extends Controller
     public function index()
     {
         $product_quantity = 0;
+        $product_price = 0;
+        $product_number = 0;
         $card_sales = session()->get(Sale::CARD_SESSION_KEY) ?? [];
         foreach ($card_sales as $sale) {
+            $product_number++;
             $product_quantity += $sale['quantity'];
+            $product_price += $sale['product']->price * $sale['quantity'];
         }
         $data = [
             "sales_total" => $product_quantity,
-            "sales" => $card_sales
+            "sales_total_price" => $product_price,
+            "sales_total_number" => $product_number,
+            "sales" => $card_sales,
+            "products" => Product::all(),
         ];
         //session()->remove(Sale::CARD_SESSION_KEY);
         return Response::view("resources.sales.index", $data);
