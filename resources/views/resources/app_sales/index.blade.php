@@ -40,7 +40,7 @@
                 @else
                     <div class="dropdown ">
                         <a class="btn btn-dark" href="{{route("app_sales.print",['cashier'=> auth()->user()->id ])}}" >
-                            Imprimer mes vente </a>
+                            Imprimer mes ventes </a>
 
                     </div>
                 @endif
