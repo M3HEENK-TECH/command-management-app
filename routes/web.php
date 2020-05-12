@@ -76,8 +76,7 @@ Route::middleware("auth")->group(function (){
         Route::get('/home/cashier', 'HomeController@cashierIndex')->name('home.cashier');
 
         # Routes des ventes en sessions
-        Route::get('/card_sales', 'Resources\SalesController@index')
-            ->name("sales.index"); # sales list
+        Route::get('/card_sales', 'Resources\SalesController@index')->name("sales.index"); # sales list
         Route::get('/card_sales/create', 'Resources\SalesController@create')->name("sales.create"); # Add new sales in  session card
         Route::post('/card_sales', 'Resources\SalesController@store')->name("sales.store"); # Strore new sale in session card
         Route::delete('/card_sales/{sale_key}', 'Resources\SalesController@destroy')->name("sales.destroy"); # Remove sales in session card
