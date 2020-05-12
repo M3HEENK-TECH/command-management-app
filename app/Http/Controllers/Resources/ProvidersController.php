@@ -51,7 +51,7 @@ class ProvidersController extends Controller
     {
        Provider::create($request->all());
 
-       return redirect()->route('resources.providers.index');
+       return redirect()->route('providers.index');
     }
 
     /**
