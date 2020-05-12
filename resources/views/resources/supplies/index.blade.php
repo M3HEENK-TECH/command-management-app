@@ -9,8 +9,10 @@
                 <h2>Gestion des Approvisionnements</h2>
             </div>
             <div class="col-lg-6 text-right">
-                <a href="{{route("supplies.create")}}" class="btn btn-dark">Ajouter</a> |
-                <a href="{{route("supplies.index",["filter"=>"deleted"])}}" class="btn btn-dark">Approvisionements supprimer</a>
+                <a href="{{route("supplies.create")}}" class="btn btn-dark">Ajouter</a>
+                {{--
+                    <a href="{{route("supplies.index",["filter"=>"deleted"])}}" class="btn btn-dark">Approvisionements supprimer</a>
+                --}}
             </div>
             <div class="col-lg-12">
                 <table class="table table-bordered">
@@ -43,6 +45,7 @@
                                 @if( empty($item->deleted_at) )
                                 <a href="{{route("supplies.edit",$item)}}" class="btn btn-dark">Modifier</a>
                                 <a href="{{route("supplies.confirmed",["id"=>$item->id])}}" class="btn btn-primary">confirmer</a>
+                                {{--
                                 <form action="{{route("supplies.destroy",$item)}}" method="post"
                                       style="display: inline-block">
                                     @method('DELETE')
@@ -51,6 +54,7 @@
                                             class="btn btn-danger" type="submit">Supprimer
                                     </button>
                                 </form>
+                                --}}
                                     @endif
                             </td>
                         </tr>
