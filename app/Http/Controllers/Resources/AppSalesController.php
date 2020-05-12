@@ -22,7 +22,14 @@ class AppSalesController
     public function index()
     {
         $url_params = Input::only(["user_id"]);
+        $clauses = $url_params;
         $data = [];
+        if ( auth()->user()->isCashier() ) {
+            $clauses = ["user_id" => auth()->id() ];
+        }
+        if (  auth()->user()->isAdmin() ){
+            $data['cashiers'] = User::query()->cashier()->get();
+        }
         $data['sales'] = Sale::query()
             ->with([
                 "product",
@@ -30,11 +37,11 @@ class AppSalesController
                     $query->select(["name", "id"]);
                 },
             ])
-            ->where($url_params)
+            ->where($clauses)
             ->latest()
             ->paginate("30");
         //dd($data['sales'][0]->product->unity);
-        $data['cashiers'] = User::query()->cashier()->get();
+
         return view('resources.app_sales.index', $data);
     }
 

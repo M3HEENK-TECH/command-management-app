@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -10,31 +11,39 @@
             </div>
 
             <div class="col-lg-6 text-right">
-                <div class="dropdown ">
-                    <a id="cashier_print" class="btn btn-dark dropdown-toggle" href="#" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Voir les ventes de </a>
-                    <div aria-labelledby="cashier_print" class="bg-dark dropdown-menu dropdown-menu-right">
-                        @foreach($cashiers as $cashier)
-                            <a class="dropdown-item bg-dark text-white"
-                               href="{{route("app_sales.index",['user_id'=> $cashier->id ])}}">
-                                {{ $cashier->name  }} </a>
-                        @endforeach
+                @if ( !empty($cashiers) )
+                    <div class="dropdown ">
+                        <a id="cashier_print" class="btn btn-dark dropdown-toggle" href="#" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Voir les ventes de </a>
+                        <div aria-labelledby="cashier_print" class="bg-dark dropdown-menu dropdown-menu-right">
+                            @foreach($cashiers as $cashier)
+                                <a class="dropdown-item bg-dark text-white"
+                                   href="{{route("app_sales.index",['user_id'=> $cashier->id ])}}">
+                                    {{ $cashier->name  }} </a>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
 
-                <div class="dropdown ">
-                    <a id="cashier_print" class="btn btn-dark dropdown-toggle" href="#" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Imprimer les ventes de </a>
-                    <div aria-labelledby="cashier_print" class="bg-dark dropdown-menu dropdown-menu-right">
-                        @foreach($cashiers as $cashier)
-                            <a class="dropdown-item bg-dark text-white"
-                               href="{{route("app_sales.print",['cashier'=> $cashier->id ])}}">
-                                {{ $cashier->name  }} </a>
-                        @endforeach
+                    <div class="dropdown ">
+                        <a id="cashier_print" class="btn btn-dark dropdown-toggle" href="#" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Imprimer les ventes de </a>
+                        <div aria-labelledby="cashier_print" class="bg-dark dropdown-menu dropdown-menu-right">
+                            @foreach($cashiers as $cashier)
+                                <a class="dropdown-item bg-dark text-white"
+                                   href="{{route("app_sales.print",['cashier'=> $cashier->id ])}}">
+                                    {{ $cashier->name  }} </a>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
+                @else
+                    <div class="dropdown ">
+                        <a class="btn btn-dark" href="{{route("app_sales.print",['cashier'=> auth()->user()->id ])}}" >
+                            Imprimer mes vente </a>
+
+                    </div>
+                @endif
 
                 </div>
 
