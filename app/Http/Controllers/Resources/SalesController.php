@@ -29,7 +29,7 @@ class SalesController extends Controller
         foreach ($card_sales as $sale) {
             $product_number++;
             $product_quantity += $sale['quantity'];
-            $product_price += $sale['product']->price * $sale['quantity'];
+            $product_price += $sale['product']->unity_price * $sale['quantity'];
         }
         $data = [
             "sales_total" => $product_quantity,
