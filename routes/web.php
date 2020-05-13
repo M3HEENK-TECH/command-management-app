@@ -15,7 +15,7 @@ Route::get('/', function () {
 Auth::routes([
     'register' => false
 ]);
-
+Route::get('logout', 'Auth\LoginController@logout');
 /* Routes du middleware d'authentification */
 Route::middleware("auth")->group(function (){
 

@@ -1,6 +1,6 @@
 @include("partials.head")
 <body>
- 
+
     <div id="wrapper">
         @include("partials.nav")
 
@@ -41,7 +41,7 @@
 
 =======
                 @yield('content')
-                
+
 >>>>>>> Stashed changes
             </div>
         </div>
