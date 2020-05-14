@@ -17,6 +17,7 @@
             <div class="row">
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <div class="col-md-3">
                     <div class="list-group">
                         @if( auth()->check() and auth()->user()->isAdmin() )
@@ -42,6 +43,10 @@
 =======
                 @yield('content')
 
+>>>>>>> Stashed changes
+=======
+                @yield('content')
+                
 >>>>>>> Stashed changes
             </div>
         </div>
