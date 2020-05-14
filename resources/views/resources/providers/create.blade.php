@@ -13,7 +13,7 @@
                 <div class="field">
                     <label class="label">Name</label>
                     <div class="control">
-                      <input class="input @error('name') is-danger @enderror" type="text" name="name" value="{{ old('name') }}" placeholder="Nom du Fourniesseurs">
+                      <input class="input @error('name') is-danger @enderror" type="text" name="name" value="{{ old('name') }}" placeholder="Nom du Fourniesseur">
                     </div>
                     @error('name')
                         <p class="help is-danger">{{ $message }}</p>
