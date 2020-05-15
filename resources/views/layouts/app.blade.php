@@ -1,23 +1,23 @@
 @include("partials.head")
 <body>
 
-    <div id="wrapper">
-        @include("partials.nav")
+<div id="wrapper">
+    @include("partials.nav")
 
-        <div id="page-wrapper" class="gray-bg">
+    <div id="page-wrapper" class="gray-bg">
 
-            <div class="row border-bottom">
-                @include("partials.header")
-            </div>
+        <div class="row border-bottom">
+            @include("partials.header")
+        </div>
 
-            @include("partials.alerts")
+        @include("partials.alerts")
 
-            <div class="wrapper wrapper-content">
+        <div class="wrapper wrapper-content">
 
             <div class="row">
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+                <<<<<<< Updated upstream
+                <<<<<<< Updated upstream
                 <div class="col-md-3">
                     <div class="list-group">
                         @if( auth()->check() and auth()->user()->isAdmin() )
@@ -40,14 +40,14 @@
                     @yield('content')
                 </div>
 
-=======
+                =======
                 @yield('content')
 
->>>>>>> Stashed changes
-=======
+                >>>>>>> Stashed changes
+                =======
                 @yield('content')
 
->>>>>>> Stashed changes
+                >>>>>>> Stashed changes
             </div>
         </div>
 
@@ -57,6 +57,6 @@
     </div>
 
     <!-- Mainly scripts -->
-    @include("partials.footer-script")
+@include("partials.footer-script")
 </body>
 </html>

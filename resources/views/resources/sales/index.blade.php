@@ -27,22 +27,52 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($sales as $key => $item)
-                        <tr>
-                            <td> {{$item['quantity']}} </td>
-                            <td> {{$item["product"]->name}} </td>
-                            <td>
-                                <form action="{{route("sales.destroy",["sale_key" => $key ])}}" method="post">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button onclick="return confirm('Supprimer la vente  ')"
-                                            class="btn btn-danger" type="submit">Supprimer
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
+                    @foreach($products as $prod)
+                        @php($get_sale = false) @php($prod_number = 0) @php($prod_price = 0)
+                        @foreach($sales as $key => $item)
+                            @if ( $prod->id === $item["product"]->id  )
+                                @php($get_sale = true)  @php($prod_number++) @php($prod_price += ($item["quantity"] * $item["product"]->unity_price) )
+                            @endif
+                        @endforeach
+                        @if ($get_sale)
+                            <tr class="table-primary" style="font-weight: bold">
+                                <td> {{ $prod->name  }} </td>
+                                <td>Nombre: {{$prod_number}}</td>
+                                <td colspan="2"> Prix: {{ $prod_price  }} FCFA</td>
+                            </tr>
+                        @endif
+                        @foreach($sales as $key => $item)
+                            @if ( $prod->id === $item["product"]->id  )
+                                <tr>
+                                    <td> {{$item['quantity']}} </td>
+                                    <td> {{$item["product"]->name  }} </td>
+                                    <td>
+                                        <form action="{{route("sales.destroy",["sale_key" => $key ])}}" method="post">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button onclick="return confirm('Supprimer la vente  ')"
+                                                    class="btn btn-danger" type="submit">Supprimer
+                                            </button>
+                                        </form>
+                                    </td>
+                                <!--td> {{ $item["product"]->quantity  }} {{ $item["product"]->unity  }} ({{ $item["product"]->unity_price  }} l'unitée)
+                                </td-->
+                                </tr>
+                            @endif
+                        @endforeach
+
                     @endforeach
                     </tbody>
+                    <tr class="table-primary" style="font-weight: bold">
+                        <td>Nombre total</td>
+                        <td>Quantité total</td>
+                        <td colspan="2">Prix total</td>
+                    </tr>
+                    <tr style="font-weight: bold">
+                        <td>{{  $sales_total_number }}</td>
+                        <td >{{  $sales_total  }}</td>
+                        <td colspan="2">{{  $sales_total_price  }} FCFA</td>
+                    </tr>
                 </table>
             </div>
 

@@ -22,8 +22,21 @@ class SalesController extends Controller
      */
     public function index()
     {
+        $product_quantity = 0;
+        $product_price = 0;
+        $product_number = 0;
+        $card_sales = session()->get(Sale::CARD_SESSION_KEY) ?? [];
+        foreach ($card_sales as $sale) {
+            $product_number++;
+            $product_quantity += $sale['quantity'];
+            $product_price += $sale['product']->unity_price * $sale['quantity'];
+        }
         $data = [
-            "sales" => session(Sale::CARD_SESSION_KEY) ?? []
+            "sales_total" => $product_quantity,
+            "sales_total_price" => $product_price,
+            "sales_total_number" => $product_number,
+            "sales" => $card_sales,
+            "products" => Product::all(),
         ];
         //session()->remove(Sale::CARD_SESSION_KEY);
         return Response::view("resources.sales.index", $data);
@@ -37,7 +50,7 @@ class SalesController extends Controller
     public function create()
     {
         $data = [
-            "products" => Product::all(["name", "id"])
+            "products" => Product::all()
         ];
 
         return Response::view("resources.sales.create", $data);
@@ -53,10 +66,10 @@ class SalesController extends Controller
     {
         $product = Product::query()
             ->where("id", $request->get("product_id"))
-            ->where("quantity", ">", $request->get("quantity"))
+            ->where("quantity", ">=", $request->get("quantity") )
             ->first();
         if (empty($product)) {
-            return back()->withErrors(["quantity" => "Quantité du produit : La quantité est supérieur a celle en stcok"]);
+            return back()->withErrors(["quantity" => "Quantité du produit : La quantité est supérieur a celle en stock"]);
         }
         $product_quantity = 0;
         $card_sales = session()->get(Sale::CARD_SESSION_KEY) ?? [];

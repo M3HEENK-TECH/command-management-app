@@ -49,9 +49,9 @@ class ProvidersController extends Controller
      */
     public function store(StoreProvidersRequest $request)
     {
-       Provider::create($request->all());
+        Provider::create($request->all());
 
-<<<<<<< Updated upstream
+        <<<<<<< Updated upstream
        return redirect()->route('resources.providers.index');
 =======
        return redirect()->route('providers.index')->withSuccess("Ajout effectué avec success");;
