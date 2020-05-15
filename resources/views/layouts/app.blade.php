@@ -46,7 +46,7 @@
 >>>>>>> Stashed changes
 =======
                 @yield('content')
-                
+
 >>>>>>> Stashed changes
             </div>
         </div>
