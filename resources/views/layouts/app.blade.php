@@ -80,7 +80,7 @@
         @auth
             <div class="row">
 
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="list-group">
                         @if( auth()->check() and auth()->user()->isAdmin() )
                             <a class="list-group-item" href="{{route("cashiers.index")}}">Caissiers</a>
@@ -97,7 +97,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-9">
+                <div class="col-md-10">
                     @yield('content')
                 </div>
 
