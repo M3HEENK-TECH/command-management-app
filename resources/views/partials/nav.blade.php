@@ -42,9 +42,17 @@
                     </li>
 
                 @elseif(auth()->check() and  auth()->user()->isCashier() )
+<<<<<<< Updated upstream
 
                     <li>
                         <a href="grid_options.html"><i class="fa fa-line-chart"></i> <span class="nav-label">Panier</span></a>
+=======
+                    <li class="">
+                        <a href="{{url('home/cashier')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span> </a>
+                    </li>
+                    <li>
+                        <a href="{{route("sales.index")}}"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Panier</span></a>
+>>>>>>> Stashed changes
                     </li>
                     
                 @endif

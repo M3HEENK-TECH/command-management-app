@@ -64,7 +64,7 @@ class SuppliesController extends Controller
             "providers" => provider::all(),
             "products" => Product::all()
         ];
-        return Response::view('resources.supplies.create', $data);
+        return Response::view('resources.supplies.index', $data);
     }
 
     /**

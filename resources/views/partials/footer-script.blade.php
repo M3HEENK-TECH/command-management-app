@@ -44,10 +44,16 @@
     <script src="{{ asset('assets/js/plugins/jeditable/jquery.jeditable.js') }}"></script>
 
     <script src="{{ asset('assets/js/plugins/dataTables/datatables.min.js') }}"></script>
+<<<<<<< Updated upstream
 
     <script src="{{ asset('assets/js/plugins/iCheck/icheck.min.js') }}"></script>
 
 
+=======
+    <script src="{{ asset('assets/js/plugins/iCheck/icheck.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/footable/footable.all.min.js') }}"></script>
+    
+>>>>>>> Stashed changes
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function(){
@@ -106,7 +112,11 @@
 
         }
     </script>
+<<<<<<< Updated upstream
 
+=======
+    
+>>>>>>> Stashed changes
     <script>
 
         $(document).ready(function () {
