@@ -9,8 +9,10 @@
                 <h2>Gestion des Approvisionnements</h2>
             </div>
             <div class="col-lg-6 text-right">
-                <a href="{{route("supplies.create")}}" class="btn btn-primary">Ajouter</a> |
-                <a href="{{route("supplies.index",["filter"=>"deleted"])}}" class="btn btn-primary">Approvisionements supprimer</a>
+                <a href="{{route("supplies.create")}}" class="btn btn-primary">Ajouter</a>
+               {{--
+                    | <a href="{{route("supplies.index",["filter"=>"deleted"])}}" class="btn btn-primary">Approvisionements supprimer</a>
+               --}}
             </div>
             <div class="col-lg-12">
                 <table class="table table-bordered">
