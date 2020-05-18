@@ -37,11 +37,11 @@
                     <div class="ibox-content">
 
                         <div class="table-responsive">
-                            
+
                             <button class="btn btn-outline btn-success" type="button" data-toggle="modal" data-target="#myModal">
                                 <i class="fa fa-plus"> Ajouter</i>
                             </button>
-                            <a href="{{route("supplies.index",["filter"=>"deleted"])}}" class="btn btn-outline btn-danger" > 
+                            <a href="{{route("supplies.index",["filter"=>"deleted"])}}" class="btn btn-outline btn-danger" >
                                 Corbeille
                             </a>
 
@@ -55,7 +55,7 @@
                                         <th>Prix</th>
                                         <th>Fournisseur</th>
                                         <th>Actions</th>
-                                        
+
                                     </tr>
                                 </thead>
 
@@ -63,7 +63,7 @@
                                     @foreach($supplies as $key=> $item)
 
                                         <tr class="">
-                                            
+
                                             <td>{{$key+1}}</td>
                                             <td>
                                                 {{$item->created_at}}
@@ -112,7 +112,7 @@
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
                         <h4 class="modal-title">Nouveau produit</h4>
-                        
+
                     </div>
 
                     <form action="route("supplies.store")" method="POST">
@@ -152,63 +152,16 @@
 
                                 </div>
                             </div>
-                        
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
                             <button type="submit" class="btn btn-success">Enregistrer</button>
                         </div>
-                    </form> 
+                    </form>
 
                 </div>
             </div>
-<<<<<<< Updated upstream
-            <div class="col-lg-12">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <td>Date</td>
-                        <td>Quantité</td>
-                        <td>Prix</td>
-                        <td>Produit</td>
-                        <td>Fournisseurs</td>
-                        <td></td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($supplies as $item)
-                        <tr>
-                            <td>
-                                {{$item->created_at}}
-                                @if( !empty($item->confirmed_at) )
-                                    <span class="badge badge-primary">Confirmer</span>
-                                @else
-                                    <span class="badge badge-danger">Nom confirmer</span>
-                                @endif
-                            </td>
-                            <td>{{$item->quantity}}</td>
-                            <td>{{$item->price}}</td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                @if( empty($item->deleted_at) )
-                                    <a href="{{route("supplies.edit",$item)}}" class="btn btn-dark">Modifier</a>
-                                    <a href="{{route("supplies.confirmed",["id"=>$item->id])}}" class="btn btn-primary">confirmer</a>
-                                    <form action="{{route("supplies.destroy",$item)}}" method="post"
-                                          style="display: inline-block">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button onclick="return confirm('Supprimer {{$item->name}} ? ')"
-                                                class="btn btn-danger" type="submit">Supprimer
-                                        </button>
-                                    </form>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-=======
         </div>
 
         <!-- Modal de modification -->
@@ -221,7 +174,7 @@
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
                             <h4 class="modal-title">Modification</h4>
-                            
+
                         </div>
 
                         <form action="{{route("supplies.update",$item->id)}}" method="">
@@ -234,7 +187,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="name" value="{{$item->product_id}}" class="form-control"> 
+                                            <input type="text" name="name" value="{{$item->product_id}}" class="form-control">
                                         </div>
 
                                         <div class="form-group">
@@ -256,17 +209,16 @@
                                         </div>
                                     </div>
                                 </div>
-                            
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
                                 <button type="submit" class="btn btn-success">Enregistrer</button>
                             </div>
-                        </form> 
+                        </form>
 
                     </div>
                 </div>
->>>>>>> Stashed changes
             </div>
 
         @endforeach
@@ -287,7 +239,7 @@
                         <form action="{{route("supplies.destroy",$item->id)}}"  method="POST">
                             @method('DELETE')
                             @csrf
-                            
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-white" data-dismiss="modal">NON</button>
                                 <button type="submit" class="btn btn-success">OUI</button>
@@ -299,7 +251,6 @@
 
         @endforeach
     <!-- Fin de Liste des modals -->
-
 
 @endsection
 

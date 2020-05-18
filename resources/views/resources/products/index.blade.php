@@ -36,7 +36,7 @@
                     <div class="ibox-content">
 
                         <div class="table-responsive">
-                            
+
                             <button class="btn btn-outline btn-success" type="button" data-toggle="modal" data-target="#myModal">
                                 <i class="fa fa-plus"> Ajouter</i>
                             </button>
@@ -52,7 +52,7 @@
                                         <th>Prix unitaire</th>
                                         <th>Date</th>
                                         <th>Actions</th>
-                                        
+
                                     </tr>
                                 </thead>
 
@@ -108,7 +108,7 @@
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
                         <h4 class="modal-title">Nouveau produit</h4>
-                        
+
                     </div>
 
                     <form action="{{route("products.store")}}" method="post">
@@ -120,11 +120,11 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="name" placeholder="Nom" class="form-control"> 
+                                        <input type="text" name="name" placeholder="Nom" class="form-control">
                                     </div>
 
                                     <div class="form-group">
-                                        <textarea class="form-control"  rows="3" name="description" placeholder="Description" ></textarea>                               
+                                        <textarea class="form-control"  rows="3" name="description" placeholder="Description" ></textarea>
                                     </div>
 
                                     <div class="form-group">
@@ -148,69 +148,21 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" name="unity_price" placeholder="Prix unitaire" class="form-control"> 
+                                        <input type="text" name="unity_price" placeholder="Prix unitaire" class="form-control">
                                     </div>
 
                                 </div>
                             </div>
-                        
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
                             <button type="submit" class="btn btn-success">Enregistrer</button>
                         </div>
-                    </form> 
+                    </form>
 
                 </div>
             </div>
-<<<<<<< Updated upstream
-            <div class="col-lg-12">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <td>#</td>
-                        <td>Nom</td>
-                        <td>Quantité</td>
-                        <td>Prix G</td>
-                        <td>Unité</td>
-                        <td >Prix U</td>
-                        <td >Date </td>
-                        <td >Action </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($products as $item)
-                        <tr>
-                            <td>{{$item->id}}</td>
-                            <td>{{$item->name}}</td>
-                            <td> {{$item->quantity}} </td>
-                            <td> {{$item->price}} </td>
-                            <td> {{$item->unity}} </td>
-                            <td> {{$item->unity_price}} </td>
-                            <td>
-                                    <span class="badge badge-primary">
-                                       Creation : {{$item->created_at}}
-                                    </span>
-                                <span class="badge badge-primary">
-                                       Mise a jour :  {{$item->updated_at}}
-                                    </span>
-                            </td>
-                            <td>
-                                <form action="{{route("products.destroy",$item)}}" method="post">
-                                    @method('DELETE')
-                                    @csrf
-                                    <a href="{{route("products.edit",$item)}}" class="btn btn-dark">
-                                        Modifier
-                                    </a>
-                                    <button onclick="return confirm('Supprimer {{$item->name}} ? ')" class="btn btn-danger" type="submit">Supprimer
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-=======
         </div>
 
         <!-- Modal de modification -->
@@ -223,7 +175,7 @@
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
                             <h4 class="modal-title">Modification</h4>
-                            
+
                         </div>
 
                         <form action="{{route("products.update",$product->id)}}" method="">
@@ -235,11 +187,11 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="name" value="{{ $product->name }}" class="form-control"> 
+                                            <input type="text" name="name" value="{{ $product->name }}" class="form-control">
                                         </div>
 
                                         <div class="form-group">
-                                            <textarea class="form-control"  rows="3" name="description" >{{ $product->description }} </textarea>                               
+                                            <textarea class="form-control"  rows="3" name="description" >{{ $product->description }} </textarea>
                                         </div>
 
                                         <div class="form-group">
@@ -261,22 +213,21 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <input type="text" name="unity_price" value="{{ $product->unity_price}}" class="form-control"> 
+                                            <input type="text" name="unity_price" value="{{ $product->unity_price}}" class="form-control">
                                         </div>
 
                                     </div>
                                 </div>
-                            
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
                                 <button type="submit" class="btn btn-success">Enregistrer</button>
                             </div>
-                        </form> 
+                        </form>
 
                     </div>
                 </div>
->>>>>>> Stashed changes
             </div>
 
         @endforeach
@@ -297,7 +248,7 @@
                         <form action="{{route("products.destroy",$product->id)}}"  method="POST">
                             @method('DELETE')
                             @csrf
-                            
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-white" data-dismiss="modal">NON</button>
                                 <button type="submit" class="btn btn-success">OUI</button>
@@ -308,7 +259,7 @@
             </div>
 
         @endforeach
-        
+
     <!--Fin de Liste des modals -->
 
 @endsection

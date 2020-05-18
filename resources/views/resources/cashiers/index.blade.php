@@ -2,6 +2,8 @@
 
 @section('content')
 
+    <div class="container">
+        <div class="row ">
 
     <div class="row ">
         <div class="col-lg-9">
@@ -28,21 +30,13 @@
 
                             <div class="font-bold">Caissier</div>
                             <address class="m-t-md">
-<<<<<<< Updated upstream
-                                {{$item->email}}<br>
-=======
                             {{$item->email}}<br>
->>>>>>> Stashed changes
                             </address>
 
                         </a>
                         <div class="contact-box-footer">
                             <div class="m-t-xs btn-group">
-<<<<<<< Updated upstream
-                                <a class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModal7"><i class="fa fa-pencil"></i> Modifier </a>
-=======
                                 <a class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModal7{{$item->id}}"><i class="fa fa-pencil"></i> Modifier </a>
->>>>>>> Stashed changes
                                 <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal4{{$item->id}}"><i class="fa fa-trash"></i> Supprimer</a>
                             </div>
                         </div>
@@ -58,40 +52,6 @@
 
     <!-- Liste des modals -->
 
-<<<<<<< Updated upstream
-    <!-- Modal d'ajout -->
-    <div class="modal inmodal fade" id="myModal6" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Caissier</h4>
-                </div>
-
-                <div class="modal-body">
-
-                    <form action="" method="post">
-
-                        <div class="form-group">
-                            <input type="text" name="nom" placeholder="Nom" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="Email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" name="password" placeholder="Mot de passe" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="file" name="photo" class="form-control">
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
-                            <button type="button" class="btn btn-primary" >Enregistrer</button>
-                        </div>
-
-                    </form>
-=======
         <!-- Modal d'ajout -->
         <div class="modal inmodal fade" id="myModal6" tabindex="-1" role="dialog"  aria-hidden="true">
                 <div class="modal-dialog modal-sm">
@@ -106,16 +66,16 @@
                             <form action="{{route("cashiers.store")}}" method="post">
 
                                 <div class="form-group">
-                                    <input type="text" name="name" placeholder="Nom" class="form-control"> 
+                                    <input type="text" name="name" placeholder="Nom" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" placeholder="Email" class="form-control"> 
+                                    <input type="email" name="email" placeholder="Email" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" placeholder="Mot de passe" class="form-control"> 
+                                    <input type="password" name="password" placeholder="Mot de passe" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <input type="file" name="profile" class="form-control"> 
+                                    <input type="file" name="profile" class="form-control">
                                 </div>
 
                                 <div class="modal-footer">
@@ -145,16 +105,16 @@
                             <form action="{{route("cashiers.update",$item->id)}}" method="post">
 
                                 <div class="form-group">
-                                    <input type="text" name="name" value="{{$item->name}}" class="form-control"> 
+                                    <input type="text" name="name" value="{{$item->name}}" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" value="{{$item->email}}" class="form-control"> 
+                                    <input type="email" name="email" value="{{$item->email}}" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" class="form-control"> 
+                                    <input type="password" name="password" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <input type="file" name="photo" class="form-control"> 
+                                    <input type="file" name="photo" class="form-control">
                                 </div>
 
                                 <div class="modal-footer">
@@ -169,7 +129,7 @@
             </div>
 
         @endforeach
-        
+
         <!-- Modal de suppression -->
         @foreach($cashiers as $item)
 
@@ -194,7 +154,6 @@
 
                         </form>
                     </div>
->>>>>>> Stashed changes
                 </div>
             </div>
         </div>
@@ -213,63 +172,61 @@
 
                     <form action="" method="post">
 
-<<<<<<< Updated upstream
-                        <div class="form-group">
-                            <input type="text" name="numero"  class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email"  class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" name="password" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="file" name="photo" class="form-control">
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
-                            <button type="button" class="btn btn-primary" >Enregistrer</button>
-                        </div>
-
-                    </form>
-                </div>
+            <div class="col-lg-8">
+                <h2>Gestion des caissiers</h2>
             </div>
+            <div class="col-lg-4 text-right">
+                <a href="{{route("cashiers.create")}}" class="btn btn-dark">Ajouter</a>
+            </div>
+            <div class="col-lg-12">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <td>Nom</td>
+                        <td>Email</td>
+                        <td>Profile</td>
+                        <td>Date</td>
+                        <td >Action</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($cashiers as $item)
+                        <tr>
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->email}}</td>
+                            <td>
+                                <img src="{{ $item->url  }}" alt="" height="50" width="50">
+                            </td>
+                            <td>
+                                    <span class="badge badge-primary">
+                                       Creation : {{$item->created_at}}
+                                    </span>
+                                <span class="badge badge-primary">
+                                       Mise a jour :  {{$item->updated_at}}
+                                    </span>
+                            </td>
+                            <td>
+                                <form action="{{route("cashiers.destroy",$item)}}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <a href="{{route("cashiers.edit",$item)}}" class="btn btn-dark">
+                                        Modifier
+                                    </a>
+                                    <button onclick="return confirm('Supprimer {{$item->name}} ? ')" class="btn btn-danger" type="submit">Supprimer
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 
-    <!-- Modal de suppression -->
-    @foreach($cashiers as $item)
-
-        <div class="modal inmodal fade" id="myModal4{{$item->id}}" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content animated fadeIn">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <i class="fa fa-times modal-icon" style="color:red"></i>
-                        <h4 class="modal-title">ATTENTION !!</h4>
-                        <h3>voulez-vous vraiment supprime cet élément ?</h3>
-                    </div>
-
-                    <form action="{{route("cashiers.destroy",$item)}}" method="POST">
-                        @method('delete')
-                        @csrf
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">NON</button>
-                            <button type="submit" class="btn btn-primary">OK</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-    @endforeach
-
-=======
         @endforeach
 
->>>>>>> Stashed changes
     <!-- Fin de la Liste -->
 
 @endsection
-
