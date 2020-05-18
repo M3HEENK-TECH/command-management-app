@@ -9,7 +9,7 @@
                 <h2>Gestion des produits</h2>
             </div>
             <div class="col-lg-4 text-right">
-                <a href="{{route("products.create")}}" class="btn btn-dark">Ajouter</a>
+                <a href="{{route("products.create")}}" class="btn btn-primary">Ajouter</a>
             </div>
             <div class="col-lg-12">
                 <table class="table table-bordered">
@@ -46,7 +46,7 @@
                                 <form action="{{route("products.destroy",$item)}}" method="post">
                                     @method('DELETE')
                                     @csrf
-                                    <a href="{{route("products.edit",$item)}}" class="btn btn-dark">
+                                    <a href="{{route("products.edit",$item)}}" class="btn btn-primary">
                                         Modifier
                                     </a>
                                     <button onclick="return confirm('Supprimer {{$item->name}} ? ')" class="btn btn-danger" type="submit">Supprimer

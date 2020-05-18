@@ -9,7 +9,7 @@
                 <h2>Panier</h2>
             </div>
             <div class="col-lg-6 text-right">
-                <a href="{{route("sales.create")}}" class="btn btn-dark">Ajouter un produit</a>
+                <a href="{{route("sales.create")}}" class="btn btn-primary">Ajouter un produit</a>
                 {!! Form::open(['url' => route("app_sales.store"), 'method' => 'post',"style" => "display:inline-block"]) !!}
                     <button type="submit"  class="btn btn-success" onclick="return confirm('Vendre les produits du panier')">Vendre</button>
                 {!! Form::close() !!}

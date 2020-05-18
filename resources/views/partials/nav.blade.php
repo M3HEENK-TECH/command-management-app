@@ -10,7 +10,7 @@
                              </span> <span class="text-muted text-xs block">{{ Auth::user()->name }}<b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="#">Profile</a></li>
-                            <li class="divider"></li>                        
+                            <li class="divider"></li>
                             <li><a href="{{ route('logout') }}">Deconnexion</a></li>
 
                         </ul>
@@ -19,7 +19,7 @@
                         CMD
                     </div>
                 </li>
-                
+
                 @if( auth()->check() and auth()->user()->isAdmin() )
 
                     <li class="">
@@ -40,13 +40,24 @@
                     <li>
                         <a href="{{route("app_sales.index")}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Ventes</span></a>
                     </li>
+                    <li>
+                        <a href="{{route("app_sales.index")}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Notification</span></a>
+                    </li>
 
                 @elseif(auth()->check() and  auth()->user()->isCashier() )
 
+
                     <li>
-                        <a href="grid_options.html"><i class="fa fa-line-chart"></i> <span class="nav-label">Panier</span></a>
+                        <a href="{{route("sales.index")}}"><i class="fa fa-cart-arrow-down"></i> <span class="nav-label">Panier</span></a>
                     </li>
-                    
+                    <li>
+                        <a href="{{route("app_sales.index")}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Ventes</span></a>
+                    </li>
+
+                    <li>
+                        <a href="{{route("notification_list")}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Ventes</span></a>
+                    </li>
+
                 @endif
             </ul>
 
