@@ -37,7 +37,7 @@
                 <button type="submit" class="btn btn-primary block full-width m-b">Connexion</button>
 
             </form>
-            <p class="m-t"> <small>M3HEENK-TECH &copy; 2020</small> </p>
+            <p class="m-t"> <small>M3HEENK-TECH &copy; <script>document.write(new Date().getFullYear());</script></small> </p>
         </div>
     </div>
 

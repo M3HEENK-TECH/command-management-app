@@ -26,6 +26,7 @@ class SalesController extends Controller
         $product_price = 0;
         $product_number = 0;
         $card_sales = session()->get(Sale::CARD_SESSION_KEY) ?? [];
+
         foreach ($card_sales as $sale) {
             $product_number++;
             $product_quantity += $sale['quantity'];
@@ -36,7 +37,7 @@ class SalesController extends Controller
             "sales_total_price" => $product_price,
             "sales_total_number" => $product_number,
             "sales" => $card_sales,
-            "products" => Product::all(),
+            "products" => Product::all()
         ];
         //session()->remove(Sale::CARD_SESSION_KEY);
         return Response::view("resources.sales.index", $data);

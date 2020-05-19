@@ -63,19 +63,29 @@
 
                         <div class="modal-body">
 
-                            <form action="{{route("cashiers.store")}}" method="post">
+                            {!! Form::open([ "url"=> route("cashiers.store") ,"files"=> true, "method" => "post" ]) !!}
 
                                 <div class="form-group">
-                                    <input type="text" name="name" placeholder="Nom" class="form-control">
+                                    {{ Form::label("name","Nom")  }}
+                                    {{ Form::text("name",null,["class" => "form-control"])  }}
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" placeholder="Email" class="form-control">
+                                    {{ Form::label("email","Email")  }}
+                                    {{ Form::text("email",null,["class" => "form-control"])  }}
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" placeholder="Mot de passe" class="form-control">
+                                    {{ Form::label("password","Mot de passe")  }}
+                                    {{ Form::password("password",["class" => "form-control"])  }}
                                 </div>
+
                                 <div class="form-group">
-                                    <input type="file" name="profile" class="form-control">
+                                    {{ Form::label("password_confirmation","Confirmé mot de passe")  }}
+                                    {{ Form::password("password_confirmation",["class" => "form-control"])  }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ Form::label("profile_image","Image de profil")  }}
+                                    {{ Form::file("profile_image",["class" => "form-control"])  }}
                                 </div>
 
                                 <div class="modal-footer">
@@ -83,7 +93,7 @@
                                     <button type="submit" class="btn btn-success" >Enregistrer</button>
                                 </div>
 
-                            </form>
+                                {!! Form::close() !!}
                         </div>
                 </div>
             </div>
@@ -102,8 +112,7 @@
 
                         <div class="modal-body">
 
-                            <form action="{{route("cashiers.update",$item->id)}}" method="post">
-
+                            {!! Form::model($item,[  "url"=> route("cashiers.update",$item->id) ,"files"=> true, "method" => "put" ]) !!}
                                 <div class="form-group">
                                     <input type="text" name="name" value="{{$item->name}}" class="form-control">
                                 </div>
@@ -122,7 +131,7 @@
                                     <button type="submit" class="btn btn-success" >Enregistrer</button>
                                 </div>
 
-                            </form>
+                            {{Form::close()}}
                         </div>
                     </div>
                 </div>
@@ -143,7 +152,7 @@
                             <h3>voulez-vous vraiment supprime cet élément ?</h3>
                         </div>
 
-                        <form action="{{route("cashiers.destroy",$item->id)}}" method="">
+                        <form action="{{route("cashiers.destroy",$item->id)}}" method="POST">
                             @method('delete')
                             @csrf
 

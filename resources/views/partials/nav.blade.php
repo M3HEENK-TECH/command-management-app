@@ -40,15 +40,9 @@
                     <li>
                         <a href="{{route("app_sales.index")}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Ventes</span></a>
                     </li>
-                    <li>
-                        <a href="{{route("app_sales.index")}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Notification</span></a>
-                    </li>
+
 
                 @elseif(auth()->check() and  auth()->user()->isCashier() )
-
-                    <li>
-
-                        <a href="grid_options.html"><i class="fa fa-line-chart"></i> <span class="nav-label">Panier</span></a>
 
                     <li class="">
                         <a href="{{url('home/cashier')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span> </a>
@@ -56,15 +50,9 @@
                     <li>
                         <a href="{{route("sales.index")}}"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Panier</span></a>
 
-                        <a href="{{route("sales.index")}}"><i class="fa fa-cart-arrow-down"></i> <span class="nav-label">Panier</span></a>
-
                     </li>
                     <li>
-                        <a href="{{route("app_sales.index")}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Ventes</span></a>
-                    </li>
-
-                    <li>
-                        <a href="{{route("notification_list")}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Ventes</span></a>
+                        <a href="{{route("app_sales.index")}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Mes Ventes</span></a>
                     </li>
 
                 @endif

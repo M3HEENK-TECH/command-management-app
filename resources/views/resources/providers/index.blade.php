@@ -1,51 +1,141 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="row">
+        <div class="col-lg-9">
+            <h2>Lite des fournisseurs</h2>
+            <button class="btn btn-outline btn-success" type="button" data-toggle="modal" data-target="#myModal6"><i class="fa fa-plus"> Ajouter</i></button>
+        </div>
+    </div>
 
-    <div class="container">
-        <div class="row ">
+    <div class="wrapper wrapper-content animated fadeInRight">
 
-            <div class="col-lg-8">
-                <h2>Gestion des Fournisseurs</h2>
-            </div>
-            <div class="col-lg-4 text-right">
-                <a href="{{route("providers.create")}}" class="btn btn-dark">Ajouter</a>
-            </div>
-            <div class="col-lg-12">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <td>Nom</td>
-                        <td></td>
-                        <td></td>
+        <div class="row">
 
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($providers as $provider)
-                        <tr @if($provider->deleted_at) class="has-background-grey-lighter" @endif>
-                            <td><strong>{{ $provider->name }}</strong></td>
+            @foreach($providers as $provider)
 
-                            <td>
-                                @if($provider->deleted_at)
-                                @else
-                                    <a class="button is-warning" href="{{ route('providers.edit', $provider->id) }}">Modifier</a>
-                                @endif
-                            </td>
-                            <td>
-                                <form action="{{ route('providers.destroy', $provider->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="button is-danger" type="submit">Supprimer</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
+                <div class="col-md-3">
+                    <div class="ibox-content text-center"  @if($provider->deleted_at) class="has-background-grey-lighter" @endif >
+                        <h1>{{ $provider->name }}</h1>
+                        <div class="m-b-sm">
+                            <img alt="image" class="img-circle" src="assets/img/im3.png">
+                        </div>
+                        <p class="font-bold">Fournisseur</p>
+
+                        <div class="text-center">
+                            <a class="btn btn-xs btn-success"  type="button" data-toggle="modal" data-target="#myModal7{{$provider->id}}"><i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-xs btn-danger"  type="button" data-toggle="modal" data-target="#myModal4{{$provider->id}}"><i class="fa fa-trash"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            @endforeach
 
         </div>
     </div>
 
+
+
+    <!-- Liste des modals -->
+
+        <!-- Modal d'ajout -->
+        <div class="modal inmodal fade" id="myModal6" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Fournisseur</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form action="{{ route('providers.store') }}" method="POST">
+                            @csrf
+
+                            <div class="form-group">
+                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Nom du Fourniesseur" class="form-control">
+                                @error('name')
+                                    <p class="help is-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
+                                <button type="submit" class="btn btn-success" >Enregistrer</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de modifiation -->
+        @foreach($providers as $provider)
+
+            <div class="modal inmodal fade" id="myModal7{{$provider->id}}" tabindex="-1" role="dialog"  aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">Caissier</h4>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <form action="{{ route('providers.update', $provider->id) }}" method="post">
+                                @method('put')
+                                @csrf
+
+                                <div class="form-group">
+                                    <input type="text" name="name" value="{{$provider->name}}"  class="form-control">
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
+                                    <button type="submit" class="btn btn-success" >Enregistrer</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        @endforeach
+
+
+        <!-- Modal de suppression -->
+        @foreach($providers as $provider)
+
+            <div class="modal inmodal fade" id="myModal4{{$provider->id}}" tabindex="-1" role="dialog"  aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content animated fadeIn">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <i class="fa fa-exclamation-circle modal-icon" style="color:red"></i>
+                            <h4 class="modal-title">ATTENTION !!</h4>
+                            <h3>voulez-vous vraiment supprime cet élément ?</h3>
+                        </div>
+
+                        <form action="{{ route('providers.destroy', $provider->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-white" data-dismiss="modal">NON</button>
+                                <button type="submit" class="btn btn-success">OK</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        @endforeach
+
+    <!-- Fin de la Liste -->
+
 @endsection
+
+

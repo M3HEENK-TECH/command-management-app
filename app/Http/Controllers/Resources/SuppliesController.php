@@ -47,6 +47,8 @@ class SuppliesController extends Controller
         $data = [
             'links' => $links,
             'supplies' => $supplies,
+            'providers'=> Provider::all(),
+            'products' => Product::all(),
         ];
 
         return Response::view('resources.supplies.index', $data);
@@ -77,6 +79,15 @@ class SuppliesController extends Controller
     {
         $supply = $this->suppliesRepository->create($request->all());
 
+        if($supply){
+
+            $product = product::find($request->product_id);
+
+            $product->quantity += $request->quantity; // mise à jour de la nouvelle quantite
+            $product->price = ($product->quantity * $product->price_unity);// nouveau prix total du produit ajouté
+
+            $product->save();
+        }
         return Response::redirectToRoute('supplies.index')
             ->with("success", "L'Approvisionnement à bien été enregistrer");
     }
@@ -119,6 +130,7 @@ class SuppliesController extends Controller
     public function update(UpdateSuppliesRequest $request, Supply $supply)
     {
         $supply->update($request->all());
+
         return Response()->redirectToRoute('supplies.index')
             ->with("success", "L'approvisionnement a été mis à jour ");
     }

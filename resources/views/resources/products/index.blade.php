@@ -178,7 +178,7 @@
 
                         </div>
 
-                        <form action="{{route("products.update",$product->id)}}" method="">
+                        <form action="{{route("products.update",$product->id)}}" method="post">
                             @method('put')
                             @csrf
                             <div class="modal-body">

@@ -41,18 +41,18 @@
                             <button class="btn btn-outline btn-success" type="button" data-toggle="modal" data-target="#myModal">
                                 <i class="fa fa-plus"> Ajouter</i>
                             </button>
-                            <a href="{{route("supplies.index",["filter"=>"deleted"])}}" class="btn btn-outline btn-danger" >
+                           <!-- <a href="{{route("supplies.index",["filter"=>"deleted"])}}" class="btn btn-outline btn-danger" >
                                 Corbeille
-                            </a>
+                            </a> -->
 
                             <table class="table table-striped table-bordered table-hover dataTables-example" >
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+
                                         <th>Date</th>
-                                        <th>Produits</th>
+                                        <th>Désignation</th>
                                         <th>Quantité</th>
-                                        <th>Prix</th>
+                                        <th>Prix de Gros</th>
                                         <th>Fournisseur</th>
                                         <th>Actions</th>
 
@@ -64,7 +64,7 @@
 
                                         <tr class="">
 
-                                            <td>{{$key+1}}</td>
+
                                             <td>
                                                 {{$item->created_at}}
                                                 @if( !empty($item->confirmed_at) )
@@ -73,17 +73,18 @@
                                                     <span class="badge badge-danger">Nom confirmer</span>
                                                 @endif
                                             </td>
+                                            <td></td>
                                             <td>{{$item->quantity}}</td>
-                                            <td>{{$item->price}}</td>
+                                            <td>{{$item->price}} FCFA</td>
                                             <td></td>
-                                            <td></td>
+
                                             <td>
                                                 <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModal5{{$item->id}}">
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal4{{$item->id}}">
+                                                <!--<button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal4{{$item->id}}">
                                                     <i class="fa fa-trash"></i>
-                                                </button>
+                                                </button> -->
                                                 <a href="{{route("supplies.confirmed",["id"=>$item->id])}}" type="button" class="btn btn-xs btn-primary">confirmer</a>
                                             </td>
                                         </tr>
@@ -111,42 +112,43 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
-                        <h4 class="modal-title">Nouveau produit</h4>
+                        <h4 class="modal-title">Nouvel approvisionnement</h4>
 
                     </div>
 
-                    <form action="route("supplies.store")" method="POST">
-                        @method('POST')
-                        @csrf
+                   {!! Form::open([ "url"=> route("supplies.store") ,"files"=> true, "method" => "post" ]) !!}
                         <div class="modal-body">
 
                             <div class="row">
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <select class="select2_demo_1 form-control" name="">
-                                            <option>Fournisseur</option>
-
-                                        </select>
+                                        <div class="form-group">
+                                            {{ Form::label("provider_id","Fournisseur")  }}
+                                            {{ Form::select("provider_id",$providers->pluck("name","id"),null,["class" => "form-control"])  }}
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" name="quantity" placeholder="Quantité" class="form-control">
+                                        {{ Form::label("quantity","Quantité")  }}
+                                        {{ Form::text("quantity",null,["class" => "form-control"])  }}
                                     </div>
 
                                 </div>
 
                                 <div class="col-md-6">
-
                                     <div class="form-group">
-                                        <input type="text" name="price" placeholder="Prix" class="form-control">
+                                        <div class="form-group">
+                                            {{ Form::label("price","Prix de Gros")  }}
+                                            {{ Form::text("price",null,["class" => "form-control"])  }}
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <select class="select2_demo_1 form-control" name="">
-                                            <option>Fournisseur</option>
-
-                                        </select>
+                                        <div class="form-group">
+                                            {{ Form::label("product_id","Désignation")  }}
+                                            {{ Form::select("product_id",$products->pluck("name","id"),null,["class" => "form-control"])  }}
+                                        </div>
                                     </div>
 
 
@@ -158,7 +160,7 @@
                             <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
                             <button type="submit" class="btn btn-success">Enregistrer</button>
                         </div>
-                    </form>
+                    {{Form::close()}}
 
                 </div>
             </div>
@@ -177,9 +179,7 @@
 
                         </div>
 
-                        <form action="{{route("supplies.update",$item->id)}}" method="">
-                            @method('put')
-                            @csrf
+                        {!! Form::model($item,[ "url"=> route("supplies.update",$item->id) ,"files"=> true, "method" => "PUT" ]) !!}
 
                             <div class="modal-body">
 
@@ -187,25 +187,25 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="name" value="{{$item->product_id}}" class="form-control">
+                                            {{ Form::label("product_id","Désignation")  }}
+                                            {{ Form::select("product_id",$products->pluck("name","id"),null,["class" => "form-control"])  }}
                                         </div>
 
                                         <div class="form-group">
-                                            <input type="text" name="quantity" value="{{$item->quantity}}" class="form-control">
+                                            {{ Form::label("quantity","Quantité")  }}
+                                            {{ Form::text("quantity",null,["class" => "form-control"])  }}
                                         </div>
-
                                     </div>
 
                                     <div class="col-md-6">
-
                                         <div class="form-group">
-                                            <input type="text" name="price" value="{{$item->price}}" class="form-control">
+                                            {{ Form::label("price","Prix de Gros")  }}
+                                            {{ Form::text("price",null,["class" => "form-control"])  }}
                                         </div>
 
                                         <div class="form-group">
-                                            <select class="select2_demo_1 form-control" name="fournisseur">
-                                                <option>{{$item->provider_id}}</option>
-                                            </select>
+                                            {{ Form::label("provider_id","Fournisseur")  }}
+                                            {{ Form::select("provider_id",$providers->pluck("name","id"),null,["class" => "form-control"])  }}
                                         </div>
                                     </div>
                                 </div>
@@ -215,7 +215,7 @@
                                 <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
                                 <button type="submit" class="btn btn-success">Enregistrer</button>
                             </div>
-                        </form>
+                        {{Form::close()}}
 
                     </div>
                 </div>
@@ -223,7 +223,7 @@
 
         @endforeach
 
-        <!-- Modal de suppression -->
+        <!-- Modal de suppression
         @foreach($supplies as $item)
 
             <div class="modal inmodal fade" id="myModal4{{$item->id}}" tabindex="-1" role="dialog"  aria-hidden="true">
@@ -250,7 +250,7 @@
             </div>
 
         @endforeach
-    <!-- Fin de Liste des modals -->
+     Fin de Liste des modals -->
 
 @endsection
 

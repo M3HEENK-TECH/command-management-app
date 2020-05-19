@@ -51,11 +51,7 @@ class ProvidersController extends Controller
     {
         Provider::create($request->all());
 
-<<<<<<< Updated upstream
-        return redirect()->route('providers.index');
-=======
-       return redirect()->route('providers.index')->withSuccess("Ajout effectué avec success");;
->>>>>>> Stashed changes
+       return redirect()->route('providers.index')->withSuccess("Ajout effectué avec success");
     }
 
     /**
