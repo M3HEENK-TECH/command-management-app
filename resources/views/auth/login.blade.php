@@ -1,8 +1,12 @@
 @include("partials.head")
 
+
 <body class="gray-bg">
 
     <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div class="text-left">
+            @include("partials.alerts")
+        </div>
         <div>
             <div>
 

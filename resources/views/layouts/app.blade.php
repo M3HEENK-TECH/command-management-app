@@ -10,7 +10,6 @@
                 @include("partials.header")
             </div>
 
-            @include("partials.alerts")
 
             <div class="wrapper wrapper-content">
 
