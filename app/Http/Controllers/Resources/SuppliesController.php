@@ -83,7 +83,7 @@ class SuppliesController extends Controller
             $product = product::find($request->product_id);
 
             $product->quantity += $request->quantity; // mise à jour de la nouvelle quantite
-            $product->price = ($product->quantity * $product->price_unity);// nouveau prix total du produit ajouté
+            $product->price = ($product->quantity * $product->unity_price);// nouveau prix total du produit ajouté
 
             $product->save();
         }
