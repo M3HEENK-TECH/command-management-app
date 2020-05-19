@@ -21,7 +21,7 @@ class FactoriesSeeder extends Seeder
         $cashiers = factory(User::class, 4)->create();
 
         //Seeding des produits
-        factory(Product::class, 4)
+        factory(Product::class, 200)
             ->create([
                 "quantity" => 60
             ])

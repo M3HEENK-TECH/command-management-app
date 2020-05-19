@@ -18,4 +18,5 @@
     <link href="{{ asset('assets/css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/plugins/footable/footable.core.css') }}" rel="stylesheet">
 
+
 </head>
