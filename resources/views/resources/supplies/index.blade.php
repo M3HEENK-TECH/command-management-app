@@ -48,11 +48,10 @@
                             <table class="table table-striped table-bordered table-hover dataTables-example" >
                                 <thead>
                                     <tr>
-
                                         <th>Date</th>
-                                        <th>Désignation</th>
                                         <th>Quantité</th>
                                         <th>Prix de Gros</th>
+                                        <th>Désignation</th>
                                         <th>Fournisseur</th>
                                         <th>Actions</th>
 
@@ -73,10 +72,11 @@
                                                     <span class="badge badge-danger">Nom confirmer</span>
                                                 @endif
                                             </td>
-                                            <td></td>
                                             <td>{{$item->quantity}}</td>
                                             <td>{{$item->price}} FCFA</td>
-                                            <td></td>
+
+                                            <td>{{  $item->product->name }}</td>
+                                            <td>{{  $item->provider->name }}</td>
 
                                             <td>
                                                 <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModal5{{$item->id}}">
