@@ -185,7 +185,7 @@
                 <h2>Gestion des caissiers</h2>
             </div>
             <div class="col-lg-4 text-right">
-                <a href="{{route("cashiers.create")}}" class="btn btn-dark">Ajouter</a>
+                <a href="{{route("cashiers.create")}}" class="btn btn-primary">Ajouter</a>
             </div>
             <div class="col-lg-12">
                 <table class="table table-bordered">
@@ -218,7 +218,7 @@
                                 <form action="{{route("cashiers.destroy",$item)}}" method="post">
                                     @method('DELETE')
                                     @csrf
-                                    <a href="{{route("cashiers.edit",$item)}}" class="btn btn-dark">
+                                    <a href="{{route("cashiers.edit",$item)}}" class="btn btn-primary">
                                         Modifier
                                     </a>
                                     <button onclick="return confirm('Supprimer {{$item->name}} ? ')" class="btn btn-danger" type="submit">Supprimer

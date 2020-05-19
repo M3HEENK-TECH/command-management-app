@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use phpDocumentor\Reflection\Types\Self_;
 
 class Product extends Model
 {
@@ -32,5 +33,9 @@ class Product extends Model
 
     public function supplies(){
         return $this->hasMany(Supply::class,"product_id","id");
+    }
+
+    public static function notifications(){
+        return self::query()->select(['name',"quantity"])->where('quantity','<=','10')->get();
     }
 }
