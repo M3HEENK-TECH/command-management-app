@@ -1,19 +1,20 @@
 @include("partials.head")
 <body>
 
-    <div id="wrapper">
-        @include("partials.nav")
+<div id="wrapper">
+    @include("partials.nav")
 
-        <div id="page-wrapper" class="gray-bg">
+    <div id="page-wrapper" class="gray-bg">
 
-            <div class="row border-bottom">
-                @include("partials.header")
-            </div>
+        <div class="row border-bottom">
+            @include("partials.header")
+        </div>
 
 
-            <div class="wrapper wrapper-content">
+        <div class="wrapper wrapper-content">
 
-                @yield('content')
+            @include('partials.alerts')
+            @yield('content')
 
         </div>
 
@@ -23,6 +24,6 @@
     </div>
 
     <!-- Mainly scripts -->
-    @include("partials.footer-script")
+@include("partials.footer-script")
 </body>
 </html>
