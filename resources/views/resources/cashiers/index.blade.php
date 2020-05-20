@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row ">
 
     <div class="row ">
@@ -14,7 +14,9 @@
 
     <div class="wrapper wrapper-content animated fadeInRight">
 
+
         <div class="row">
+            <div class="col-lg-12">{{ $cashiers->links()  }}</div>
 
             @foreach($cashiers as $item)
 
@@ -47,6 +49,8 @@
             @endforeach
 
         </div>
+
+
     </div>
 
 

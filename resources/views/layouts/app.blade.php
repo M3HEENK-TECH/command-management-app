@@ -13,11 +13,8 @@
 
             <div class="wrapper wrapper-content">
 
-            <div class="row">
-
                 @yield('content')
 
-            </div>
         </div>
 
         <div class="row">
