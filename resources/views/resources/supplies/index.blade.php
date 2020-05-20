@@ -51,11 +51,12 @@
 
                                             <td>
                                                 {{$item->created_at}}
-                                                @if( !empty($item->confirmed_at) )
+                                                {{--@if( !empty($item->confirmed_at) )
                                                     <span class="badge badge-primary">Confirmer</span>
                                                 @else
                                                     <span class="badge badge-danger">Nom confirmer</span>
                                                 @endif
+                                                --}}
                                             </td>
                                             <td>{{$item->quantity}}</td>
                                             <td>{{$item->price}} FCFA</td>
@@ -71,8 +72,9 @@
                                             <!--<button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal4{{$item->id}}">
                                                     <i class="fa fa-trash"></i>
                                                 </button> -->
-                                                <a href="{{route("supplies.confirmed",["id"=>$item->id])}}"
+                                              {{--  <a href="{{route("supplies.confirmed",["id"=>$item->id])}}"
                                                    type="button" class="btn btn-xs btn-primary">confirmer</a>
+                                                   --}}
                                             </td>
                                         </tr>
 
