@@ -110,12 +110,12 @@
                                 {{ Form::text("quantity",null,["class" => "form-control"])  }}
                             </div>
                             <div class="form-group col-lg-6">
-                                {{ Form::label("price","Prix de gros")  }}
-                                {{ Form::text("price",null,["class" => "form-control"])  }}
+
+                                {{ Form::hidden("price",1,["class" => "form-control"])  }}
                             </div>
                             <div class="form-group col-lg-6">
                                 {{ Form::label("unity","Unité")  }}
-                                {{ Form::text("unity",null,["class" => "form-control"])  }}
+                                {{ Form::text("unity",'Bouteille',["class" => "form-control"])  }}
                             </div>
                             <div class="form-group col-lg-6">
                                 {{ Form::label("unity_price","Prix de unitaire")  }}

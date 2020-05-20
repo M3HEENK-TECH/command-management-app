@@ -129,8 +129,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="form-group">
-                                    {{ Form::label("price","Prix de Gros")  }}
-                                    {{ Form::text("price",null,["class" => "form-control"])  }}
+                                    
+                                    {{ Form::hidden("price",1,["class" => "form-control"])  }}
                                 </div>
                             </div>
 
