@@ -2,26 +2,28 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row ">
 
     <div class="row ">
         <div class="col-lg-9">
             <h2>Lite des caissiers</h2>
-            <button class="btn btn-outline btn-success" type="button" data-toggle="modal" data-target="#myModal6"><i class="fa fa-plus"> Ajouter</i></button>
+            <button class="btn btn-outline btn-success" type="button" data-toggle="modal" data-target="#creation_modal"><i class="fa fa-plus"> Ajouter</i></button>
         </div>
     </div>
 
     <div class="wrapper wrapper-content animated fadeInRight">
 
+
         <div class="row">
+            <div class="col-lg-12">{{ $cashiers->links()  }}</div>
 
             @foreach($cashiers as $item)
 
                 <div class="col-lg-3">
                     <div class="contact-box center-version" style="border-color:grey;">
 
-                        <a href="profile.html">
+                        <a>
 
                             <img alt="image" class="img-circle" src="{{ $item->url  }}">
 
@@ -36,8 +38,8 @@
                         </a>
                         <div class="contact-box-footer">
                             <div class="m-t-xs btn-group">
-                                <a class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModal7{{$item->id}}"><i class="fa fa-pencil"></i> Modifier </a>
-                                <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal4{{$item->id}}"><i class="fa fa-trash"></i> Supprimer</a>
+                                <a class="btn btn-xs btn-success" data-toggle="modal" data-target="#edition_modal{{$item->id}}"><i class="fa fa-pencil"></i> Modifier </a>
+                                <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#delete_modal{{$item->id}}"><i class="fa fa-trash"></i> Supprimer</a>
                             </div>
                         </div>
 
@@ -47,14 +49,16 @@
             @endforeach
 
         </div>
+
+
     </div>
 
 
     <!-- Liste des modals -->
 
         <!-- Modal d'ajout -->
-        <div class="modal inmodal fade" id="myModal6" tabindex="-1" role="dialog"  aria-hidden="true">
-                <div class="modal-dialog modal-sm">
+        <div class="modal inmodal fade" id="creation_modal" tabindex="-1" role="dialog"  aria-hidden="true">
+                <div class="modal-dialog  ">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -102,8 +106,8 @@
         <!-- Modal de modifiation -->
         @foreach($cashiers as $item)
 
-            <div class="modal inmodal fade" id="myModal7{{$item->id}}" tabindex="-1" role="dialog"  aria-hidden="true">
-                <div class="modal-dialog modal-sm">
+            <div class="modal inmodal fade" id="edition_modal{{$item->id}}" tabindex="-1" role="dialog"  aria-hidden="true">
+                <div class="modal-dialog  ">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -113,18 +117,29 @@
                         <div class="modal-body">
 
                             {!! Form::model($item,[  "url"=> route("cashiers.update",$item->id) ,"files"=> true, "method" => "put" ]) !!}
-                                <div class="form-group">
-                                    <input type="text" name="name" value="{{$item->name}}" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" name="email" value="{{$item->email}}" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="password" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input type="file" name="photo" class="form-control">
-                                </div>
+
+                            <div class="form-group">
+                                {{ Form::label("name","Nom")  }}
+                                {{ Form::text("name",null,["class" => "form-control"])  }}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label("email","Email")  }}
+                                {{ Form::text("email",null,["class" => "form-control"])  }}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label("password","Mot de passe")  }}
+                                {{ Form::password("password",["class" => "form-control"])  }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ Form::label("password_confirmation","Mot de passe")  }}
+                                {{ Form::password("password_confirmation",["class" => "form-control"])  }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ Form::label("profile_image","Image de profil")  }}
+                                {{ Form::file("profile_image",["class" => "form-control"])  }}
+                            </div>
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
@@ -142,7 +157,7 @@
         <!-- Modal de suppression -->
         @foreach($cashiers as $item)
 
-            <div class="modal inmodal fade" id="myModal4{{$item->id}}" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal inmodal fade" id="delete_modal{{$item->id}}" tabindex="-1" role="dialog"  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content animated fadeIn">
                         <div class="modal-header">
@@ -169,8 +184,8 @@
     </div>
 
     <!-- Modal de modifiation -->
-    <div class="modal inmodal fade" id="myModal7" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog modal-sm">
+    <div class="modal inmodal fade" id="edition_modal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog  ">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>

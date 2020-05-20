@@ -3,50 +3,35 @@
 @section('content')
 
 
-<div class="row">
-    <div class="col-lg-10">
-        <h2>Gestion des approvisionnements</h2>
-    </div>
-</div>
-
-<div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
+        <div class="col-lg-10">
+            <h2>Gestion des approvisionnements</h2>
+        </div>
+    </div>
 
-                    <h5>Liste des approvisionnements</h5>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">{{ $supplies->links()  }}</div>
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
 
-                    <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#">Config option 1</a>
-                            </li>
-                            <li><a href="#">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </div>
-                    <div class="ibox-content">
+                        <h5>Liste des approvisionnements</h5>
 
-                        <div class="table-responsive">
+                        <div class="ibox-content">
 
-                            <button class="btn btn-outline btn-success" type="button" data-toggle="modal" data-target="#myModal">
-                                <i class="fa fa-plus"> Ajouter</i>
-                            </button>
-                           <!-- <a href="{{route("supplies.index",["filter"=>"deleted"])}}" class="btn btn-outline btn-danger" >
+                            <div class="table-responsive">
+
+                                <button class="btn btn-outline btn-success" type="button" data-toggle="modal"
+                                        data-target="#myModal">
+                                    <i class="fa fa-plus"> Ajouter</i>
+                                </button>
+                            <!-- <a href="{{route("supplies.index",["filter"=>"deleted"])}}" class="btn btn-outline btn-danger" >
                                 Corbeille
                             </a> -->
 
-                            <table class="table table-striped table-bordered table-hover dataTables-example" >
-                                <thead>
+                                <table class="table table-striped table-bordered table-hover dataTables-example">
+                                    <thead>
                                     <tr>
                                         <th>Date</th>
                                         <th>Quantité</th>
@@ -56,9 +41,9 @@
                                         <th>Actions</th>
 
                                     </tr>
-                                </thead>
+                                    </thead>
 
-                                <tbody>
+                                    <tbody>
                                     @foreach($supplies as $key=> $item)
 
                                         <tr class="">
@@ -66,167 +51,173 @@
 
                                             <td>
                                                 {{$item->created_at}}
-                                                @if( !empty($item->confirmed_at) )
+                                                {{--@if( !empty($item->confirmed_at) )
                                                     <span class="badge badge-primary">Confirmer</span>
                                                 @else
                                                     <span class="badge badge-danger">Nom confirmer</span>
                                                 @endif
+                                                --}}
                                             </td>
                                             <td>{{$item->quantity}}</td>
                                             <td>{{$item->price}} FCFA</td>
 
-                                            <td>{{  $item->product->name }}</td>
-                                            <td>{{  $item->provider->name }}</td>
+                                            <td> @if(empty($item->product)) Produit supprimé @else  {{ $item->product->name  }}   @endif </td>
+                                            <td> @if(empty($item->provider)) Founisseur supprimé @else  {{ $item->provider->name  }}   @endif </td>
 
                                             <td>
-                                                <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModal5{{$item->id}}">
+                                                <button type="button" class="btn btn-xs btn-success" data-toggle="modal"
+                                                        data-target="#myModal5{{$item->id}}">
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
-                                                <!--<button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal4{{$item->id}}">
+                                            <!--<button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal4{{$item->id}}">
                                                     <i class="fa fa-trash"></i>
                                                 </button> -->
-                                                <a href="{{route("supplies.confirmed",["id"=>$item->id])}}" type="button" class="btn btn-xs btn-primary">confirmer</a>
+                                              {{--  <a href="{{route("supplies.confirmed",["id"=>$item->id])}}"
+                                                   type="button" class="btn btn-xs btn-primary">confirmer</a>
+                                                   --}}
                                             </td>
                                         </tr>
 
                                     @endforeach
-                                </tbody>
+                                    </tbody>
 
-                            </table>
+                                </table>
+                            </div>
+
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
     <!-- Liste des modals -->
 
-        <!-- Modal d'ajout -->
-        <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content animated bounceInRight">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <!-- Modal d'ajout -->
+    <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
-                        <h4 class="modal-title">Nouvel approvisionnement</h4>
+                    <h4 class="modal-title">Nouvel approvisionnement</h4>
 
-                    </div>
+                </div>
 
-                   {!! Form::open([ "url"=> route("supplies.store") ,"files"=> true, "method" => "post" ]) !!}
-                        <div class="modal-body">
+                {!! Form::open([ "url"=> route("supplies.store") ,"files"=> true, "method" => "post" ]) !!}
+                <div class="modal-body">
 
-                            <div class="row">
+                    <div class="row">
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            {{ Form::label("provider_id","Fournisseur")  }}
-                                            {{ Form::select("provider_id",$providers->pluck("name","id"),null,["class" => "form-control"])  }}
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{ Form::label("quantity","Quantité")  }}
-                                        {{ Form::text("quantity",null,["class" => "form-control"])  }}
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            {{ Form::label("price","Prix de Gros")  }}
-                                            {{ Form::text("price",null,["class" => "form-control"])  }}
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            {{ Form::label("product_id","Désignation")  }}
-                                            {{ Form::select("product_id",$products->pluck("name","id"),null,["class" => "form-control"])  }}
-                                        </div>
-                                    </div>
-
-
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    {{ Form::label("provider_id","Fournisseur")  }}
+                                    {{ Form::select("provider_id",$providers->pluck("name","id"),null,["class" => "form-control"])  }}
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                {{ Form::label("quantity","Quantité")  }}
+                                {{ Form::text("quantity",null,["class" => "form-control"])  }}
+                            </div>
+
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
-                            <button type="submit" class="btn btn-success">Enregistrer</button>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    {{ Form::label("price","Prix de Gros")  }}
+                                    {{ Form::text("price",null,["class" => "form-control"])  }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-group">
+                                    {{ Form::label("product_id","Désignation")  }}
+                                    {{ Form::select("product_id",$products->pluck("name","id"),null,["class" => "form-control"])  }}
+                                </div>
+                            </div>
+
+
                         </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                </div>
+                {{Form::close()}}
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de modification -->
+    @foreach($supplies as $item)
+
+        <div class="modal inmodal" id="myModal5{{$item->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content animated bounceInRight">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                                class="sr-only">Close</span></button>
+
+                        <h4 class="modal-title">Modification</h4>
+
+                    </div>
+
+                    {!! Form::model($item,[ "url"=> route("supplies.update",$item->id) ,"files"=> true, "method" => "PUT" ]) !!}
+
+                    <div class="modal-body">
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{ Form::label("product_id","Désignation")  }}
+                                    {{ Form::select("product_id",$products->pluck("name","id"),null,["class" => "form-control"])  }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ Form::label("quantity","Quantité")  }}
+                                    {{ Form::text("quantity",null,["class" => "form-control"])  }}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{ Form::label("price","Prix de Gros")  }}
+                                    {{ Form::text("price",null,["class" => "form-control"])  }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ Form::label("provider_id","Fournisseur")  }}
+                                    {{ Form::select("provider_id",$providers->pluck("name","id"),null,["class" => "form-control"])  }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-success">Enregistrer</button>
+                    </div>
                     {{Form::close()}}
 
                 </div>
             </div>
         </div>
 
-        <!-- Modal de modification -->
+    @endforeach
+
+    <!-- Modal de suppression
         @foreach($supplies as $item)
 
-            <div class="modal inmodal" id="myModal5{{$item->id}}" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content animated bounceInRight">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-
-                            <h4 class="modal-title">Modification</h4>
-
-                        </div>
-
-                        {!! Form::model($item,[ "url"=> route("supplies.update",$item->id) ,"files"=> true, "method" => "PUT" ]) !!}
-
-                            <div class="modal-body">
-
-                                <div class="row">
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            {{ Form::label("product_id","Désignation")  }}
-                                            {{ Form::select("product_id",$products->pluck("name","id"),null,["class" => "form-control"])  }}
-                                        </div>
-
-                                        <div class="form-group">
-                                            {{ Form::label("quantity","Quantité")  }}
-                                            {{ Form::text("quantity",null,["class" => "form-control"])  }}
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            {{ Form::label("price","Prix de Gros")  }}
-                                            {{ Form::text("price",null,["class" => "form-control"])  }}
-                                        </div>
-
-                                        <div class="form-group">
-                                            {{ Form::label("provider_id","Fournisseur")  }}
-                                            {{ Form::select("provider_id",$providers->pluck("name","id"),null,["class" => "form-control"])  }}
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
-                                <button type="submit" class="btn btn-success">Enregistrer</button>
-                            </div>
-                        {{Form::close()}}
-
-                    </div>
-                </div>
-            </div>
-
-        @endforeach
-
-        <!-- Modal de suppression
-        @foreach($supplies as $item)
-
-            <div class="modal inmodal fade" id="myModal4{{$item->id}}" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal inmodal fade" id="myModal4{{$item->id}}" tabindex="-1" role="dialog"  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content animated fadeIn">
                         <div class="modal-header">
@@ -238,19 +229,19 @@
 
                         <form action="{{route("supplies.destroy",$item->id)}}"  method="POST">
                             @method('DELETE')
-                            @csrf
+        @csrf
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-white" data-dismiss="modal">NON</button>
-                                <button type="submit" class="btn btn-success">OUI</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">NON</button>
+                <button type="submit" class="btn btn-success">OUI</button>
             </div>
+        </form>
+    </div>
+</div>
+</div>
 
-        @endforeach
-     Fin de Liste des modals -->
+@endforeach
+        Fin de Liste des modals -->
 
 @endsection
 
