@@ -65,9 +65,7 @@ class SalesController extends Controller
      */
     public function store(StoreSalesRequest $request)
     {
-        dd(
-            $request->all()
-        );
+  
         $product = Product::query()
             ->where("id", $request->get("product_id"))
             ->where("quantity", ">=", $request->get("quantity") )
