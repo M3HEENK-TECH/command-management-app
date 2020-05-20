@@ -26,7 +26,7 @@ class ProvidersController extends Controller
      */
     public function index()
     {
-        $providers = Provider::all();
+        $providers = Provider::query()->paginate(self::PAGINATION_PER_PAGE);
 
         return view('resources.providers.index',compact('providers'));
     }

@@ -12,6 +12,10 @@
 
         <div class="row">
 
+            <div class="col-lg-12">
+                {{ $providers->links()  }}
+            </div>
+
             @foreach($providers as $provider)
 
                 <div class="col-md-3">
