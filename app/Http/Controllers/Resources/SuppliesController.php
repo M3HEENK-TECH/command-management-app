@@ -39,9 +39,9 @@ class SuppliesController extends Controller
      */
     public function index()
     {
-        $supplies = $this->suppliesRepository->all();
-        if ( Input::get("filter") == "deleted" ) {
-            $supplies = $this->suppliesRepository->makeModel()->onlyTrashed()->get();
+        $supplies = $this->suppliesRepository->paginate(self::PAGINATION_PER_PAGE);
+        if ( Input::get("filter") === "deleted" ) {
+            $supplies = $this->suppliesRepository->makeModel()->onlyTrashed()->paginate(self::PAGINATION_PER_PAGE);
         }
 
         $data = [
