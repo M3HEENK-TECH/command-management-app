@@ -90,6 +90,10 @@ Route::middleware("auth")->group(function (){
             ->only("index","store");
 
         Route::get("notification","NotificationController@list")->name("notification_list");
+        Route::get('/app_sales/printdatet', 'Resources\AppSalesController@printbydate')->name('print_date');
+
     });
 
 });
+
+

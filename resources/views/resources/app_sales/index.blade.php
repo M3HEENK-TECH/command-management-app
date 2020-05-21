@@ -64,6 +64,7 @@
 =======
                     <h5>Liste des ventes des caissiers</h5>
 
+<<<<<<< Updated upstream
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -84,6 +85,58 @@
                     <div class="ibox-content">
 
                         <div class="table-responsive">
+=======
+                        <<<<<<< Updated upstream
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Imprimer par date
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Insere votre date</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('print_date') }}" method="get">
+                                            @csrf
+                                            <label for="Date">Entrez une date</label>
+                                            <input type="date" class="form-control" name="date">
+                                            <label for="cashier">Cashier</label>
+                                            <select name="cashier_id">
+                                                @foreach($cashiers as $cashier)
+                                                <option value="{{$cashier->id}}">{{$cashier->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="modal-footer">
+                                                <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-right">
+                            <div class="nav-item dropdown ">
+                                <a id="cashier_print" class="btn btn-dark dropdown-toggle" href="#" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Imprimer les ventes de :</a>
+                                <div aria-labelledby="cashier_print" class="bg-dark dropdown-menu dropdown-menu-right">
+                                    @foreach($cashiers as $cashier)
+                                        <a class="dropdown-item bg-dark text-white" href="{{route("app_sales.index")}}">
+                                            {{ $cashier->name  }} </a>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                        </div>
+>>>>>>> Stashed changes
 
                             <table class="table table-striped table-bordered table-hover dataTables-example" >
                                 <thead>
