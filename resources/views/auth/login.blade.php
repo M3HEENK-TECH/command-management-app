@@ -8,14 +8,12 @@
             @include("partials.alerts")
         </div>
         <div>
-            <div>
-
-                <h1 class="logo-name">JK</h1>
-
-            </div>
-            <h3>Bienvenue</h3>
+            <b> <h2 style="font-size: 90px;">LOGIN</h2></b>
+            <br>
+            <h2>Bienvenue</h2>
 
             <p>Remplissez les champs et connectez-vous</p>
+            <br>
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
