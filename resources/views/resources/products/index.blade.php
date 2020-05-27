@@ -43,7 +43,12 @@
                                         <tr class="">
                                             <td>{{$key+1}}</td>
                                             <td>{{$product->name}}</td>
-                                            <td> {{$product->quantity}} </td>
+                                            @if ($product->quantity <= 10)
+                                            <td style="background-color:rgb(255,98,98)"> {{$product->quantity}} </td>
+                                            @else
+                                            <td> {{$product->quantity}}</td>
+                                            @endif
+
                                             <td> {{$product->price}} </td>
                                             <td> {{$product->unity}} </td>
                                             <td> {{$product->unity_price}} </td>

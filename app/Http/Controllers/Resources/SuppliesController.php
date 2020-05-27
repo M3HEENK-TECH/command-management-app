@@ -85,6 +85,21 @@ class SuppliesController extends Controller
             $product->quantity += $request->quantity; // mise à jour de la nouvelle quantite
             $product->price = ($product->quantity * $product->unity_price);// nouveau prix de gros ou prix d'achat du produit ajouté
 
+            
+            $supplyUpdate = new supply;
+
+            $Sproduct = product::find($request->product_id);
+
+            $supplyUpdate->product_id = $Sproduct->id;
+            $supplyUpdate->provider_id = $supply->provider->id;
+            $supplyUpdate->quantity += $request->quantity; // mise à jour de la nouvelle quantite
+            $supplyUpdate->price = ($supplyUpdate->quantity * $product->unity_price);// nouveau prix de gros ou prix d'achat du produit ajouté
+
+
+           // dd($supplyUpdate);
+
+            $supplyUpdate->save();
+
             $product->save();
         }
         return Response::redirectToRoute('supplies.index')

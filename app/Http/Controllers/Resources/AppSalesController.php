@@ -58,12 +58,19 @@ class AppSalesController
             'products' => Product::all()
         ];
         $insertion = Sale::insertSaleFromSession();
+        
         if (!$insertion) {
             return back()->withErrors([
                 "unknown" => "Erreur renconter lors de la vente, Pour etre sur de resoudre
                 le probleme vous devez effacer tout les produits et recommencer"
             ]);
+            
         }
+
+        $product = new Product;
+            $product->price = $product->quantity * $product->unity_price;
+            $product->update();
+    
         return redirect()->route("app_sales.index")->withSuccess("Vente effectuer");
     }
 

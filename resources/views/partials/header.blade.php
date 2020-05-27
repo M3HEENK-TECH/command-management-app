@@ -8,6 +8,10 @@
             </div>
         </form>
     </div>
+
+
+
+
     <ul class="nav navbar-top-links navbar-right">
 
         <li class="dropdown">
@@ -20,12 +24,16 @@
                 @foreach($products as $product)
                     <li>
                         <a>
-                            <div><b> {{ $product->name  }} </b>  {{ $product->quantity  }}  </div>
+                            <div class="media-body">
+                    <p class="media-heading">Le Produit <strong>{{$product->name}}</strong> à atteint le Seuil Critique
+                        Quantité Restante :<strong style="color:red;"> {{$product->quantity}}</strong> <i class="fa fa-exclamation-circle text-danger"></i>
+                    </p>
+                </div>
                         </a>
                     </li>
                 @endforeach
             </ul>
-        </li>
+        </li> 
 
 
         <li>
