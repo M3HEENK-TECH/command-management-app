@@ -10,7 +10,7 @@
             </div>
             <div class="col-lg-6 text-right">
                 <a href="{{route("sales.create")}}" class="btn btn-dark">Ajouter un produit</a>
-                {!! Form::open(['url' => route("sales.store"), 'method' => 'post',"style" => "display:inline-block"]) !!}
+                {!! Form::open(['url' => route("app_sales.store"), 'method' => 'post',"style" => "display:inline-block"]) !!}
                     <button type="submit"  class="btn btn-success" onclick="return confirm('Vendre les produits du panier')">Vendre</button>
                 {!! Form::close() !!}
                 {!! Form::open(['url' => route("sales.destroy_all"), 'method' => 'delete',"style" => "display:inline-block"]) !!}
@@ -31,14 +31,14 @@
                         @php($get_sale = false) @php($prod_number = 0) @php($prod_price = 0)
                         @foreach($sales as $key => $item)
                             @if ( $prod->id === $item["product"]->id  )
-                                @php($get_sale = true)  @php($prod_number++) @php($prod_price += ($item["quantity"] * $item["product"]->price) )
+                                @php($get_sale = true)  @php($prod_number++) @php($prod_price += ($item["quantity"] * $item["product"]->unity_price) )
                             @endif
                         @endforeach
                         @if ($get_sale)
                             <tr class="table-primary" style="font-weight: bold">
                                 <td> {{ $prod->name  }} </td>
                                 <td>Nombre: {{$prod_number}}</td>
-                                <td colspan="2"> Prix: {{ $prod_price  }}</td>
+                                <td colspan="2"> Prix: {{ $prod_price  }} FCFA</td>
                             </tr>
                         @endif
                         @foreach($sales as $key => $item)
@@ -55,7 +55,7 @@
                                             </button>
                                         </form>
                                     </td>
-                                <!--td> {{ $item["product"]->quantity  }} {{ $item["product"]->unity  }} ({{ $item["product"]->price  }} l'unitée)
+                                <!--td> {{ $item["product"]->quantity  }} {{ $item["product"]->unity  }} ({{ $item["product"]->unity_price  }} l'unitée)
                                 </td-->
                                 </tr>
                             @endif
@@ -71,7 +71,7 @@
                     <tr style="font-weight: bold">
                         <td>{{  $sales_total_number }}</td>
                         <td >{{  $sales_total  }}</td>
-                        <td colspan="2">{{  $sales_total_price  }}</td>
+                        <td colspan="2">{{  $sales_total_price  }} FCFA</td>
                     </tr>
                 </table>
             </div>

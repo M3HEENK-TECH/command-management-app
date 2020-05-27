@@ -31,7 +31,6 @@ class SuppliesController extends Controller
     public function __construct(SuppliesRepository $suppliesRepository)
     {
         $this->suppliesRepository = $suppliesRepository;
-        
     }
 
     /**
@@ -40,7 +39,6 @@ class SuppliesController extends Controller
      */
     public function index()
     {
-       
         $supplies = $this->suppliesRepository->paginate($this->nbreParPage);
         if (Input::get("filter") == "deleted") {
             $supplies = $this->suppliesRepository->makeModel()->onlyTrashed()->paginate($this->nbreParPage);
@@ -49,11 +47,9 @@ class SuppliesController extends Controller
         $data = [
             'links' => $links,
             'supplies' => $supplies,
-           
-            
         ];
 
-        return Response::view('resources.supplies.index',$data);
+        return Response::view('resources.supplies.index', $data);
     }
 
     /**
@@ -79,21 +75,7 @@ class SuppliesController extends Controller
      */
     public function store(StoreSuppliesRequest $request)
     {
-        
         $supply = $this->suppliesRepository->create($request->all());
-
-            if($supply){
-                // mise à jour de la table produit pour le nouvel approvisionnement
-
-                $produit = Product::find($request->product_id);
-
-                $produit->quantity += $request->quantity;
-        
-                $produit->price = $request->price;
-
-                $produit->save();
-            
-            }
 
         return Response::redirectToRoute('supplies.index')
             ->with("success", "L'Approvisionnement à bien été enregistrer");

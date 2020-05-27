@@ -1,23 +1,51 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Dashboard de l'admin</div>
+    <div class="row">
 
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        You are logged in!
-                    </div>
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Income</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">40 886,200</h1>
                 </div>
             </div>
         </div>
+
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Income</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">40 886,200</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Income</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">40 886,200</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Income</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">40 886,200</h1>
+                </div>
+            </div>
+        </div>
+
     </div>
 @endsection
