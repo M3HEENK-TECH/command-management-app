@@ -38,8 +38,7 @@
                                         <th>Prix de Gros</th>
                                         <th>Désignation</th>
                                         <th>Fournisseur</th>
-                                        <th>Actions</th>
-
+                                     {{--    <th>Actions</th> --}}
                                     </tr>
                                     </thead>
 
@@ -64,7 +63,7 @@
                                             <td> @if(empty($item->product)) Produit supprimé @else  {{ $item->product->name  }}   @endif </td>
                                             <td> @if(empty($item->provider)) Founisseur supprimé @else  {{ $item->provider->name  }}   @endif </td>
 
-                                            <td>
+                                            {{-- <td>
                                                 <button type="button" class="btn btn-xs btn-success" data-toggle="modal"
                                                         data-target="#myModal5{{$item->id}}">
                                                     <i class="fa fa-pencil"></i>
@@ -72,10 +71,11 @@
                                             <!--<button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal4{{$item->id}}">
                                                     <i class="fa fa-trash"></i>
                                                 </button> -->
-                                              {{--  <a href="{{route("supplies.confirmed",["id"=>$item->id])}}"
+                                               <a href="{{route("supplies.confirmed",["id"=>$item->id])}}"
                                                    type="button" class="btn btn-xs btn-primary">confirmer</a>
-                                                   --}}
+
                                             </td>
+                                            --}}
                                         </tr>
 
                                     @endforeach
@@ -129,7 +129,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="form-group">
-                                    
+
                                     {{ Form::hidden("price",1,["class" => "form-control"])  }}
                                 </div>
                             </div>
