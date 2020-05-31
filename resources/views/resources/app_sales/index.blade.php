@@ -12,6 +12,7 @@
 </div>
 
 <div class="col-lg-6 text-right">
+    {{--
     @if ( !empty($cashiers) )
 
         <div class="dropdown" style="display: inline-block" >
@@ -52,6 +53,7 @@
 
         </div>
     @endif
+    --}}
 
 </div>
 
