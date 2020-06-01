@@ -83,12 +83,12 @@ class HomeController extends Controller
         ];
         $cashiers_panels_data = [
             [
-                "title" => "Les 10 Caissiers avec la plus grande vente",
+                "title" => "10 Caissiers avec le plus grand nombre de vente",
                 "cashier" => $max_sale_cashiers,
                 'count' =>  !empty($max_sale_cashiers) ? $max_sale_cashiers[0]->sales->count() : '--'
             ],
             [
-                "title" => "10 Caissiers avec la plus faible vente",
+                "title" => "10 Caissiers avec la plus petit nombre vente",
                 "cashier" => $min_sale_cashiers,
                 'count' =>  !empty($min_sale_cashiers) ? $min_sale_cashiers[0]->sales->count() : '--'
             ],

@@ -26,10 +26,10 @@
     </div>
     --}}
 
-    <div class="row equal-height">
+    <div class="row equal-height" style="margin-bottom: 30px">
         @foreach($products_panels_data as $datum)
-            <div class="col-lg-3" style="display: flex">
-                <div class="panel panel-default h-100 " >
+            <div class="col-lg-3">
+                <div class="panel panel-default h-100 " style="height: 100%;">
                     <div class="panel-heading">
                         <h5> {{ $datum['title']  }}</h5>
                     </div>
