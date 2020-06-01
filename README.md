@@ -94,5 +94,5 @@ php artisan migrate
     * /home/admin et /home/cashier
 
 ### Envoie d'email
-* nom : 
-* email : 
+* email : esigalerte@gmail.com
+* pass : #aHes1fZ 
