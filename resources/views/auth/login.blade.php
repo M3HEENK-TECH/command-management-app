@@ -8,6 +8,8 @@
             @include("partials.alerts")
         </div>
         <div>
+            <img src="{{asset("images/logo-essig.png")}}"  alt="" width="240">
+            <br>
             <b> <h2 style="font-size: 90px;">LOGIN</h2></b>
             <br>
             <h2>Bienvenue</h2>
