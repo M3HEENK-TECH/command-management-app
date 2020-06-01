@@ -6,6 +6,7 @@ use App\Models\Sale;
 use App\Models\Supply;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 
 class FactoriesSeeder extends Seeder
 {
@@ -17,11 +18,9 @@ class FactoriesSeeder extends Seeder
     public function run()
     {
 
-        //Seeding des caissiers
-        $cashiers = factory(User::class, 4)->create();
 
-        //Seeding des produits
-        factory(Product::class, 200)
+        //Seeding des produits avec les item liés
+        factory(Product::class, 80)
             ->create([
                 "quantity" => 60
             ])
@@ -32,10 +31,11 @@ class FactoriesSeeder extends Seeder
                     'product_id' => $product->id,
                 ]);
                 $product->update(['quantity' => $product->quantity + 10]);
-                factory(Sale::class, 40)->create([
+                factory(Sale::class, Arr::random([1,10,40]) )->create([
                     'user_id' => factory(User::class)->create(["role" => "cashier"])->id,
                     'product_id' => $product->id,
-                    "quantity" => 10
+                    "quantity" => 10,
+                    "created_at" => now()
                 ]);
             });
     }
