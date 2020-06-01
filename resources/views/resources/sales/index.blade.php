@@ -9,7 +9,7 @@
         <a href="{{route("sales.create")}}" class="btn btn-primary">Ajouter un produit</a>
 
         {!! Form::open(['url' => route("app_sales.store"), 'method' => 'post',"style" => "display:inline-block"]) !!}
-        <button type="submit"  class="btn btn-success" onclick="return confirm('Vendre les produits du panier')">Vendre</button>
+        <button type="submit"  class="btn btn-primary" onclick="return confirm('Vendre les produits du panier')">Vendre</button>
         {!! Form::close() !!}
 
         {!! Form::open(['url' => route("sales.destroy_all"), 'method' => 'delete',"style" => "display:inline-block"]) !!}
