@@ -8,7 +8,7 @@
     <div class="row ">
         <div class="col-lg-9">
             <h2>Lite des caissiers</h2>
-            <button class="btn btn-outline btn-success" type="button" data-toggle="modal" data-target="#creation_modal"><i class="fa fa-plus"> Ajouter</i></button>
+            <button class="btn btn-outline btn-primary" type="button" data-toggle="modal" data-target="#creation_modal"><i class="fa fa-plus"> Ajouter</i></button>
         </div>
     </div>
 
@@ -37,9 +37,9 @@
 
                         </a>
                         <div class="contact-box-footer">
-                            <div class="m-t-xs btn-group">
-                                <a class="btn btn-xs btn-success" data-toggle="modal" data-target="#edition_modal{{$item->id}}"><i class="fa fa-pencil"></i> Modifier </a>
-                                <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#delete_modal{{$item->id}}"><i class="fa fa-trash"></i> Supprimer</a>
+                            <div >
+                                <a class="btn btn-xs btn-success" data-toggle="modal" data-target="#edition_modal{{$item->id}}"><i class="fa fa-pencil"></i>  </a>
+                                <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#delete_modal{{$item->id}}"><i class="fa fa-trash"></i> </a>
                             </div>
                         </div>
 
@@ -94,7 +94,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
-                                    <button type="submit" class="btn btn-success" >Enregistrer</button>
+                                    <button type="submit" class="btn btn-primary" >Enregistrer</button>
                                 </div>
 
                                 {!! Form::close() !!}
@@ -143,7 +143,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
-                                    <button type="submit" class="btn btn-success" >Enregistrer</button>
+                                    <button type="submit" class="btn btn-primary" >Enregistrer</button>
                                 </div>
 
                             {{Form::close()}}
@@ -162,7 +162,7 @@
                     <div class="modal-content animated fadeIn">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <i class="fa fa-exclation-circle modal-icon" style="color:red"></i>
+                            <i class="fa fa-exclamation-circle modal-icon" style="color:red"></i>
                             <h4 class="modal-title">ATTENTION !!</h4>
                             <h3>voulez-vous vraiment supprime cet élément ?</h3>
                         </div>
@@ -173,7 +173,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-white" data-dismiss="modal">NON</button>
-                                <button type="submit" class="btn btn-success">OK</button>
+                                <button type="submit" class="btn btn-primary">OK</button>
                             </div>
 
                         </form>

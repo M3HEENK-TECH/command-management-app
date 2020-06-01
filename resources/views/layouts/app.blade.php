@@ -11,7 +11,7 @@
         </div>
 
 
-        <div class="wrapper wrapper-content">
+        <div class="wrapper wrapper-content" >
 
             @include('partials.alerts')
             @yield('content')
@@ -21,6 +21,7 @@
         <div class="row">
             @include("partials.footer")
         </div>
+
     </div>
 
     <!-- Mainly scripts -->

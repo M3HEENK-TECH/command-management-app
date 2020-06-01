@@ -22,7 +22,7 @@
 
                             <div class="table-responsive">
 
-                                <button class="btn btn-outline btn-success" type="button" data-toggle="modal"
+                                <button class="btn btn-outline btn-primary" type="button" data-toggle="modal"
                                         data-target="#myModal">
                                     <i class="fa fa-plus"> Ajouter</i>
                                 </button>
@@ -148,7 +148,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
-                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
                 </div>
                 {{Form::close()}}
 
@@ -204,7 +204,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-success">Enregistrer</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
                     </div>
                     {{Form::close()}}
 
