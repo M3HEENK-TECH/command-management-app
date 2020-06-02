@@ -87,8 +87,11 @@ class SalesController extends Controller
         $request->merge(["product" => $product]);
         $data = $request->only(Sale::CARD_SESSION_FIELDS);
         session()->push(Sale::CARD_SESSION_KEY, $data);
+        
+            
         return Response::redirectToRoute("sales.index")
             ->with("success", "Vente enregistrer en session");
+            
     }
 
 

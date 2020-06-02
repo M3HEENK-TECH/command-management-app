@@ -16,7 +16,7 @@
                         </ul>
                     </div>
                     <div class="logo-element">
-                        CMD
+                        ESIG
                     </div>
                 </li>
 

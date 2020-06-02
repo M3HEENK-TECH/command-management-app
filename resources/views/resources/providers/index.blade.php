@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-9">
             <h2>Lite des fournisseurs</h2>
-            <button class="btn btn-outline btn-success" type="button" data-toggle="modal" data-target="#myModal6"><i class="fa fa-plus"> Ajouter</i></button>
+            <button class="btn btn-outline btn-primary" type="button" data-toggle="modal" data-target="#myModal6"><i class="fa fa-plus"> Ajouter</i></button>
         </div>
     </div>
 
@@ -18,8 +18,8 @@
 
             @foreach($providers as $provider)
 
-                <div class="col-md-3">
-                    <div class="ibox-content text-center"  @if($provider->deleted_at) class="has-background-grey-lighter" @endif >
+                <div class="col-md-3" style="margin-bottom: 10px;">
+                    <div   class="ibox-content text-center"  @if($provider->deleted_at) class="has-background-grey-lighter" @endif >
                         <h1>{{ $provider->name }}</h1>
                         <div class="m-b-sm">
                             <img alt="image" class="img-circle" src="assets/img/im3.png">
@@ -65,7 +65,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
-                                <button type="submit" class="btn btn-success" >Enregistrer</button>
+                                <button type="submit" class="btn btn-primary" >Enregistrer</button>
                             </div>
 
                         </form>
@@ -97,7 +97,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
-                                    <button type="submit" class="btn btn-success" >Enregistrer</button>
+                                    <button type="submit" class="btn btn-primary" >Enregistrer</button>
                                 </div>
 
                             </form>
@@ -128,7 +128,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-white" data-dismiss="modal">NON</button>
-                                <button type="submit" class="btn btn-success">OK</button>
+                                <button type="submit" class="btn btn-primary">OK</button>
                             </div>
                         </form>
 

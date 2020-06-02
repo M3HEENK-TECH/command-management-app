@@ -19,6 +19,7 @@ class ProductsController extends Controller
         $data = [
             "products" => Product::all()
         ];
+        
         return view('resources.products.index')->with($data);
     }
 
