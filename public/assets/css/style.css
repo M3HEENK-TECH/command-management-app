@@ -1,5 +1,10 @@
+/*
+Commenter pour les performence
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,300,500,700");
+
+ */
 /*
  *
  *   INSPINIA - Responsive Admin Theme
@@ -3845,7 +3850,7 @@ table.table-mail tr td {
 }
 .white-bg {
   background-color: #ffffff;
-  
+
 }
 .navy-bg {
   background-color: #1ab394;
