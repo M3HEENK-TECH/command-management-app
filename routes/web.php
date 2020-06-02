@@ -35,6 +35,11 @@ Route::middleware("auth")->group(function (){
             ->name("update","cashiers.update")
             ->name("destroy","cashiers.destroy");
 
+         #Route pour envoyer un message d'erreur par le caissier
+
+            Route::get('/ErrorMessage', 'Resources\AppSalesController@sendErrorMessage')
+            ->name("user.sendErrorMessage");
+        
         /* Controller des fournisseurs */
         Route::resource('/providers', 'Resources\ProvidersController')
             ->name("index","providers.index")
