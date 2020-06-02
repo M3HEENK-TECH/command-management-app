@@ -45,11 +45,14 @@ class Product extends Model
         return $this->hasMany(Supply::class,"product_id","id");
     }
 
-    public static function notifications(){
+    public function sendAlertNotification(){
         $notiproduct = Product::select('name','quantity')->where('quantity','<=','10')->get();
         if ($notiproduct){
             Mail::to("danielndam9@gmail.com")->send(new ProductMail($notiproduct));
         }
+    }
+
+    public static function notifications(){
         return self::query()->select(['name',"quantity"])->where('quantity','<=','10')->get();
     }
 
