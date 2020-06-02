@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Foundation\Inspiring;
 
 /*
@@ -16,3 +17,7 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command('send_products_alert', function () {
+    Product::sendAlertNotification();
+})->describe('Send Product Notification for alert');

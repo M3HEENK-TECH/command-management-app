@@ -45,7 +45,7 @@ class Product extends Model
         return $this->hasMany(Supply::class,"product_id","id");
     }
 
-    public function sendAlertNotification(){
+    public static function sendAlertNotification(){
         $notiproduct = Product::select('name','quantity')->where('quantity','<=','10')->get();
         if ($notiproduct){
             Mail::to("danielndam9@gmail.com")->send(new ProductMail($notiproduct));
