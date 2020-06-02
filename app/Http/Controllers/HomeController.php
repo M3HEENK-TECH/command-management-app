@@ -57,28 +57,28 @@ class HomeController extends Controller
                 'product' =>  $max_sale_prod_by_sales_count  ,
                 'count' =>  !empty($max_sale_prod_by_sales_count) ?
                     $max_sale_prod_by_sales_count[0]->sales->count() : '--',
-                'small_text' => "Nombre de ventes :"
+                'small_text' => "Le plus grand nombre de ventes :"
             ],
             [
                 'title' => "10 Produits avec le plus petit nombre de ventes",
                 'product' => $min_sale_prod_by_sales_count,
                  'count' =>  !empty($min_sale_prod_by_sales_count) ?
                      $min_sale_prod_by_sales_count[0]->sales->count() : '--',
-                'small_text' => "Nombre de ventes :"
+                'small_text' => "Le plus petit nombre de ventes :"
             ],
             [
                 'title' => "10 Produits avec le plus grand prix total de ventes",
                 'product' =>  $max_sale_prod_by_total_price  ,
                 'count' =>  !empty($max_sale_prod_by_total_price) ?
                     $max_sale_prod_by_total_price[0]->total_sales_price : '--',
-                'small_text' => "Prix total de ventes :"
+                'small_text' => "le plus grand prix total de ventes :"
             ],
             [
                 'title' => "10 Produits avec le plus petit prix total de ventes",
                 'product' => $min_sale_prod_by_total_price,
                 'count' =>  !empty($min_sale_prod_by_total_price) ?
                     $min_sale_prod_by_total_price[0]->total_sales_price : '--',
-                'small_text' => "Prix total de ventes :"
+                'small_text' => "le plus petit prix total de ventes :"
             ],
         ];
         $cashiers_panels_data = [
@@ -88,7 +88,7 @@ class HomeController extends Controller
                 'count' =>  !empty($max_sale_cashiers) ? $max_sale_cashiers[0]->sales->count() : '--'
             ],
             [
-                "title" => "10 Caissiers avec la plus petit nombre vente",
+                "title" => "10 Caissiers avec le plus petit nombre vente",
                 "cashier" => $min_sale_cashiers,
                 'count' =>  !empty($min_sale_cashiers) ? $min_sale_cashiers[0]->sales->count() : '--'
             ],

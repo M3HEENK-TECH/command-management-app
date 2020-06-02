@@ -17,7 +17,7 @@ class CashiersController extends Controller
      */
     public function index()
     {
-        $cashier = User::query()->where('role', 'cashier')->paginate(15);
+        $cashier = User::query()->withCount("sales")->where('role', 'cashier')->paginate(15);
         return view('resources.cashiers.index')
             ->with(["cashiers" => $cashier]);
     }

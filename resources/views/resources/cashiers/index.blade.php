@@ -33,8 +33,8 @@
                             <div class="font-bold">Caissier</div>
                             <address class="m-t-md">
                             {{$item->email}}<br>
-                            </address>
-
+                                </address>
+                            <p>{{ $item->sales->count()  }} Ventes</p>
                         </a>
                         <div class="contact-box-footer">
                             <div >
