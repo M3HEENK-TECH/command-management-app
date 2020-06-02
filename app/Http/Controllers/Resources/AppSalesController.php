@@ -7,7 +7,9 @@ namespace App\Http\Controllers\Resources;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Models\User;
+use Illuminate\Http\Request as Requestdate;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 
@@ -58,22 +60,21 @@ class AppSalesController
             'products' => Product::all()
         ];
         $insertion = Sale::insertSaleFromSession();
-        
+
         if (!$insertion) {
             return back()->withErrors([
                 "unknown" => "Erreur renconter lors de la vente, Pour etre sur de resoudre
                 le probleme vous devez effacer tout les produits et recommencer"
             ]);
-            
+
         }
 
         $product = new Product;
             $product->price = $product->quantity * $product->unity_price;
             $product->update();
-    
+
         return redirect()->route("app_sales.index")->withSuccess("Vente effectuer");
     }
-
 
     public function print(User $cashier)
     {
@@ -94,5 +95,21 @@ class AppSalesController
         return view('resources.app_sales.print', $data);
     }
 
+    public function printbydate(Requestdate $request) {
+
+     $id = $request->get('cashier_id');
+     $user = User::all()->where('id', '=', $id);
+     $date = $request->get('date');
+     $print = DB::table('sales')
+         ->join('users', 'users.id', '=', 'sales.user_id')
+         ->join('products', 'products.id', '=', 'sales.product_id')
+         ->where('sales.created_at' , '=' , $date)
+         ->where('sales.user_id', '=', $id)
+         ->orderBy('sales.id', 'desc')
+         ->select( 'sales.id','products.name', 'products.quantity', 'products.unity', 'sales.created_at')
+         ->get();
+
+     return view('resources.app_sales.print_date', compact('user', 'print'));
+    }
 
 }

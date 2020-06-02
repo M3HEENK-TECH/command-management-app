@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
+
+use App\Mail\ProductMail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use phpDocumentor\Reflection\Types\Self_;
 
 class Product extends Model
@@ -45,6 +46,10 @@ class Product extends Model
     }
 
     public static function notifications(){
+        $notiproduct = Product::select('name','quantity')->where('quantity','<=','10')->get();
+        if ($notiproduct){
+            Mail::to("danielndam9@gmail.com")->send(new ProductMail($notiproduct));
+        }
         return self::query()->select(['name',"quantity"])->where('quantity','<=','10')->get();
     }
 
@@ -126,4 +131,7 @@ class Product extends Model
         }
         return $product_with_max_sales;
     }
+
+
+
 }
