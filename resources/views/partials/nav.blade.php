@@ -40,6 +40,11 @@
                     <li>
                         <a href="{{route("app_sales.index")}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Ventes</span></a>
                     </li>
+                    <li>
+                        <a href="{{route("messaging.index")}}">
+                            <i class="fa fa-comments"></i> <span class="nav-label">Messagerie</span>
+                        </a>
+                    </li>
 
 
                 @elseif(auth()->check() and  auth()->user()->isCashier() )
@@ -53,6 +58,11 @@
                     </li>
                     <li>
                         <a href="{{route("app_sales.index")}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Mes Ventes</span></a>
+                    </li>
+                    <li>
+                        <a href="{{route("messaging.index")}}">
+                            <i class="fa fa-comments"></i> <span class="nav-label">Messagerie</span>
+                        </a>
                     </li>
 
                 @endif

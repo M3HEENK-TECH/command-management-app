@@ -1,13 +1,13 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class errorMessage extends Model
 {
-    use SoftDeletes;
-    use Notifiable;
+    //use SoftDeletes;
+    //use Notifiable;
 
     protected $primaryKey = "id";
 
@@ -15,14 +15,18 @@ class errorMessage extends Model
 
     protected $fillable = [
             "message",
+            "target_user_id",
             "user_id",
     ];
-    
-   
+
 
     public static function notifications(){
         return self::query()->select->all();
     }
-}   
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+}
 
 

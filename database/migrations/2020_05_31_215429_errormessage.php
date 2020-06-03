@@ -17,7 +17,12 @@ class Errormessage extends Migration
             $table->bigIncrements('id');
             $table->String('message');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('target_user_id');
             $table->foreign("user_id")
+                ->references("id")
+                ->on("users")
+                ->onDelete('cascade');
+            $table->foreign("target_user_id")
                 ->references("id")
                 ->on("users")
                 ->onDelete('cascade');
@@ -33,6 +38,6 @@ class Errormessage extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sales');
+        Schema::dropIfExists('errormessage');
     }
 }

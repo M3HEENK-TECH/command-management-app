@@ -116,6 +116,10 @@ class User extends Authenticatable
         return $UserArray;
     }
 
+    public function messages(){
+        return $this->hasMany(errorMessage::class,"user_id","id");
+    }
+
 
 
 

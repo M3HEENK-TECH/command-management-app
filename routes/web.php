@@ -20,6 +20,13 @@ Route::get('logout', 'Auth\LoginController@logout');
 Route::middleware("auth")->group(function (){
 
     /* Routes du middleware de l'admin */
+    Route::middleware('role:admin,cashier')->group(function (){
+        #Route pour envoyer un message d'erreur par le caissier
+
+        Route::post('/messaging', 'Resources\MessagingController@sendErrorMessage')->name("user.sendErrorMessage");
+        Route::get('/messaging', 'Resources\MessagingController@index')->name("messaging.index");
+        Route::get('/messaging/{user}', 'Resources\MessagingController@show')->name("messaging.show");
+    });
     Route::middleware('role:admin')->group(function (){
 
         /*Admin Home page */
@@ -35,11 +42,7 @@ Route::middleware("auth")->group(function (){
             ->name("update","cashiers.update")
             ->name("destroy","cashiers.destroy");
 
-         #Route pour envoyer un message d'erreur par le caissier
 
-            Route::get('/ErrorMessage', 'Resources\AppSalesController@sendErrorMessage')
-            ->name("user.sendErrorMessage");
-        
         /* Controller des fournisseurs */
         Route::resource('/providers', 'Resources\ProvidersController')
             ->name("index","providers.index")
