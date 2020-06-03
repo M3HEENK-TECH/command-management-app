@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -61,6 +62,11 @@ class User extends Authenticatable
         $this->save();
     }
 
+    public function sales()
+    {
+        return $this->hasMany(Sale::class,"user_id","id");
+    }
+
 
     public function getUrlAttribute(){
         if ( empty($this->attributes['profile_image']) ){
@@ -80,6 +86,38 @@ class User extends Authenticatable
     public function scopeCashier($query){
         return $query->where("role","cashier");
     }
+
+    public function scopeAdmin($query){
+        return $query->where("role","admin");
+    }
+
+    public function scopeMaxSeller(Builder $query){
+        $users = self::cashier()
+            ->withCount("sales")->get();
+        $UserArray = [];
+        foreach ($users as $key => $item){
+            //dump($item);
+            if ($key < 4 && $item->sales->count() == $users->max("sales_count") ){
+                $UserArray[] = $item;
+            }
+        }
+        return $UserArray;
+    }
+
+    public function scopeMinSeller(Builder $query){
+        $users = self::cashier()
+            ->withCount("sales")->get();
+        $UserArray = [];
+        foreach ($users as $key => $item){
+            if ($key < 4 && $item->sales->count() == $users->min("sales_count") ){
+                $UserArray[] = $item;
+            }
+        }
+        return $UserArray;
+    }
+
+
+
 
 
 

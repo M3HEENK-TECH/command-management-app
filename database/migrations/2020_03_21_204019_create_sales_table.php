@@ -20,10 +20,12 @@ class CreateSalesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign("product_id")
                 ->references("id")
-                ->on("products");
+                ->on("products")
+                ->onDelete('cascade');
             $table->foreign("user_id")
                 ->references("id")
-                ->on("users");
+                ->on("users")
+                ->onDelete('cascade');
             $table->timestamp("created_at");
         });
     }

@@ -36,6 +36,7 @@ class Sale extends Model
         return $this->belongsTo(User::class,"user_id","id");
     }
 
+
     public static function insertSaleFromSession() : bool {
         $session_sales = session()->get(self::CARD_SESSION_KEY);
         if ( empty($session_sales) ) {
@@ -67,5 +68,6 @@ class Sale extends Model
         return  true;
 
     }
+
 
 }

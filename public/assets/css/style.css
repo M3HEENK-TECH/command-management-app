@@ -1,5 +1,10 @@
+/*
+Commenter pour les performence
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,300,500,700");
+
+ */
 /*
  *
  *   INSPINIA - Responsive Admin Theme
@@ -161,7 +166,7 @@ h5 {
 }
 .nav-header {
   padding: 33px 25px;
-  background: url("patterns/header-profile.png") no-repeat;
+  background: url("patterns/2.png") no-repeat;
 }
 .pace-done .nav-header {
   transition: all 0.4s;
@@ -3845,6 +3850,7 @@ table.table-mail tr td {
 }
 .white-bg {
   background-color: #ffffff;
+
 }
 .navy-bg {
   background-color: #1ab394;

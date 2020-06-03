@@ -10,16 +10,16 @@
                              </span> <span class="text-muted text-xs block">{{ Auth::user()->name }}<b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="#">Profile</a></li>
-                            <li class="divider"></li>                        
+                            <li class="divider"></li>
                             <li><a href="{{ route('logout') }}">Deconnexion</a></li>
 
                         </ul>
                     </div>
                     <div class="logo-element">
-                        CMD
+                        ESIG
                     </div>
                 </li>
-                
+
                 @if( auth()->check() and auth()->user()->isAdmin() )
 
                     <li class="">
@@ -41,12 +41,20 @@
                         <a href="{{route("app_sales.index")}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Ventes</span></a>
                     </li>
 
+
                 @elseif(auth()->check() and  auth()->user()->isCashier() )
 
-                    <li>
-                        <a href="grid_options.html"><i class="fa fa-line-chart"></i> <span class="nav-label">Panier</span></a>
+                    <li class="">
+                        <a href="{{url('home/cashier')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span> </a>
                     </li>
-                    
+                    <li>
+                        <a href="{{route("sales.index")}}"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Panier</span></a>
+
+                    </li>
+                    <li>
+                        <a href="{{route("app_sales.index")}}"><i class="fa fa-line-chart"></i> <span class="nav-label">Mes Ventes</span></a>
+                    </li>
+
                 @endif
             </ul>
 

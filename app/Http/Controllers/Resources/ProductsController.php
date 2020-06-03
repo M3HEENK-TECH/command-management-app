@@ -19,6 +19,7 @@ class ProductsController extends Controller
         $data = [
             "products" => Product::all()
         ];
+        
         return view('resources.products.index')->with($data);
     }
 
@@ -44,7 +45,7 @@ class ProductsController extends Controller
         $product = new Product([
             'name' => $request->get('name'),
             'quantity' => $request->get('quantity'),
-            'price' => $request->get('price'),
+            'price' => $request->get('quantity') * $request->get('unity_price'),
             'unity' => $request->get('unity'),
             'unity_price' => $request->get('unity_price'),
             'description' => $request->get('description'),

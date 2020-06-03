@@ -4,10 +4,15 @@
 
 use App\Models\Product;
 use Faker\Generator as Faker;
+use Illuminate\Support\Arr;
 
 $factory->define(Product::class, function (Faker $faker) {
     return [
-        "name" => $faker->name,
+        "name" => Arr::random([
+            "Beaufort","Beaufort Light", "Beaufort tango",
+            "33 Export", "Castele Beer", "Castle Milk Stout"
+            ,"Amstel","Heineken"
+        ]),
         "quantity" => $faker->numberBetween(20,80),
         "price" => $faker->numberBetween(50000,100000),
         "unity" => $faker->randomElement(["bouteille","sac","casier"]),

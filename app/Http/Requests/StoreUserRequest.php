@@ -30,10 +30,10 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
+            'profile_image' => ['nullable', 'image'],
             'name' => 'required|string|unique:users',
             'email' => 'required|email|unique:users',
-            'password' => 'required|string',
-            'profile_image' => 'required|image',
+            'password' => 'required|string'
         ];
     }
 }

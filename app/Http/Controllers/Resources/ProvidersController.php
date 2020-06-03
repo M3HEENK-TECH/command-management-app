@@ -26,7 +26,7 @@ class ProvidersController extends Controller
      */
     public function index()
     {
-        $providers = Provider::all();
+        $providers = Provider::query()->paginate(self::PAGINATION_PER_PAGE);
 
         return view('resources.providers.index',compact('providers'));
     }
@@ -49,13 +49,9 @@ class ProvidersController extends Controller
      */
     public function store(StoreProvidersRequest $request)
     {
-       Provider::create($request->all());
+        Provider::create($request->all());
 
-<<<<<<< Updated upstream
-       return redirect()->route('resources.providers.index');
-=======
-       return redirect()->route('providers.index')->withSuccess("Ajout effectué avec success");;
->>>>>>> Stashed changes
+       return redirect()->route('providers.index')->withSuccess("Ajout effectué avec success");
     }
 
     /**

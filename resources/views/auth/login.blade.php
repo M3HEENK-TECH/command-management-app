@@ -1,17 +1,19 @@
 @include("partials.head")
 
+
 <body class="gray-bg">
 
     <div class="middle-box text-center loginscreen animated fadeInDown">
         <div>
-            <div>
-
-                <h1 class="logo-name">JK</h1>
-
-            </div>
-            <h3>Bienvenue</h3>
+            @include("partials.alerts")
+        </div>
+        <div>
+            <img src="{{asset("images/logo-essig.png")}}"  alt="" width="240">
+            <br>
+            <h2>Bienvenue</h2>
 
             <p>Remplissez les champs et connectez-vous</p>
+            <br>
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
@@ -37,7 +39,7 @@
                 <button type="submit" class="btn btn-primary block full-width m-b">Connexion</button>
 
             </form>
-            <p class="m-t"> <small>M3HEENK-TECH &copy; 2020</small> </p>
+            <p class="m-t"> <small>M3HEENK-TECH &copy; <script>document.write(new Date().getFullYear());</script></small> </p>
         </div>
     </div>
 

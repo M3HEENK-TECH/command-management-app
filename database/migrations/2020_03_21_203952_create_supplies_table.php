@@ -20,7 +20,7 @@ class CreateSuppliesTable extends Migration
             $table->dateTime('confirmed_at')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('provider_id');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('provider_id')->references("id")->on("providers")->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();

@@ -16,7 +16,13 @@
 
                     <div class="form-group">
                         {{ Form::label("product_id","Product")  }}
-                        {{ Form::select("product_id",$products->pluck("name","id"),null,["class" => "form-control"])  }}
+                        <select name="product_id" id="product_id" class="form-control">
+                            @foreach($products as $product)
+                                <option value="{{$product->id}}">
+                                    {{ $product->name }} ( {{ $product->quantity }} {{ $product->unity }}  )
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -25,7 +31,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-dark">
+                        <button type="submit" class="btn btn-primary">
                             Ajouter
                         </button>
                     </div>

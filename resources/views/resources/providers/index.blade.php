@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-9">
             <h2>Lite des fournisseurs</h2>
-            <button class="btn btn-outline btn-success" type="button" data-toggle="modal" data-target="#myModal6"><i class="fa fa-plus"> Ajouter</i></button>
+            <button class="btn btn-outline btn-primary" type="button" data-toggle="modal" data-target="#myModal6"><i class="fa fa-plus"> Ajouter</i></button>
         </div>
     </div>
 
@@ -12,10 +12,14 @@
 
         <div class="row">
 
+            <div class="col-lg-12">
+                {{ $providers->links()  }}
+            </div>
+
             @foreach($providers as $provider)
 
-                <div class="col-md-3">
-                    <div class="ibox-content text-center"  @if($provider->deleted_at) class="has-background-grey-lighter" @endif >
+                <div class="col-md-3" style="margin-bottom: 10px;">
+                    <div   class="ibox-content text-center"  @if($provider->deleted_at) class="has-background-grey-lighter" @endif >
                         <h1>{{ $provider->name }}</h1>
                         <div class="m-b-sm">
                             <img alt="image" class="img-circle" src="assets/img/im3.png">
@@ -40,7 +44,7 @@
 
         <!-- Modal d'ajout -->
         <div class="modal inmodal fade" id="myModal6" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-sm">
+            <div class="modal-dialog  ">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -53,7 +57,7 @@
                             @csrf
 
                             <div class="form-group">
-                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Nom du Fourniesseur" class="form-control"> 
+                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Nom du Fourniesseur" class="form-control">
                                 @error('name')
                                     <p class="help is-danger">{{ $message }}</p>
                                 @enderror
@@ -61,7 +65,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
-                                <button type="submit" class="btn btn-success" >Enregistrer</button>
+                                <button type="submit" class="btn btn-primary" >Enregistrer</button>
                             </div>
 
                         </form>
@@ -74,7 +78,7 @@
         @foreach($providers as $provider)
 
             <div class="modal inmodal fade" id="myModal7{{$provider->id}}" tabindex="-1" role="dialog"  aria-hidden="true">
-                <div class="modal-dialog modal-sm">
+                <div class="modal-dialog  ">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -88,12 +92,12 @@
                                 @csrf
 
                                 <div class="form-group">
-                                    <input type="text" name="name" value="{{$provider->name}}"  class="form-control"> 
+                                    <input type="text" name="name" value="{{$provider->name}}"  class="form-control">
                                 </div>
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
-                                    <button type="submit" class="btn btn-success" >Enregistrer</button>
+                                    <button type="submit" class="btn btn-primary" >Enregistrer</button>
                                 </div>
 
                             </form>
@@ -118,13 +122,13 @@
                             <h3>voulez-vous vraiment supprime cet élément ?</h3>
                         </div>
 
-                        <form action="{{ route('providers.destroy', $provider->id) }}" method="">
+                        <form action="{{ route('providers.destroy', $provider->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-white" data-dismiss="modal">NON</button>
-                                <button type="submit" class="btn btn-success">OK</button>
+                                <button type="submit" class="btn btn-primary">OK</button>
                             </div>
                         </form>
 

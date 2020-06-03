@@ -15,7 +15,7 @@ Route::get('/', function () {
 Auth::routes([
     'register' => false
 ]);
-
+Route::get('logout', 'Auth\LoginController@logout');
 /* Routes du middleware d'authentification */
 Route::middleware("auth")->group(function (){
 
@@ -76,8 +76,7 @@ Route::middleware("auth")->group(function (){
         Route::get('/home/cashier', 'HomeController@cashierIndex')->name('home.cashier');
 
         # Routes des ventes en sessions
-        Route::get('/card_sales', 'Resources\SalesController@index')
-            ->name("sales.index"); # sales list
+        Route::get('/card_sales', 'Resources\SalesController@index')->name("sales.index"); # sales list
         Route::get('/card_sales/create', 'Resources\SalesController@create')->name("sales.create"); # Add new sales in  session card
         Route::post('/card_sales', 'Resources\SalesController@store')->name("sales.store"); # Strore new sale in session card
         Route::delete('/card_sales/{sale_key}', 'Resources\SalesController@destroy')->name("sales.destroy"); # Remove sales in session card
@@ -88,6 +87,7 @@ Route::middleware("auth")->group(function (){
             ->name("index","app_sales.index") # Liste des ventes
             ->name("store","app_sales.store") # Enregistrer des ventes depuis les sessions
             ->only("index","store");
+        Route::get("/app_sales/print/{cashier}","Resources\AppSalesController@print")->name("app_sales.print");
 
         Route::get("notification","NotificationController@list")->name("notification_list");
         Route::get('/app_sales/printdatet', 'Resources\AppSalesController@printbydate')->name('print_date');

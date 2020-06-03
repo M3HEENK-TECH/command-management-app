@@ -92,3 +92,7 @@ php artisan migrate
 * Creation des layout pour l'espace utilisateur
 * Creation des vues pour l'espace utilisateur
     * /home/admin et /home/cashier
+
+### Envoie d'email
+* email : esigalerte@gmail.com
+* pass : #aHes1fZ 
