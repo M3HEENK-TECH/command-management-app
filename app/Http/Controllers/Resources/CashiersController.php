@@ -7,6 +7,8 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Response;
+use App\Models\errorMessage;
+use Request;
 
 class CashiersController extends Controller
 {
@@ -117,6 +119,9 @@ class CashiersController extends Controller
             ->route('cashiers.index')
             ->withSuccess("Suppression realiser avec success");
     }
+
+
+    
 
 
 }

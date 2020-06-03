@@ -2,145 +2,136 @@
 
 @section('content')
 
-<div class="col-lg-6">
-    @if ( !empty($cashier) )
-        <h2>Ventes de {{$cashier->name}} </h2>
-    @else
-        <h2>Ventes de caissiers</h2>
-    @endif
+    <div class="col-lg-6">
+        @if ( !empty($cashier) )
+            <h2>Ventes de {{$cashier->name}} </h2>
+        @else
+            <h2>Ventes de caissiers</h2>
+        @endif
 
-</div>
+    </div>
 
-<div class="col-lg-6 text-right">
-    {{--
-    @if ( !empty($cashiers) )
-
-        <div class="dropdown" style="display: inline-block" >
-            <a id="cashier_sales" class="btn btn-primary dropdown-toggle" href="#" role="button"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Voir les ventes de </a>
-            <ul aria-labelledby="cashier_sales" class="dropdown-menu dropdown-menu-right">
-                @foreach($cashiers as $cashier)
-                    <li>
-                        <a class="" href="{{route("app_sales.index",['user_id'=> $cashier->id ])}}">
-                            {{ $cashier->name  }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
+    <div class="col-lg-6 text-right">
+        @if ( !empty($cashiers) )
 
 
-        <div class="dropdown" style="display: inline-block" >
-            <a id="cashier_print" class="btn btn-primary dropdown-toggle" href="#" role="button"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Imprimer les ventes de </a>
-            <ul aria-labelledby="cashier_print" class="dropdown-menu dropdown-menu-right">
-                @foreach($cashiers as $cashier)
-                    <li>
-                        <a class="" href="{{route("app_sales.print",['cashier'=> $cashier->id ])}}">
-                            {{ $cashier->name  }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
+            <div class="dropdown" style="display: inline-block" >
+                <a id="cashier_sales" class="btn btn-primary dropdown-toggle" href="#" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Voir les ventes de </a>
+                <ul aria-labelledby="cashier_sales" class="dropdown-menu dropdown-menu-right">
+                    @foreach($cashiers as $cashier)
+                        <li>
+                            <a class="" href="{{route("app_sales.index",['user_id'=> $cashier->id ])}}">
+                                {{ $cashier->name  }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
 
-    @else
-        <div class="dropdown ">
-            <a class="btn btn-primary" href="{{route("app_sales.print",['cashier'=> auth()->user()->id ])}}" >
-                Imprimer mes ventes </a>
 
-        </div>
-    @endif
-    --}}
+            </div>
 
-</div>
 
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
+            <div class="dropdown" style="display: inline-block" >
+                <a id="cashier_print" class="btn btn-primary dropdown-toggle" href="#" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Imprimer les ventes de </a>
+                <ul aria-labelledby="cashier_print" class="dropdown-menu dropdown-menu-right">
+                    @foreach($cashiers as $cashier)
+                        <li>
+                            <a class="" href="{{route("app_sales.print",['cashier'=> $cashier->id ])}}">
+                                {{ $cashier->name  }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
 
-                    <h5>Liste des ventes des caissiers</h5>
+        @else
+            <div class="dropdown ">
+                <a class="btn btn-primary" href="{{route("app_sales.print",['cashier'=> auth()->user()->id ])}}" >
+                    Imprimer mes ventes </a>
 
-<<<<<<< Updated upstream
-                    <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#">Config option 1</a>
-                            </li>
-                            <li><a href="#">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </div>
-                    <div class="ibox-content">
 
-                        <div class="table-responsive">
-=======
-                        <<<<<<< Updated upstream
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Imprimer par date
-                        </button>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
+            </div>
+        @endif
+
+
+    </div>
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+
+                        <h5>Liste des ventes des caissiers</h5>
+                        @if(auth()->user()->isCashier())
+                            <a class="btn btn-outline btn-info btn-xs pull-right" type="button" data-toggle="modal"
+                               data-target="#message_modal">Envoyer message d'erreur</a>
+                        @endif
+                        <div class="modal inmodal" id="message_modal" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content animated bounceInRight">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Insere votre date</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                                        <button type="button" class="close" data-dismiss="modal"><span
+                                                aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+                                        <h4 class="modal-title">Nouveau Message d'erreur</h4>
+
                                     </div>
-                                    <div class="modal-body">
-                                        <form action="{{ route('print_date') }}" method="get">
-                                            @csrf
-                                            <label for="Date">Entrez une date</label>
-                                            <input type="date" class="form-control" name="date">
-                                            <label for="cashier">Cashier</label>
-                                            <select name="cashier_id">
-                                                @foreach($cashiers as $cashier)
-                                                <option value="{{$cashier->id}}">{{$cashier->name}}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="modal-footer">
-                                                <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Save changes</button>
+
+                                    <form action="{{route("user.sendErrorMessage")}}" method="get">
+                                        @csrf
+
+                                        <div class="modal-body">
+
+                                            <div class="row">
+                                                <div class="form-group col-lg-12">
+                                                    <textarea name="message" id=""  cols="30" rows="10" class="form-control"></textarea>
+                                                </div>
+                                                <div class="form-group col-lg-12">
+                                                    <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+                                                </div>
+
                                             </div>
-                                        </form>
-                                    </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
+                                            <button type="submit" class="btn btn-success">Envoyer</button>
+                                        </div>
+                                    </form>
+
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 text-right">
-                            <div class="nav-item dropdown ">
-                                <a id="cashier_print" class="btn btn-dark dropdown-toggle" href="#" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Imprimer les ventes de :</a>
-                                <div aria-labelledby="cashier_print" class="bg-dark dropdown-menu dropdown-menu-right">
-                                    @foreach($cashiers as $cashier)
-                                        <a class="dropdown-item bg-dark text-white" href="{{route("app_sales.index")}}">
-                                            {{ $cashier->name  }} </a>
-                                    @endforeach
-                                </div>
-                            </div>
 
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="#">Config option 1</a>
+                                </li>
+                                <li><a href="#">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
                         </div>
->>>>>>> Stashed changes
+                        <div class="ibox-content">
 
-                            <table class="table table-striped table-bordered table-hover dataTables-example" >
-                                <thead>
+                            <div class="table-responsive">
+
+                                <table class="table table-striped table-bordered table-hover dataTables-example" >
+                                    <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Caissier</th>
@@ -149,9 +140,9 @@
                                         <th>Quantité</th>
 
                                     </tr>
-                                </thead>
+                                    </thead>
 
-                                <tbody>
+                                    <tbody>
                                     @foreach($sales as $key=> $sale)
                                         <tr>
                                             <td>{{$key+1}}</td>
@@ -164,16 +155,16 @@
                                             <td>{{$sale->quantity}}</td>
                                         </tr>
                                     @endforeach
-                                </tbody>
+                                    </tbody>
 
-                            </table>
+                                </table>
+                            </div>
+
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 @endsection

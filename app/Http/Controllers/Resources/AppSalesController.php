@@ -95,6 +95,7 @@ class AppSalesController
         return view('resources.app_sales.print', $data);
     }
 
+
     public function printbydate(Requestdate $request) {
 
      $id = $request->get('cashier_id');
@@ -111,5 +112,30 @@ class AppSalesController
 
      return view('resources.app_sales.print_date', compact('user', 'print'));
     }
+
+    //Permet d'envoyer un message d'erreur a l'admin concernant le stock
+
+    public function sendErrorMessage(Request $request)
+    {
+        $message = $request->message;
+        $id = $request->user_id;
+
+        $errmessage = new errorMessage(
+            [
+                "message" => $message,
+                "user_id" => $id
+            ]
+        );
+
+        dd($errmessage);
+
+            if($errmessage->save())
+            {
+                return redirect()->route('app_sales.index');
+            }
+
+
+    }
+
 
 }
