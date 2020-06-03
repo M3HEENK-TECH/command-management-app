@@ -15,7 +15,7 @@
             background: #f8f8f8 none repeat scroll 0 0;
             float: left;
             overflow: hidden;
-            width: 40%;
+            width: 30%;
             border-right: 1px solid #c4c4c4;
         }
 
@@ -159,7 +159,7 @@
         .mesgs {
             float: left;
             padding: 30px 15px 0 25px;
-            width: 60%;
+            width: 70%;
         }
 
         .sent_msg p {
@@ -233,8 +233,8 @@
                             <div class="chat_people">
                                 <div class="chat_img"><img src="{{$active_user->url}}" alt="sunil"></div>
                                 <div class="chat_ib">
-                                    <h5> {{$active_user->name}} | @if($active_user->role == "admin") admin @else
-                                            Caissier @endif  </h5>
+                                    <h5> {{$active_user->name}}  @if($active_user->role == "admin") <span class="badge badge-primary">admin</span> @else
+                                            <span class="badge badge-primary">Caissier</span> @endif  </h5>
                                 </div>
                             </div>
                         </div>
@@ -244,8 +244,8 @@
                                     <div class="chat_people">
                                         <div class="chat_img"><img src="{{$user->url}}" alt="sunil"></div>
                                         <div class="chat_ib">
-                                            <h5> {{$user->name}} | @if($user->role == "admin") admin @else
-                                                    Caissier @endif  </h5>
+                                            <h5> {{$user->name}}  @if($user->role == "admin") <span class="badge badge-primary">admin</span> @else
+                                                    <span class="badge badge-primary">Caissierr</span> @endif  </h5>
                                         </div>
                                     </div>
                                 </div>
