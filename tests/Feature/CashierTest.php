@@ -35,7 +35,7 @@ class CashierTest extends TestCase
     public function test_a_user_can_create_a_cashier()
     {
         $this->withoutMiddleware();
-        $cashier = facto(ry(User::class)->create(['role'=>'cashier']);
+        $cashier = factory(User::class)->create(['role'=>'cashier']);
        $response = $this->post('cashiers', $cashier->toArray());
         $response->assertStatus(302);
 
