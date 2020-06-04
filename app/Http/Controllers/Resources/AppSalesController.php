@@ -73,7 +73,7 @@ class AppSalesController
             $product->price = $product->quantity * $product->unity_price;
             $product->update();
 
-        return redirect()->route("app_sales.index")->withSuccess("Vente effectuer");
+        return redirect()->route("app_sales.index")->withSuccess("Vente effectuée");
     }
 
     public function print(User $cashier)

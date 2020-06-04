@@ -19,7 +19,7 @@ class ProductsController extends Controller
         $data = [
             "products" => Product::all()
         ];
-        
+
         return view('resources.products.index')->with($data);
     }
 
@@ -98,7 +98,7 @@ class ProductsController extends Controller
 
         return redirect()
         ->route('products.index')
-        ->withSuccess("Mise a jour realiser avec success");
+        ->withSuccess("Mise a jour realisée avec success");
     }
 
     /**
@@ -113,6 +113,6 @@ class ProductsController extends Controller
 
         return redirect()
         ->route('products.index')
-        ->withSuccess("Suppression realiser avec success");
+        ->withSuccess("Suppression realisée avec success");
     }
 }

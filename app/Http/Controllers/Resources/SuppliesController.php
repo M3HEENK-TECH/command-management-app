@@ -85,7 +85,7 @@ class SuppliesController extends Controller
             $product->quantity += $request->quantity; // mise à jour de la nouvelle quantite
             $product->price = ($product->quantity * $product->unity_price);// nouveau prix de gros ou prix d'achat du produit ajouté
 
-            
+
             $supplyUpdate = new supply;
 
             $Sproduct = product::find($request->product_id);
@@ -161,7 +161,7 @@ class SuppliesController extends Controller
     {
         $supply->delete();
 
-        return Response()->redirectToRoute("supplies.index")->with("success", "Element supprimer avec succes");
+        return Response()->redirectToRoute("supplies.index")->with("success", "Element supprimé avec succes");
     }
 
 
@@ -178,7 +178,7 @@ class SuppliesController extends Controller
             "confirmed_at" => now()
         ]);
         return Response::redirectToRoute("supplies.index")
-            ->with("success", "Approvisionement marquer comme supprimer avec succes");
+            ->with("success", "Approvisionement marqué comme supprimer avec succes");
     }
 
 

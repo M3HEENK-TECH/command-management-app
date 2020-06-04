@@ -271,7 +271,7 @@
                                     <div class="received_msg">
                                         <div class="received_withd_msg">
                                             <p>{{$msg->message}}</p>
-                                            <span class="time_date"> {{ $msg->created_at->diffForHumans()  }} </span>
+                                            <span class="time_date"> {{ $msg->created_at->diffForHumans()  }}  </span>
                                         </div>
                                     </div>
                                 </div>

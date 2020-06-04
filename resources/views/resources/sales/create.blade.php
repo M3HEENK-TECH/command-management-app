@@ -15,7 +15,7 @@
                     {!! Form::open([  "url"=> route("sales.store") ,"files"=> true, "method" => "post" ]) !!}
 
                     <div class="form-group">
-                        {{ Form::label("product_id","Product")  }}
+                        {{ Form::label("product_id","Produit")  }}
                         <select name="product_id" id="product_id" class="form-control">
                             @foreach($products as $product)
                                 <option value="{{$product->id}}">

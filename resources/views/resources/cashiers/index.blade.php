@@ -7,7 +7,7 @@
 
     <div class="row ">
         <div class="col-lg-9">
-            <h2>Lite des caissiers</h2>
+            <h2>Gérer caissier</h2>
             <button class="btn btn-outline btn-primary" type="button" data-toggle="modal" data-target="#creation_modal"><i class="fa fa-plus"> Ajouter</i></button>
         </div>
     </div>

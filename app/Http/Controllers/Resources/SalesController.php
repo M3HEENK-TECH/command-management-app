@@ -65,13 +65,13 @@ class SalesController extends Controller
      */
     public function store(StoreSalesRequest $request)
     {
-  
+
         $product = Product::query()
             ->where("id", $request->get("product_id"))
             ->where("quantity", ">=", $request->get("quantity") )
             ->first();
         if (empty($product)) {
-            return back()->withErrors(["quantity" => "Quantité du produit : La quantité est supérieur a celle en stock"]);
+            return back()->withErrors(["quantity" => "Erreur sur la quantité du produit : La quantité saisie est supérieure à celle en stock"]);
         }
         $product_quantity = 0;
         $card_sales = session()->get(Sale::CARD_SESSION_KEY) ?? [];
@@ -80,18 +80,20 @@ class SalesController extends Controller
                 $product_quantity += $sale['quantity'];
             }
         }
+        $product_quantity = $product_quantity + $product->quantity;
         if ($product_quantity > $product->quantity) {
             return back()->withErrors(["quantity" =>
-                "Quantité du produit : La quantité du produit ajouter + plus la quantité des produits déja en session est supérieur a celle en stcok"]);
+                "Quantité du produit : Avec les produits en panier La somme des quantités pour ce produit dépasse la quantité en disponible en stock "
+            ]);
         }
         $request->merge(["product" => $product]);
         $data = $request->only(Sale::CARD_SESSION_FIELDS);
         session()->push(Sale::CARD_SESSION_KEY, $data);
-        
-            
+
+
         return Response::redirectToRoute("sales.index")
-            ->with("success", "Vente enregistrer en session");
-            
+            ->with("success", "Vente enregistrée en session");
+
     }
 
 
@@ -112,7 +114,7 @@ class SalesController extends Controller
         $newData = Arr::except($data,$sale_key);
         session()->remove(Sale::CARD_SESSION_KEY);
         session()->put(Sale::CARD_SESSION_KEY,$newData);
-        return back()->with("success","Produit supprimer du panier avec success");
+        return back()->with("success","Produit supprimé du panier avec success");
 
     }
 
@@ -122,7 +124,7 @@ class SalesController extends Controller
     public function destroyAll()
     {
         session()->remove(Sale::CARD_SESSION_KEY);
-        return back()->with("success","Produit supprimer du panier avec success");
+        return back()->with("success","Panier vidé avec success");
 
     }
 
