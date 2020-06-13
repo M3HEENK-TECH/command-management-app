@@ -1,6 +1,6 @@
 @component('mail::message')
 
-Les elements suivant sont en peignerie de stocks
+Les élements suivant sont en pénurie de stocks
 <br>
     <div>
         <ul>

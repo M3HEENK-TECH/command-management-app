@@ -194,6 +194,7 @@
         .type_msg {
             border-top: 1px solid #c4c4c4;
             position: relative;
+            bottom: 20px;
         }
 
         .msg_send_btn {
@@ -261,7 +262,7 @@
                                 <div class="outgoing_msg">
                                     <div class="sent_msg">
                                         <p>{{$msg->message}} </p>
-                                        <span class="time_date"> {{ $msg->created_at->diffForHumans()  }} </span>
+                                        <span class="time_date"> {{ $msg->created_at  }} </span>
                                     </div>
                                 </div>
                             @else
@@ -271,12 +272,12 @@
                                     <div class="received_msg">
                                         <div class="received_withd_msg">
                                             <p>{{$msg->message}}</p>
-                                            <span class="time_date"> {{ $msg->created_at->diffForHumans()  }} </span>
+                                            <span class="time_date"> {{ $msg->created_at  }} </span>
                                         </div>
                                     </div>
                                 </div>
-                        @endif
-                    @endforeach
+                             @endif
+                        @endforeach
 
                 </div>
                 <div class="type_msg">

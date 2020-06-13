@@ -15,7 +15,7 @@ $factory->define(Product::class, function (Faker $faker) {
         ]),
         "quantity" => $faker->numberBetween(20,80),
         "price" => $faker->numberBetween(50000,100000),
-        "unity" => $faker->randomElement(["bouteille","sac","casier"]),
+        "unity" => $faker->randomElement(["bouteille"]),
         "unity_price" =>  $faker->randomElement([
             "100","500","700","1000","1500"]),
         "description" => $faker->text(250),
