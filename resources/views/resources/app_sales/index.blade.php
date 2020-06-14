@@ -65,7 +65,7 @@
 
                         <h5>Liste des ventes des caissiers</h5>
 
-                 
+
                         <div class="ibox-content">
 
                             <div class="table-responsive">

@@ -12,14 +12,14 @@ use Request;
 
 class CashiersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
+
     public function index()
     {
-        $cashier = User::query()->withCount("sales")->where('role', 'cashier')->paginate(15);
+        $cashier = User::query()
+            ->withCount("sales")
+            ->where('role', 'cashier')
+            ->latest()
+            ->paginate(15);
         return view('resources.cashiers.index')
             ->with(["cashiers" => $cashier]);
     }
@@ -102,7 +102,7 @@ class CashiersController extends Controller
         }
         return redirect()
             ->route('cashiers.index')
-            ->withSuccess("Mise a jour realiser avec success");
+            ->withSuccess("Mise a jour realisée avec success");
     }
 
     /**
@@ -117,11 +117,11 @@ class CashiersController extends Controller
 
         return redirect()
             ->route('cashiers.index')
-            ->withSuccess("Suppression realiser avec success");
+            ->withSuccess("Suppression realisée avec success");
     }
 
 
-    
+
 
 
 }

@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-9">
-            <h2>Lite des fournisseurs</h2>
+            <h2>Liste des fournisseurs</h2>
             <button class="btn btn-outline btn-primary" type="button" data-toggle="modal" data-target="#myModal6"><i class="fa fa-plus"> Ajouter</i></button>
         </div>
     </div>
