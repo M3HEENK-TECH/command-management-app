@@ -37,7 +37,7 @@ class Product extends Model
             "updated_at"
     ];
 
-    public function sales(){
+    public function sales(){ 
         return $this->hasMany(Sale::class,"product_id","id");
     }
 

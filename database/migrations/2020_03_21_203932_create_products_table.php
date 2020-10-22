@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->mediumText('description');
             $table->timestamps();
             $table->softDeletes();
-        });
+        }); 
     }
 
     /**
